@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:id="@+id/layout_fragment_main">
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.qmuiteam.qmui.widget.QMUITopBar
+                android:id="@+id/topbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/layout_height_common">
+
+            </com.qmuiteam.qmui.widget.QMUITopBar>
+
+            <com.qmuiteam.qmui.alpha.QMUIAlphaFrameLayout
+                android:id="@+id/fl_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/bottom"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/topbar">
+
+            </com.qmuiteam.qmui.alpha.QMUIAlphaFrameLayout>
+
+            <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
+                android:id="@+id/bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    app:srcCompat="@color/color_divider" />
+
+                <com.ashokvarma.bottomnavigation.BottomNavigationBar
+                    android:id="@+id/bottom_navigation_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom">
+
+                </com.ashokvarma.bottomnavigation.BottomNavigationBar>
+
+            </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
+        </RelativeLayout>
+
+</LinearLayout>

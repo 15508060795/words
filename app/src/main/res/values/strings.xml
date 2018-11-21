@@ -1,3 +1,26 @@
 <resources>
-    <string name="app_name">干掉单词</string>
+    <string name="app_name">杀死单词</string>
+    <string name="cancel">取消</string>
+    <string name="delete">删除</string>
+    <string name="confirm">确定</string>
+    <string name="input_limit">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <!--fragment界面-->
+
+    <string name="tidings">消息</string>
+    <string name="contacts">联系人</string>
+    <string name="setting">设置</string>
+
+    <!--注册界面-->
+    <string name="prePassword">原密码</string>
+    <string name="nowPassword">现密码</string>
+    <string name="passwordAgain">请再次输入密码</string>
+    <!--登录界面-->
+    <string name="account">用户名</string>
+    <string name="password">密码</string>
+    <string name="login">登录</string>
+    <string name="forget_password">忘记密码?</string>
+    <string name="register">新用户注册</string>
+    <!--setting界面-->
+    <string name="logout">退出登录</string>
+    <string name="dialog_logout_message">退出后将返回登录界面，确认退出吗?</string>
 </resources>

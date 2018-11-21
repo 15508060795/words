@@ -1,2 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <dimen name="height_divider">1px</dimen><!--分割线高度-->
+
+    <dimen name="srl_effective_scroll">60dp</dimen>
+
+    <dimen name="srl_header_padding_bottom">5dp</dimen>
+    <dimen name="srl_footer_padding_top">5dp</dimen>
+
+    <dimen name="srl_pull_tv_height">50dp</dimen>
+    <dimen name="srl_text_size">16sp</dimen>
+
+    <dimen name="srl_loading_view_width">100dp</dimen>
+    <dimen name="srl_loading_view_height">50dp</dimen>
+
+
+    <dimen name="textView_small_note">12sp</dimen><!--小字提示-->
+    <dimen name="textView_medium_note">16sp</dimen><!--中字提示-->
+    <dimen name="textView_large_note">18sp</dimen><!--大字提示-->
+    <dimen name="textView_noteSize">20sp</dimen><!--注释大小-->
+    <dimen name="textView_main_body">14sp</dimen><!--正文/按钮文字-->
+    <dimen name="textView_small_title">16sp</dimen><!--小标题-->
+    <dimen name="textView_appbar">20sp</dimen><!--标题字体大小-->
+
+    <dimen name="margin_left_12_dp">12dp</dimen>
+    <!--weight比例大小-->
+    <dimen name="weight_1">1</dimen>
+    <dimen name="weight_2">2</dimen>
+    <dimen name="weight_3">3</dimen>
+    <dimen name="weight_4">4</dimen>
+    <dimen name="weight_5">5</dimen>
+    <dimen name="weight_6">6</dimen>
+    <dimen name="weight_7">7</dimen>
+    <dimen name="weight_8">8</dimen>
+    <dimen name="weight_9">9</dimen>
+    <dimen name="weight_10">10</dimen>
+
+    <!--图片大小-->
+    <dimen name="icon_top_left">40dp</dimen>
+    <dimen name="icon_top_right">35dp</dimen>
+    <dimen name="icon_bottom">30dp</dimen>
+    <dimen name="icon_tidings">50dip</dimen>
+
+
+    <dimen name="icon_size_h">80dip</dimen>
+    <dimen name="icon_size_l">30dip</dimen>
+    <dimen name="icon_size_ll">20dip</dimen>
+    <dimen name="icon_size_lll">13dip</dimen>
+    <dimen name="icon_size_m">50dip</dimen>
+    <dimen name="icon_size_xh">120dip</dimen>
+    <dimen name="icon_size_xl">40dip</dimen>
+    <dimen name="icon_size_xm">65dip</dimen>
+    <dimen name="radius_btn">17dip</dimen>
+    <dimen name="radius_h">8dip</dimen>
+    <dimen name="radius_l">4dip</dimen>
+    <dimen name="radius_m">6dip</dimen>
+    <dimen name="radius_xh">10dip</dimen>
+    <!--间隔距离-->
+    <dimen name="toolbar_padding_top">25dp</dimen>
+    <dimen name="layout_height_top">50dp</dimen><!--top栏的高度-->
+
+    <dimen name="layout_height_bottom">60dp</dimen><!--bottom栏的高度-->
+    <dimen name="layout_height_bottom_padding">3dp</dimen><!--bottom栏图片与文字的高度-->
+
+    <dimen name="btn_small_spacing">15dp</dimen><!--按钮的间隔-->
+    <dimen name="btn_medium_spacing">25dp</dimen><!--按钮的间隔-->
+    <dimen name="layout_height_common">45dp</dimen><!--固定的基本的layout栏的高度-->
+
+    <dimen name="small_layout_spacing">5dp</dimen>
+    <dimen name="medium_layout_spacing">10dp</dimen>
+    <dimen name="large_layout_spacing">15dp</dimen>
+
+    <dimen name="item_tidings_spacing">70dp</dimen>
+    <dimen name="item_small_spacing">40dp</dimen>
+    <dimen name="item_medium_spacing">60dp</dimen>
+    <dimen name="item_large_spacing">120dp</dimen>
+
+    <dimen name="space_0">0.0dip</dimen>
+    <dimen name="space_1">1.0dip</dimen>
+    <dimen name="space_2">2.0dip</dimen>
+    <dimen name="space_3">3.0dip</dimen>
+    <dimen name="space_4">4.0dip</dimen>
+    <dimen name="space_5">5.0dip</dimen>
+    <dimen name="space_6">6.0dip</dimen>
+    <dimen name="space_7">7.0dip</dimen>
+    <dimen name="space_8">8.0dip</dimen>
+    <dimen name="space_9">9.0dip</dimen>
+    <dimen name="space_10">10.0dip</dimen>
+    <dimen name="space_11">11.0dip</dimen>
+    <dimen name="space_12">12.0dip</dimen>
+    <dimen name="space_13">13.0dip</dimen>
+    <dimen name="space_14">14.0dip</dimen>
+    <dimen name="space_15">15.0dip</dimen>
+    <dimen name="space_16">16.0dip</dimen>
+    <dimen name="space_17">17.0dip</dimen>
+    <dimen name="space_18">18.0dip</dimen>
+    <dimen name="space_19">19.0dip</dimen>
+    <dimen name="space_20">20.0dip</dimen>
+    <dimen name="space_21">21.0dip</dimen>
+    <dimen name="space_22">22.0dip</dimen>
+    <dimen name="space_23">23.0dip</dimen>
+    <dimen name="space_24">24.0dip</dimen>
+    <dimen name="space_25">25.0dip</dimen>
+    <dimen name="space_26">26.0dip</dimen>
+    <dimen name="space_27">27.0dip</dimen>
+    <dimen name="space_28">28.0dip</dimen>
+    <dimen name="space_29">29.0dip</dimen>
+    <dimen name="space_30">30.0dip</dimen>
+    <dimen name="space_35">35.0dip</dimen>
+    <dimen name="space_40">40.0dip</dimen>
+    <dimen name="space_50">50.0dip</dimen>
+    <dimen name="space_60">60.0dip</dimen>
+    <dimen name="space_70">70.0dip</dimen>
+    <dimen name="space_80">80.0dip</dimen>
+    <dimen name="space_90">90.0dip</dimen>
+    <dimen name="space_100">100.0dip</dimen>
+    <dimen name="space_120">120.0dip</dimen>
+    <!--字体大小-->
+    <dimen name="text_size_7">7.0sp</dimen>
+    <dimen name="text_size_8">8.0sp</dimen>
+    <dimen name="text_size_9">9.0sp</dimen>
+    <dimen name="text_size_10">10.0sp</dimen>
+    <dimen name="text_size_11">11.0sp</dimen>
+    <dimen name="text_size_12">12.0sp</dimen>
+    <dimen name="text_size_13">13.0sp</dimen>
+    <dimen name="text_size_14">14.0sp</dimen>
+    <dimen name="text_size_15">15.0sp</dimen>
+    <dimen name="text_size_16">16.0sp</dimen>
+    <dimen name="text_size_17">17.0sp</dimen>
+    <dimen name="text_size_18">18.0sp</dimen>
+    <dimen name="text_size_19">19.0sp</dimen>
+    <dimen name="text_size_20">20.0sp</dimen>
+    <dimen name="text_size_21">21.0sp</dimen>
+    <dimen name="text_size_22">22.0sp</dimen>
+    <dimen name="text_size_23">23.0sp</dimen>
+    <dimen name="text_size_24">24.0sp</dimen>
+    <dimen name="text_size_25">25.0sp</dimen>
+    <dimen name="text_size_26">26.0sp</dimen>
+    <dimen name="text_size_27">27.0sp</dimen>
+    <dimen name="text_size_28">28.0sp</dimen>
+    <dimen name="text_size_29">29.0sp</dimen>
+    <dimen name="text_size_30">30.0sp</dimen>
+    <dimen name="text_size_31">31.0sp</dimen>
+    <dimen name="text_size_32">32.0sp</dimen>
+    <dimen name="text_size_40">40.0sp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
+         https://developer.android.com/design/patterns/navigation-drawer.html -->
+    <dimen name="navigation_drawer_width">240dp</dimen>
+</resources>

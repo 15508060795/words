@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/space_20">
+
+    <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@mipmap/ic_default_head" />
+
+        <EditText
+            android:layout_marginTop="20dp"
+            android:id="@+id/et_login_ac"
+            android:layout_alignParentBottom="true"
+            android:hint="@string/account"
+            android:inputType="number"
+            style="@style/et_style"/>
+
+        <EditText
+            android:id="@+id/et_login_pw"
+            style="@style/et_style"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
+
+        <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="@string/login"
+            style="@style/btn_style" />
+
+        <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.qmuiteam.qmui.widget.textview.QMUILinkTextView
+                android:id="@+id/tv_login_rePw"
+                style="@style/tv_link_style"
+                android:text="@string/forget_password"
+                 />
+
+            <com.qmuiteam.qmui.widget.textview.QMUILinkTextView
+                android:id="@+id/tv_login_newAdm"
+                android:gravity="right"
+                style="@style/tv_link_style"
+                android:text="@string/register" />
+        </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
+    </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
+</com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_fragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.qmuiteam.qmui.widget.pullRefreshLayout.QMUIPullRefreshLayout
+            android:id="@+id/refresh_tidings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/Re_tidings"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/color_divider"
+                android:dividerHeight="@dimen/height_divider"
+                android:fadeScrollbars="false"
+                android:scrollbarSize="15px">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <com.qmuiteam.qmui.widget.QMUIAnimationListView
+                android:id="@+id/lv_tidings"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/color_divider"
+                android:dividerHeight="@dimen/height_divider"
+                android:fadeScrollbars="false"
+                android:scrollbarSize="15px">
+
+            </com.qmuiteam.qmui.widget.QMUIAnimationListView>
+        </com.qmuiteam.qmui.widget.pullRefreshLayout.QMUIPullRefreshLayout>
+
+
+
+        </RelativeLayout>
+
+
+
+</RelativeLayout>

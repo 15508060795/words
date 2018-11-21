@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#708090</color>
+    <color name="colorPrimaryDark">#708090</color>
     <color name="colorAccent">#D81B60</color>
+
+    <!--基础颜色-->
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray">#708090</color>
+    <color name="blue">#94DBFF</color>
+    <color name="bg_fragment">#FFFFFF</color>
+    <color name="color_divider">#d7d7d7</color>
+    <color name="color_scrollbar">#a9abae</color>
 </resources>

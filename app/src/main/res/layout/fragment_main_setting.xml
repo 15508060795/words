@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/qmui_config_color_gray_9"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/space_20"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_80"
+        android:gravity="center"
+        android:paddingLeft="@dimen/space_20"
+        android:paddingRight="@dimen/space_20"
+        android:paddingTop="@dimen/medium_layout_spacing"
+        android:paddingBottom="@dimen/medium_layout_spacing"
+        android:orientation="horizontal">
+
+        <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+            android:id="@+id/img_tidings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_default_head" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/medium_layout_spacing"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_tidings_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:focusable="false"
+                    android:text="会笑的小栋"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textView_large_note" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:enabled="false"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_tidings_msg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="@dimen/medium_layout_spacing"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:text="IOTAT帐号:"
+                    android:textColor="@color/qmui_config_color_gray_5"
+                    android:textSize="@dimen/textView_medium_note" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="@dimen/space_20"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.qmuiteam.qmui.widget.grouplist.QMUIGroupListView
+            android:id="@+id/lv_setting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.qmuiteam.qmui.widget.grouplist.QMUIGroupListView>
+    </LinearLayout>
+</LinearLayout>
