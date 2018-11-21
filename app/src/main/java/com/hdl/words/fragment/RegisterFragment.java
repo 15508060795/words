@@ -31,6 +31,13 @@ public class RegisterFragment extends BaseFragment implements IRegister {
     @BindView(R.id.et_rePassword)
     EditText rePasswordEt;
     String account,password,rePassword;
+    public RegisterFragment(){
+        newInstance();
+    }
+    public static RegisterFragment newInstance(){
+        RegisterFragment fragment=new RegisterFragment();
+        return fragment;
+    }
     public static RegisterFragment newInstance(Bundle bundle){
         RegisterFragment fragment=new RegisterFragment();
         fragment.setArguments(bundle);

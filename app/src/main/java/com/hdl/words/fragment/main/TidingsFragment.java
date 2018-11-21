@@ -11,7 +11,13 @@ import com.hdl.words.base.BaseFragment;
  */
 
 public class TidingsFragment extends BaseFragment {
-
+    public TidingsFragment(){
+        newInstance();
+    }
+    public static TidingsFragment newInstance(){
+        TidingsFragment fragment=new TidingsFragment();
+        return fragment;
+    }
     public static TidingsFragment newInstance(Bundle bundle){
         TidingsFragment fragment=new TidingsFragment();
         fragment.setArguments(bundle);

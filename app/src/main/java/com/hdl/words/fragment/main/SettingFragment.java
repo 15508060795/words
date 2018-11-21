@@ -2,7 +2,6 @@ package com.hdl.words.fragment.main;
 
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 
 import com.hdl.words.R;
@@ -10,7 +9,6 @@ import com.hdl.words.SharedPreferences.MySession;
 import com.hdl.words.base.BaseFragment;
 import com.hdl.words.fragment.LoginFragment;
 import com.hdl.words.fragment.MainFragment;
-import com.hdl.words.utils.QmuiDialogHelper;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction;
 import com.qmuiteam.qmui.widget.grouplist.QMUICommonListItemView;
@@ -21,6 +19,13 @@ import butterknife.BindView;
 public class SettingFragment extends BaseFragment {
     @BindView(R.id.lv_setting)
     QMUIGroupListView groupListView;
+    public SettingFragment(){
+        newInstance();
+    }
+    public static SettingFragment newInstance(){
+        SettingFragment fragment=new SettingFragment();
+        return fragment;
+    }
     public static SettingFragment newInstance(Bundle bundle){
         SettingFragment fragment=new SettingFragment();
         fragment.setArguments(bundle);

@@ -31,12 +31,18 @@ public class MainFragment extends BaseFragment {
     QMUITopBar topBar;
     @BindView(R.id.bottom_navigation_bar)//底部状态栏
             BottomNavigationBar bottomNavigationBar;
-    QMUIListPopup qmuiListPopup;
     private BaseFragment[] fragments=new BaseFragment[3];
     private int[] tabs=new int[]{R.string.tidings,R.string.contacts,R.string.setting};
     public static final int FIRST = 0;
     public static final int SECOND = 1;
     public static final int THIRD = 2;
+    public MainFragment(){
+        newInstance();
+    }
+    public static MainFragment newInstance(){
+        MainFragment fragment=new MainFragment();
+        return  fragment;
+    }
     public static MainFragment newInstance(Bundle bundle){
         MainFragment fragment=new MainFragment();
         fragment.setArguments(bundle);

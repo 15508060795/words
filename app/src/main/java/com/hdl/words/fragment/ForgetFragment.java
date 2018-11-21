@@ -30,6 +30,13 @@ public class ForgetFragment extends BaseFragment implements ILogin {
     @BindView(R.id.et_nowPassword)
     EditText nowPasswordEt;
     String account,prePassword,nowPassword;
+    public ForgetFragment(){
+        newInstance();
+    }
+    public static ForgetFragment newInstance(){
+        ForgetFragment fragment=new ForgetFragment();
+        return fragment;
+    }
     public static ForgetFragment newInstance(Bundle bundle){
         ForgetFragment fragment=new ForgetFragment();
         fragment.setArguments(bundle);
@@ -73,7 +80,6 @@ public class ForgetFragment extends BaseFragment implements ILogin {
 
     @Override
     public void initTopBar() {
-        //topBar.setBackgroundColor(getThemeColor());
         topBar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         topBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
             @Override

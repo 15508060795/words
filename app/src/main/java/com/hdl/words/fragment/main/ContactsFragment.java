@@ -11,6 +11,13 @@ import com.hdl.words.base.BaseFragment;
  */
 
 public class ContactsFragment extends BaseFragment {
+    public ContactsFragment(){
+        newInstance();
+    }
+    public static ContactsFragment newInstance(){
+        ContactsFragment fragment=new ContactsFragment();
+        return fragment;
+    }
     public static ContactsFragment newInstance(Bundle bundle){
         ContactsFragment fragment=new ContactsFragment();
         fragment.setArguments(bundle);

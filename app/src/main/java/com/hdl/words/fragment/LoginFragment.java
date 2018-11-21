@@ -24,6 +24,13 @@ public class LoginFragment extends BaseFragment {
     @BindView(R.id.et_login_pw)//密码
             EditText paaswordEt;
     String account,password;
+    public LoginFragment(){
+        newInstance();
+    }
+    public static LoginFragment newInstance(){
+        LoginFragment fragment=new LoginFragment();
+        return fragment;
+    }
     public static LoginFragment newInstance(Bundle bundle){
         LoginFragment fragment=new LoginFragment();
         fragment.setArguments(bundle);
