@@ -4,7 +4,7 @@
     <string name="cancel">取消</string>
     <string name="delete">删除</string>
     <string name="confirm">确定</string>
-    <string name="input_limit">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="input_limit">0123456789.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
 
     <string name="flash_note1">欲望以提升热忱,毅力以磨平高山.</string>
     <string name="flash_note2">受思深处宜先退,得意浓时便可休.</string>
