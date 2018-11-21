@@ -37,6 +37,7 @@
             style="@style/btn_style"
             android:layout_height="@dimen/space_40"
             android:layout_width="match_parent"
+            android:layout_margin="10dp"
             android:text="注册" />
     </LinearLayout>
 

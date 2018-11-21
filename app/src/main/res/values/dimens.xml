@@ -2,12 +2,19 @@
 <resources>
     <!--flash页面text字体大小-->
     <dimen name="tv_flash_size">20sp</dimen>
-    <dimen name="tv_flash_bottom_margin">50dp</dimen>
+    <dimen name="tv_flash_bottom_margin">40dp</dimen>
     <!--text高度-->
-    <dimen name="tv_height">50dp</dimen>
+    <dimen name="tv_height">40dp</dimen>
     <dimen name="tv_size">14sp</dimen>
-
-
+    <dimen name="tv_margin">10dp</dimen>
+    <!--edit-->
+    <dimen name="et_height">40dp</dimen>
+    <dimen name="et_size">14sp</dimen>
+    <dimen name="et_margin">10dp</dimen>
+    <dimen name="et_padding">20dp</dimen>
+    <!--Button-->
+    <dimen name="btn_height">40dp</dimen>
+    <dimen name="btn_margin">10dp</dimen>
 
 
     <dimen name="height_divider">1px</dimen><!--分割线高度-->
