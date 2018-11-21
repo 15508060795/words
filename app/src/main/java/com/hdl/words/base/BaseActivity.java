@@ -1,6 +1,5 @@
 package com.hdl.words.base;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -8,15 +7,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
 
 import com.qmuiteam.qmui.util.QMUIDisplayHelper;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
-import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
-import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.ButterKnife;
 import me.yokeyword.fragmentation.ISupportActivity;
@@ -28,10 +21,7 @@ import me.yokeyword.fragmentation.SupportActivity;
 
 public abstract class BaseActivity extends SupportActivity implements ISupportActivity,View.OnClickListener {
     protected Context context;
-    protected Toast toast;
-    protected QMUITipDialog tipDialog;
-    protected QMUIDialog dialog;
-    protected int theme;
+   // protected int theme;
     /** 是否沉浸状态栏 **/
     private boolean isSetStatusBar;
     /** 是否允许全屏 **/
@@ -44,20 +34,6 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
     protected View mContextView ;
     /** 日志输出标志 **/
     protected final String TAG = this.getClass().getSimpleName();
-    protected String[] permissions=new String[]{
-            Manifest.permission.CAMERA,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.LOCATION_HARDWARE,
-            Manifest.permission.RECORD_AUDIO,};
-    List<String> mPermissionList = new ArrayList<>();
-    //存储权限返回值
-    protected static final int Request_WRITE_EXTERNAL_STORAGE = 1;
-    //照相权限返回值
-    protected static final int Request_CAMERA = 2;
-    //定位权限返回值
-    protected static final int Request_LOCATION = 3;
-    //麦克风权限返回值
-    protected static final int Request_MICROPHONE = 4;
 
 
     @Override
@@ -122,7 +98,6 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
         if (mAllowFullScreen) {
             QMUIDisplayHelper.setFullScreen(this);
         }
-        //isSetStatusBar=MySession.getIsImmersive(this);
         isSetStatusBar=false;
         if (isSetStatusBar) {
             steepStatusBar();

@@ -1,9 +1,22 @@
 <resources>
     <string name="app_name">杀死单词</string>
+    <!--基础词汇-->
     <string name="cancel">取消</string>
     <string name="delete">删除</string>
     <string name="confirm">确定</string>
     <string name="input_limit">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+
+    <string name="flash_note1">欲望以提升热忱,毅力以磨平高山.</string>
+    <string name="flash_note2">受思深处宜先退,得意浓时便可休.</string>
+    <string name="flash_note3">不经一番寒彻骨,怎得梅花扑鼻香.</string>
+    <string name="flash_note4">宁可枝头抱香死,何曾吹落北风中.</string>
+    <string name="flash_note5">三更灯火五更鸡,正是男儿读书时.</string>
+    <string name="flash_note6">黑发不知勤学早,白首方悔读书迟.</string>
+    <string name="flash_note7">长风破浪会有时,直挂云帆济沧海.</string>
+    <string name="flash_note8">时人不识凌云木,直待凌云始道高.</string>
+    <string name="flash_note9">黑发不知勤学早,白首方悔读书迟.</string>
+    <string name="flash_note10">千锤万凿出深山,烈火焚烧若等闲.</string>
+
     <!--fragment界面-->
 
     <string name="tidings">消息</string>

@@ -20,6 +20,14 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
     </style>
+    <style name="tv_style" parent="android:Widget.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/tv_height</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/tv_color</item>
+        <item name="android:textSize">@dimen/tv_size</item>
+        <item name="android:gravity">center</item>
+    </style>
     <style name="et_style" parent="android:Widget.EditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>

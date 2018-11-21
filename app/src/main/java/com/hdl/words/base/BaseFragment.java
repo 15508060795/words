@@ -99,11 +99,6 @@ public abstract class BaseFragment extends SupportFragment {
             //网络数据刷新
         }
     }
-//    public int getThemeColor(){
-//        TypedValue typedValue = new TypedValue();
-//        mActivity.getTheme().resolveAttribute(R.attr.colorPrimary,typedValue,true);
-//        return typedValue.data;
-//    }
 
 
 }

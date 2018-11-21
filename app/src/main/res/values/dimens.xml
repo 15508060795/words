@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--flash页面text字体大小-->
+    <dimen name="tv_flash_size">20sp</dimen>
+    <dimen name="tv_flash_bottom_margin">50dp</dimen>
+    <!--text高度-->
+    <dimen name="tv_height">50dp</dimen>
+    <dimen name="tv_size">14sp</dimen>
+
+
+
+
     <dimen name="height_divider">1px</dimen><!--分割线高度-->
-
     <dimen name="srl_effective_scroll">60dp</dimen>
-
     <dimen name="srl_header_padding_bottom">5dp</dimen>
     <dimen name="srl_footer_padding_top">5dp</dimen>
-
     <dimen name="srl_pull_tv_height">50dp</dimen>
     <dimen name="srl_text_size">16sp</dimen>
-
     <dimen name="srl_loading_view_width">100dp</dimen>
     <dimen name="srl_loading_view_height">50dp</dimen>
 
@@ -56,6 +62,8 @@
     <dimen name="radius_m">6dip</dimen>
     <dimen name="radius_xh">10dip</dimen>
     <!--间隔距离-->
+
+
     <dimen name="toolbar_padding_top">25dp</dimen>
     <dimen name="layout_height_top">50dp</dimen><!--top栏的高度-->
 
@@ -74,6 +82,13 @@
     <dimen name="item_small_spacing">40dp</dimen>
     <dimen name="item_medium_spacing">60dp</dimen>
     <dimen name="item_large_spacing">120dp</dimen>
+
+
+
+
+
+
+
 
     <dimen name="space_0">0.0dip</dimen>
     <dimen name="space_1">1.0dip</dimen>

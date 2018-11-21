@@ -2,8 +2,9 @@
 <resources>
     <color name="colorPrimary">#708090</color>
     <color name="colorPrimaryDark">#708090</color>
-    <color name="colorAccent">#D81B60</color>
-
+    <color name="colorAccent">#708090</color>
+    <!--text颜色-->
+    <color name="tv_color">#FFFFFF</color>
     <!--基础颜色-->
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
