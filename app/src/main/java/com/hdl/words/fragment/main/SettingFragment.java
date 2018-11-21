@@ -19,9 +19,7 @@ import butterknife.BindView;
 public class SettingFragment extends BaseFragment {
     @BindView(R.id.lv_setting)
     QMUIGroupListView groupListView;
-    public SettingFragment(){
-        newInstance();
-    }
+
     public static SettingFragment newInstance(){
         SettingFragment fragment=new SettingFragment();
         return fragment;

@@ -33,10 +33,10 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initData() {
         if(MySession.getLoginState(this)){
-            MainFragment mainFragment=new MainFragment();
+            MainFragment mainFragment=MainFragment.newInstance();
             loadRootFragment(R.id.fl_main,mainFragment);
         }else{
-            LoginFragment loginFragment=new LoginFragment();
+            LoginFragment loginFragment=LoginFragment.newInstance();
             loadRootFragment(R.id.fl_main,loginFragment);
         }
     }

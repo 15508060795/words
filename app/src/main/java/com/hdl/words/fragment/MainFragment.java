@@ -27,18 +27,15 @@ import static com.ashokvarma.bottomnavigation.BottomNavigationBar.BACKGROUND_STY
 public class MainFragment extends BaseFragment {
     @BindView(R.id.layout_fragment_main)
     LinearLayout fragment;
-    @BindView(R.id.topbar)
+    @BindView(R.id.topBar)
     QMUITopBar topBar;
-    @BindView(R.id.bottom_navigation_bar)//底部状态栏
-            BottomNavigationBar bottomNavigationBar;
+    @BindView(R.id.bottomBar)//底部状态栏
+    BottomNavigationBar bottomNavigationBar;
     private BaseFragment[] fragments=new BaseFragment[3];
     private int[] tabs=new int[]{R.string.tidings,R.string.contacts,R.string.setting};
     public static final int FIRST = 0;
     public static final int SECOND = 1;
     public static final int THIRD = 2;
-    public MainFragment(){
-        newInstance();
-    }
     public static MainFragment newInstance(){
         MainFragment fragment=new MainFragment();
         return  fragment;
@@ -56,9 +53,9 @@ public class MainFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if(findChildFragment(TidingsFragment.class)==null){
-            fragments[FIRST]=new TidingsFragment();
-            fragments[SECOND]=new ContactsFragment();
-            fragments[THIRD]=new SettingFragment();
+            fragments[FIRST]=TidingsFragment.newInstance();
+            fragments[SECOND]=ContactsFragment.newInstance();
+            fragments[THIRD]=SettingFragment.newInstance();
             loadMultipleRootFragment(R.id.fl_main,
                     FIRST,
                     fragments[FIRST],
