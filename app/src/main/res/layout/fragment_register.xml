@@ -7,8 +7,8 @@
 
     <com.qmuiteam.qmui.widget.QMUITopBar
         android:layout_width="match_parent"
-        android:id="@+id/topbar"
-        android:layout_height="50dp">
+        android:id="@+id/topBar"
+        android:layout_height="@dimen/topBar_height">
     </com.qmuiteam.qmui.widget.QMUITopBar>
 
     <LinearLayout
@@ -35,10 +35,7 @@
         <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
             android:id="@+id/btn_register"
             style="@style/btn_style"
-            android:layout_height="@dimen/space_40"
-            android:layout_width="match_parent"
-            android:layout_margin="10dp"
-            android:text="注册" />
+            android:text="@string/register" />
     </LinearLayout>
 
 </LinearLayout>

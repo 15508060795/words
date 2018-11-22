@@ -24,9 +24,6 @@ public class LoginFragment extends BaseFragment {
     @BindView(R.id.et_login_pw)//密码
             EditText paaswordEt;
     String account,password;
-    public LoginFragment(){
-        newInstance();
-    }
     public static LoginFragment newInstance(){
         LoginFragment fragment=new LoginFragment();
         return fragment;
@@ -46,17 +43,17 @@ public class LoginFragment extends BaseFragment {
                         MySession.setLoginState(mActivity,true);
                         startWithPop(new MainFragment());
                     }else{
-                        ToastHelper.shortToast(mActivity,"帐号密码错误");
+                        ToastHelper.shortToast(mActivity,R.string.toast_accountAndPassword);
                     }
                 }else{
-                    ToastHelper.shortToast(mActivity,"请将用户名密码填写完整");
+                    ToastHelper.shortToast(mActivity,R.string.toast_complete_information);
                 }
                 break;
             case R.id.tv_login_rePw:
-                start(new ForgetFragment());
+                start(ForgetFragment.newInstance());
                 break;
             case R.id.tv_login_newAdm:
-                start(new RegisterFragment());
+                start(RegisterFragment.newInstance());
                 break;
         }
     }

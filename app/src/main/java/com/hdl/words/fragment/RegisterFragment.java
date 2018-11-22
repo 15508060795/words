@@ -22,7 +22,7 @@ import butterknife.OnClick;
  * auther: CHe
  */
 public class RegisterFragment extends BaseFragment implements IRegister {
-    @BindView(R.id.topbar)
+    @BindView(R.id.topBar)
     QMUITopBar topBar;
     @BindView(R.id.et_account)
     EditText accountEt;
@@ -31,9 +31,7 @@ public class RegisterFragment extends BaseFragment implements IRegister {
     @BindView(R.id.et_rePassword)
     EditText rePasswordEt;
     String account,password,rePassword;
-    public RegisterFragment(){
-        newInstance();
-    }
+
     public static RegisterFragment newInstance(){
         RegisterFragment fragment=new RegisterFragment();
         return fragment;
@@ -51,11 +49,11 @@ public class RegisterFragment extends BaseFragment implements IRegister {
                 if(dataIsNull()){
                     if(password.equals(rePassword)){
                         if(dataIsExist()){
-                            ToastHelper.shortToast(mActivity,"该账号已存在");
+                            ToastHelper.shortToast(mActivity,R.string.toast_exist_account);
                         } else{
                             new UserBean(account,password).save();
                             setNull();
-                            QmuiDialogHelper.showMailSuccess(mActivity,"注册成功");
+                            QmuiDialogHelper.showMailSuccess(mActivity,R.string.toast_register_success);
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -65,10 +63,10 @@ public class RegisterFragment extends BaseFragment implements IRegister {
                             },1000);
                         }
                     }else{
-                        ToastHelper.shortToast(mActivity,"两次密码不一致");
+                        ToastHelper.shortToast(mActivity,R.string.toast_password_disagree);
                     }
                 }else{
-                    ToastHelper.shortToast(mActivity,"请填写所有信息");
+                    ToastHelper.shortToast(mActivity,R.string.toast_input_all_information);
                 }
                 break;
         }
@@ -80,7 +78,6 @@ public class RegisterFragment extends BaseFragment implements IRegister {
 
     @Override
     public void initTopBar() {
-//        topBar.setBackgroundColor(getThemeColor());
         topBar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         topBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +85,8 @@ public class RegisterFragment extends BaseFragment implements IRegister {
                 pop();
             }
         });
-        topBar.setTitle("用户注册").setTextColor(getResources().getColor(R.color.white));
+        topBar.setTitle(R.string.register_title).setTextColor(getResources().getColor(R.color.white));
+
     }
 
     @Override

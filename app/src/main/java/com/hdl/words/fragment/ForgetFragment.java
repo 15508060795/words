@@ -21,7 +21,7 @@ import butterknife.OnClick;
  * auther: CHe
  */
 public class ForgetFragment extends BaseFragment implements ILogin {
-    @BindView(R.id.topbar)
+    @BindView(R.id.topBar)
     QMUITopBar topBar;
     @BindView(R.id.et_account)
     EditText accountEt;
@@ -30,9 +30,6 @@ public class ForgetFragment extends BaseFragment implements ILogin {
     @BindView(R.id.et_nowPassword)
     EditText nowPasswordEt;
     String account,prePassword,nowPassword;
-    public ForgetFragment(){
-        newInstance();
-    }
     public static ForgetFragment newInstance(){
         ForgetFragment fragment=new ForgetFragment();
         return fragment;
@@ -87,7 +84,7 @@ public class ForgetFragment extends BaseFragment implements ILogin {
                 pop();
             }
         });
-        topBar.setTitle("找回密码").setTextColor(getResources().getColor(R.color.white));
+        topBar.setTitle(R.string.reset_title).setTextColor(getResources().getColor(R.color.white));
     }
 
     @Override

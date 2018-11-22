@@ -24,19 +24,15 @@
             android:id="@+id/et_login_ac"
             android:layout_alignParentBottom="true"
             android:hint="@string/account"
-            android:inputType="number"
-            style="@style/et_style"/>
+            style="@style/et_account_style"/>
 
         <EditText
             android:id="@+id/et_login_pw"
-            style="@style/et_style"
-            android:hint="@string/password"
-            android:inputType="textPassword" />
+            style="@style/et_password_style"
+            android:hint="@string/password" />
 
         <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
             android:id="@+id/btn_login"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
             android:text="@string/login"
             android:layout_margin="10dp"
             style="@style/btn_style" />
@@ -48,14 +44,14 @@
             <com.qmuiteam.qmui.widget.textview.QMUILinkTextView
                 android:id="@+id/tv_login_rePw"
                 style="@style/tv_link_style"
-                android:text="@string/forget_password"
+                android:text="@string/login_forget_password"
                  />
 
             <com.qmuiteam.qmui.widget.textview.QMUILinkTextView
                 android:id="@+id/tv_login_newAdm"
                 android:gravity="right"
                 style="@style/tv_link_style"
-                android:text="@string/register" />
+                android:text="@string/login_register" />
         </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
     </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
 </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>

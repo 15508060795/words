@@ -39,6 +39,20 @@ public  class QmuiDialogHelper {
         dialog.setCancelable(false);
         dialog.show();
     }
+    public static void showMailSuccess(Context context, int resId){
+        if(dialog!=null){
+            hideLoading();
+            dialog=null;
+        }else {
+
+        }
+        dialog = new QMUITipDialog.Builder(context)
+                .setIconType(QMUITipDialog.Builder.ICON_TYPE_SUCCESS)
+                .setTipWord(context.getResources().getString(resId))
+                .create();
+        dialog.setCancelable(false);
+        dialog.show();
+    }
     public static void showMailFail(Context context, String msg){
         if(dialog!=null){
             hideLoading();
@@ -49,6 +63,20 @@ public  class QmuiDialogHelper {
         dialog = new QMUITipDialog.Builder(context)
                 .setIconType(QMUITipDialog.Builder.ICON_TYPE_FAIL)
                 .setTipWord(msg)
+                .create();
+        dialog.setCancelable(false);
+        dialog.show();
+    }
+    public static void showMailFail(Context context, int resId){
+        if(dialog!=null){
+            hideLoading();
+            dialog=null;
+        }else {
+
+        }
+        dialog = new QMUITipDialog.Builder(context)
+                .setIconType(QMUITipDialog.Builder.ICON_TYPE_FAIL)
+                .setTipWord(context.getResources().getString(resId))
                 .create();
         dialog.setCancelable(false);
         dialog.show();
