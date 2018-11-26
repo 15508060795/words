@@ -5,9 +5,12 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.hdl.words.fragment.LoginFragment;
+import com.hdl.words.fragment.MainFragment;
 import com.qmuiteam.qmui.util.QMUIDisplayHelper;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 
@@ -209,19 +212,17 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
 
     }
     //若为栈顶，最小化应用,否则杀死该Activity
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        if (keyCode == KeyEvent.KEYCODE_BACK) {
-//            //if(this==task.topActivity.getPackageName())
-//            if(getTopFragment() instanceof MainFragment||getTopFragment()instanceof LoginFragment){
-//                moveTaskToBack(true);
-//                return true;//return true;拦截事件传递,从而屏蔽back键。
-//            }else{
-//
-//            }
-//        }
-//        return super.onKeyDown(keyCode, event);
-//    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            //if(this==task.topActivity.getPackageName())
+            if(getTopFragment() instanceof MainFragment ||getTopFragment()instanceof LoginFragment){
+                moveTaskToBack(true);
+                return true;//return true;拦截事件传递,从而屏蔽back键。
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 
 

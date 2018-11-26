@@ -1,6 +1,5 @@
 package com.hdl.words.utils;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -26,6 +25,7 @@ public class ToastHelper {
     public static void shortToast(Context context, int resId){
         shortToast(context,context.getResources().getString(resId));
     }
+
     /**
      * [简化Toast]
      * @param msg

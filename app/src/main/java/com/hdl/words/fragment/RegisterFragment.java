@@ -57,7 +57,7 @@ public class RegisterFragment extends BaseFragment implements IRegister {
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    QmuiDialogHelper.hideLoading();
+                                    QmuiDialogHelper.hide();
                                     pop();
                                 }
                             },1000);
@@ -78,14 +78,14 @@ public class RegisterFragment extends BaseFragment implements IRegister {
 
     @Override
     public void initTopBar() {
-        topBar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        topBar.setBackgroundColor(getResources().getColor(R.color.color_topBar_bg));
         topBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pop();
             }
         });
-        topBar.setTitle(R.string.register_title).setTextColor(getResources().getColor(R.color.white));
+        topBar.setTitle(R.string.register_title).setTextColor(getResources().getColor(R.color.color_topBar_title_text));
 
     }
 

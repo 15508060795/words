@@ -22,7 +22,7 @@ public class LoginFragment extends BaseFragment {
     @BindView(R.id.et_login_ac)//帐号
             EditText accountEt;
     @BindView(R.id.et_login_pw)//密码
-            EditText paaswordEt;
+            EditText passwordEt;
     String account,password;
     public static LoginFragment newInstance(){
         LoginFragment fragment=new LoginFragment();
@@ -43,7 +43,7 @@ public class LoginFragment extends BaseFragment {
                         MySession.setLoginState(mActivity,true);
                         startWithPop(new MainFragment());
                     }else{
-                        ToastHelper.shortToast(mActivity,R.string.toast_accountAndPassword);
+                        ToastHelper.shortToast(mActivity,R.string.toast_accountOrPassword_error);
                     }
                 }else{
                     ToastHelper.shortToast(mActivity,R.string.toast_complete_information);
@@ -105,7 +105,7 @@ public class LoginFragment extends BaseFragment {
     }
     private void getData(){
         account=accountEt.getText().toString().trim();
-        password=paaswordEt.getText().toString().trim();
+        password=passwordEt.getText().toString().trim();
     }
     private boolean isNull(){
         if(account.isEmpty()|password.isEmpty()){

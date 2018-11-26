@@ -48,21 +48,16 @@ public class ForgetFragment extends BaseFragment implements ILogin {
                     if(UserDbHelper.isExist(account)){
                         if(dataIsCurrent()){
                             UserDbHelper.update(account,nowPassword);
-                            QmuiDialogHelper.showMailSuccess(mActivity,"密码更改成功");
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    QmuiDialogHelper.hideLoading();
-                                }
-                            },1000);
+                            QmuiDialogHelper.showMailSuccess(mActivity,R.string.toast_change_password_success);
+                            QmuiDialogHelper.hide(1500);
                         }else{
-                            ToastHelper.shortToast(mActivity,"密码错误");
+                            ToastHelper.shortToast(mActivity,R.string.toast_password_error);
                         }
                     }else{
-                        ToastHelper.shortToast(mActivity,"用户名不存在");
+                        ToastHelper.shortToast(mActivity,R.string.toast_account_not_exist);
                     }
                 }else{
-                    ToastHelper.shortToast(mActivity,"请完善信息");
+                    ToastHelper.shortToast(mActivity,R.string.toast_input_all_information);
                 }
                 break;
             default:
@@ -77,14 +72,14 @@ public class ForgetFragment extends BaseFragment implements ILogin {
 
     @Override
     public void initTopBar() {
-        topBar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        topBar.setBackgroundColor(getResources().getColor(R.color.color_topBar_bg));
         topBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pop();
             }
         });
-        topBar.setTitle(R.string.reset_title).setTextColor(getResources().getColor(R.color.white));
+        topBar.setTitle(R.string.reset_title).setTextColor(getResources().getColor(R.color.color_topBar_title_text));
     }
 
     @Override

@@ -2,17 +2,17 @@ package com.hdl.words.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.widget.LinearLayout;
+import android.support.v4.content.ContextCompat;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.hdl.words.R;
 import com.hdl.words.base.BaseFragment;
-import com.hdl.words.fragment.main.ContactsFragment;
+import com.hdl.words.fragment.main.ReciteFragment;
 import com.hdl.words.fragment.main.SettingFragment;
-import com.hdl.words.fragment.main.TidingsFragment;
+import com.hdl.words.fragment.main.TranslateFragment;
+import com.qmuiteam.qmui.widget.QMUITabSegment;
 import com.qmuiteam.qmui.widget.QMUITopBar;
-import com.qmuiteam.qmui.widget.popup.QMUIListPopup;
 
 import butterknife.BindView;
 import me.yokeyword.fragmentation.SupportFragment;
@@ -24,15 +24,14 @@ import static com.ashokvarma.bottomnavigation.BottomNavigationBar.BACKGROUND_STY
  * auther HDL
  * Mail 229101253@qq.com
  */
+
 public class MainFragment extends BaseFragment {
-    @BindView(R.id.layout_fragment_main)
-    LinearLayout fragment;
     @BindView(R.id.topBar)
     QMUITopBar topBar;
     @BindView(R.id.bottomBar)//底部状态栏
-    BottomNavigationBar bottomNavigationBar;
+    QMUITabSegment tabSegment;
     private BaseFragment[] fragments=new BaseFragment[3];
-    private int[] tabs=new int[]{R.string.tidings,R.string.contacts,R.string.setting};
+    private int[] tabs=new int[]{R.string.translate,R.string.recite,R.string.personal_center};
     public static final int FIRST = 0;
     public static final int SECOND = 1;
     public static final int THIRD = 2;
@@ -52,9 +51,9 @@ public class MainFragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if(findChildFragment(TidingsFragment.class)==null){
-            fragments[FIRST]=TidingsFragment.newInstance();
-            fragments[SECOND]=ContactsFragment.newInstance();
+        if(findChildFragment(TranslateFragment.class)==null){
+            fragments[FIRST]=TranslateFragment.newInstance();
+            fragments[SECOND]=ReciteFragment.newInstance();
             fragments[THIRD]=SettingFragment.newInstance();
             loadMultipleRootFragment(R.id.fl_main,
                     FIRST,
@@ -62,29 +61,35 @@ public class MainFragment extends BaseFragment {
                     fragments[SECOND],
                     fragments[THIRD]);
         }else{
-            fragments[FIRST]=findChildFragment(TidingsFragment.class);
-            fragments[SECOND]=findChildFragment(ContactsFragment.class);
+            fragments[FIRST]=findChildFragment(TranslateFragment.class);
+            fragments[SECOND]=findChildFragment(ReciteFragment.class);
             fragments[THIRD]=findChildFragment(SettingFragment.class);
         }
     }
     @Override
     public void initData() {
-        bottomNavigationBar
-                .setBackgroundStyle(BACKGROUND_STYLE_RIPPLE)
-                .addItem(new BottomNavigationItem(R.mipmap.ic_bottom_left, R.string.tidings))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_bottom_medium, R.string.contacts))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_bottom_setting, R.string.setting))
-                .setBarBackgroundColor(R.color.white)
-                .setInActiveColor(R.color.black)
-                .setFirstSelectedPosition(0)
-                .initialise();
+        tabSegment.setDefaultNormalColor(getResources().getColor(R.color.color_bottomBar_normal_bg));
+        tabSegment.setDefaultSelectedColor(getResources().getColor(R.color.color_bottomBar_select_bg));
+        tabSegment.addTab(new QMUITabSegment.Tab(
+                ContextCompat.getDrawable(getContext(), R.mipmap.ic_bottom_translate),
+                ContextCompat.getDrawable(getContext(), R.mipmap.ic_bottom_translate),
+                getActivity().getResources().getString(R.string.translate), true));
+        tabSegment.addTab(new QMUITabSegment.Tab(
+                ContextCompat.getDrawable(getContext(), R.mipmap.ic_bottom_recite),
+                ContextCompat.getDrawable(getContext(), R.mipmap.ic_bottom_recite),
+                getActivity().getResources().getString(R.string.recite), true));
+        tabSegment.addTab(new QMUITabSegment.Tab(
+                ContextCompat.getDrawable(getContext(), R.mipmap.ic_bottom_personal_center),
+                ContextCompat.getDrawable(getContext(), R.mipmap.ic_bottom_personal_center),
+                getActivity().getResources().getString(R.string.personal_center), true));
+        tabSegment.selectTab(0);
         tabSelect(0);
-
+        tabSegment.notifyDataChanged();
     }
 
     @Override
     public void initTopBar() {
-        topBar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        topBar.setBackgroundColor(getResources().getColor(R.color.color_topBar_bg));
         //topBar.setBackgroundColor(getThemeColor());
 //        topBar.addRightImageButton(R.mipmap.add, R.id.topbar_right_add_button).setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -132,24 +137,16 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void initListener() {
-        bottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
+        tabSegment.setOnTabClickListener(new QMUITabSegment.OnTabClickListener() {
             @Override
-            public void onTabSelected(int position) {
-                tabSelect(position);
-            }
-
-            @Override
-            public void onTabUnselected(int position) {
-            }
-
-            @Override
-            public void onTabReselected(int position) {
+            public void onTabClick(int index) {
+                tabSelect(index);
             }
         });
     }
 
     private void tabSelect(int position){
-        topBar.setTitle(getString(tabs[position])).setTextColor(getResources().getColor(R.color.white));
+        topBar.setTitle(getString(tabs[position])).setTextColor(getResources().getColor(R.color.color_topBar_title_text));
         showHideFragment(fragments[position]);
     }
 
