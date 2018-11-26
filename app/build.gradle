@@ -20,8 +20,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.0.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    //noinspection GradleDependency
+    implementation 'com.android.support:appcompat-v7:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -35,7 +35,7 @@ dependencies {
     //Gson
     implementation 'com.google.code.gson:gson:2.8.2'
     //LitePal数据库框架
-    implementation 'org.litepal.android:core:1.3.2'
+    implementation 'org.litepal.android:core:1.6.1'
     // fragmentation
     implementation 'me.yokeyword:fragmentation:1.3.6'
     //zxing二维码核心依赖

@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 
-import com.ashokvarma.bottomnavigation.BottomNavigationBar;
-import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.hdl.words.R;
 import com.hdl.words.base.BaseFragment;
 import com.hdl.words.fragment.main.ReciteFragment;
@@ -16,8 +14,6 @@ import com.qmuiteam.qmui.widget.QMUITopBar;
 
 import butterknife.BindView;
 import me.yokeyword.fragmentation.SupportFragment;
-
-import static com.ashokvarma.bottomnavigation.BottomNavigationBar.BACKGROUND_STYLE_RIPPLE;
 
 /**
  * Date 2018/8/2 9:56
