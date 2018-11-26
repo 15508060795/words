@@ -6,8 +6,7 @@
     <string name="confirm">确定</string>
     <string name="change">更改</string>
     <string name="input_limit">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
-
-
+    <!--闪屏界面提示语-->
     <string name="flash_note1">欲望以提升热忱,毅力以磨平高山.</string>
     <string name="flash_note2">受思深处宜先退,得意浓时便可休.</string>
     <string name="flash_note3">不经一番寒彻骨,怎得梅花扑鼻香.</string>
@@ -27,7 +26,6 @@
     <string name="login_register">新用户注册</string>
 
     <!--toast-->
-
     <string name="toast_accountAndPassword">帐号密码错误</string>
     <string name="toast_complete_information">请将用户名密码填写完整</string>
     <string name="toast_exist_account">该账号已存在</string>
