@@ -1,6 +1,7 @@
 package com.hdl.words.utils;
 
 import android.content.Context;
+import android.os.Handler;
 
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 
@@ -82,7 +83,20 @@ public  class QmuiDialogHelper {
         dialog.show();
     }
     public static void hideLoading(){
-        if(dialog!=null)
+        if(dialog!=null){
             dialog.dismiss();
+        }
+
+    }
+    public static void hideLoading(long time){
+        if(dialog!=null){
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    dialog.dismiss();
+                }
+            },time);
+        }
+
     }
 }
