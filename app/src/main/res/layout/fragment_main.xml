@@ -21,35 +21,25 @@
             <com.qmuiteam.qmui.alpha.QMUIAlphaFrameLayout
                 android:id="@+id/fl_main"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/bottom"
-                android:layout_alignParentLeft="true"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottomBar"
+                android:layout_below="@+id/topBar"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/topBar">
+                android:layout_alignParentLeft="true">
 
             </com.qmuiteam.qmui.alpha.QMUIAlphaFrameLayout>
 
-            <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
-                android:id="@+id/bottom"
+            <com.qmuiteam.qmui.widget.QMUITabSegment
+                app:qmui_tab_icon_position="top"
+                android:id="@+id/bottomBar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:orientation="vertical">
+                android:background="?attr/qmui_list_item_bg_with_border_top"
+                android:textSize="12sp"
+                android:layout_height="@dimen/bottomBar_height"
+                android:layout_gravity="bottom">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/height_divider"
-                    app:srcCompat="@color/color_divider" />
-
-                <com.ashokvarma.bottomnavigation.BottomNavigationBar
-                    android:id="@+id/bottomBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/bottomBar_height"
-                    android:layout_gravity="bottom">
-
-                </com.ashokvarma.bottomnavigation.BottomNavigationBar>
-
-            </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
+            </com.qmuiteam.qmui.widget.QMUITabSegment>
         </RelativeLayout>
 
 </LinearLayout>

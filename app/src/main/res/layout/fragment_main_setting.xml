@@ -18,7 +18,7 @@
         android:orientation="horizontal">
 
         <com.qmuiteam.qmui.widget.QMUIRadiusImageView
-            android:id="@+id/img_tidings"
+            android:id="@+id/img_user_head"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
@@ -38,7 +38,7 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/tv_tidings_name"
+                    android:id="@+id/tv_user_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerVertical="true"

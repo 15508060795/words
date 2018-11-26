@@ -34,6 +34,7 @@
         <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
             android:id="@+id/btn_login"
             android:text="@string/login"
+            android:layout_margin="10dp"
             style="@style/btn_style" />
 
         <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout

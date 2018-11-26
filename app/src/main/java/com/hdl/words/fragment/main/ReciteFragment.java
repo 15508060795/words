@@ -7,27 +7,28 @@ import com.hdl.words.base.BaseFragment;
 
 
 /**
- * Created by HDL on 2018/1/9.
+ * Created by HDL on 2018/1/9.c
  */
 
-public class TidingsFragment extends BaseFragment {
-    public static TidingsFragment newInstance(){
-        TidingsFragment fragment=new TidingsFragment();
+public class ReciteFragment extends BaseFragment {
+    public static ReciteFragment newInstance(){
+        ReciteFragment fragment=new ReciteFragment();
         return fragment;
     }
-    public static TidingsFragment newInstance(Bundle bundle){
-        TidingsFragment fragment=new TidingsFragment();
+    public static ReciteFragment newInstance(Bundle bundle){
+        ReciteFragment fragment=new ReciteFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
     @Override
     public int bindLayout() {
-        return R.layout.fragment_main_tidings;
+        return R.layout.fragment_main_contacts;
     }
+
+
 
     @Override
     public void initData() {
-
 
     }
 

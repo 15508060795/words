@@ -51,6 +51,7 @@ public class SettingFragment extends BaseFragment {
                             public void onClick(QMUIDialog dialog, int index) {
                                 dialog.dismiss();
                                 MySession.setLoginState(mActivity,false);
+                                assert getParentFragment() != null;
                                 ((MainFragment)getParentFragment()).startBrotherFragmentAndPop(new LoginFragment());
                             }
                         })

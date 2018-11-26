@@ -14,4 +14,12 @@
     <color name="bg_fragment">#FFFFFF</color>
     <color name="color_divider">#d7d7d7</color>
     <color name="color_scrollbar">#a9abae</color>
+    <!--主界面-->
+    <color name="color_topBar_bg">#708090</color>
+    <color name="color_topBar_title_text">#FFFFFF</color>
+    <color name="color_bottomBar_normal_bg">#000000</color>
+    <color name="color_bottomBar_select_bg">#708090</color>
+
+    setBarBackgroundColor
+
 </resources>
