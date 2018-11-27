@@ -1,6 +1,7 @@
 package com.hdl.words.utils;
 
 import android.content.Context;
+import android.os.Handler;
 import android.widget.Toast;
 
 /**
@@ -57,6 +58,16 @@ public class ToastHelper {
     public static void hide(Context context){
         if(toast!=null){
             toast.cancel();
+        }
+    }
+    public static void hide(long time){
+        if(toast!=null){
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    toast.cancel();
+                }
+            },time);
         }
     }
 }
