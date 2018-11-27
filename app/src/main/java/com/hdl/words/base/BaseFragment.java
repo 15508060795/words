@@ -3,6 +3,7 @@ package com.hdl.words.base;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,18 @@ public abstract class BaseFragment extends SupportFragment {
     protected final String TAG = this.getClass().getSimpleName();
     protected Bundle bundle;
     @Override
+    public void onAttach(Context context){
+        super.onAttach(context);
+        mActivity=(Activity)context;
+        bundle=getArguments();
+        Log.w(TAG, "onAttach()");
+    }
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        Log.w(TAG, "onCreate()");
+    }
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.w(TAG, "onCreateView()");
@@ -40,15 +53,10 @@ public abstract class BaseFragment extends SupportFragment {
         }
         return root;
     }
-    public abstract int bindLayout();
-    public abstract void initTopBar();
-    public abstract void initData();
-    public abstract void initListener();
     @Override
-    public void onAttach(Context context){
-        super.onAttach(context);
-        mActivity=(Activity)context;
-        bundle=getArguments();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.w(TAG, "onActivityCreated()");
     }
     @Override
     public void onStart() {
@@ -88,14 +96,28 @@ public abstract class BaseFragment extends SupportFragment {
         Log.w(TAG, "onDestroy()");
     }
     @Override
+    public void onDetach() {
+        super.onDetach();
+        hideSoftInput();
+        Log.w(TAG, "onDetach()");
+    }
+    public abstract int bindLayout();
+    public abstract void initTopBar();
+    public abstract void initData();
+    public abstract void initListener();
+
+
+
+    @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (hidden) {   // 不在最前端显示 相当于调用了onPause();
             visible=false;
-            Log.i(TAG,TAG+"不在前端显示,visible:"+visible);
+            Log.i(TAG,"visible:"+visible);
             return;
         }else{  // 在最前端显示 相当于调用了onResume();
             visible=true;
+            Log.i(TAG,"visible:"+visible);
             //网络数据刷新
         }
     }

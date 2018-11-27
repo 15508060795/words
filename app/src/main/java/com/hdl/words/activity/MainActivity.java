@@ -22,7 +22,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initParms(Bundle parms) {
-
+        setSteepStatusBar(true);
     }
 
     @Override

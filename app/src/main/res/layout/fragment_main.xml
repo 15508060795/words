@@ -1,45 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.qmuiteam.qmui.widget.QMUIWindowInsetLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_topBar_bg"
     android:fitsSystemWindows="true"
-    android:orientation="vertical"
-    android:id="@+id/layout_fragment_main">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.qmuiteam.qmui.widget.QMUIViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/bottomBar_height"
+        android:fitsSystemWindows="true"
+        android:background="@color/bg_fragment"/>
+    <com.qmuiteam.qmui.widget.QMUITabSegment
+        app:qmui_tab_icon_position="top"
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:background="?attr/qmui_list_item_bg_with_border_top"
+        android:textSize="12sp"
+        android:layout_height="@dimen/bottomBar_height"
+        android:layout_gravity="bottom">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    </com.qmuiteam.qmui.widget.QMUITabSegment>
 
-            <com.qmuiteam.qmui.widget.QMUITopBar
-                android:id="@+id/topBar"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/topBar_height">
-
-            </com.qmuiteam.qmui.widget.QMUITopBar>
-
-            <com.qmuiteam.qmui.alpha.QMUIAlphaFrameLayout
-                android:id="@+id/fl_main"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/bottomBar"
-                android:layout_below="@+id/topBar"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true">
-
-            </com.qmuiteam.qmui.alpha.QMUIAlphaFrameLayout>
-
-            <com.qmuiteam.qmui.widget.QMUITabSegment
-                app:qmui_tab_icon_position="top"
-                android:id="@+id/bottomBar"
-                android:layout_width="match_parent"
-                android:layout_alignParentBottom="true"
-                android:background="?attr/qmui_list_item_bg_with_border_top"
-                android:textSize="12sp"
-                android:layout_height="@dimen/bottomBar_height"
-                android:layout_gravity="bottom">
-
-            </com.qmuiteam.qmui.widget.QMUITabSegment>
-        </RelativeLayout>
-
-</LinearLayout>
+</com.qmuiteam.qmui.widget.QMUIWindowInsetLayout >

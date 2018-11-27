@@ -79,7 +79,7 @@ public class ForgetFragment extends BaseFragment implements ILogin {
                 pop();
             }
         });
-        topBar.setTitle(R.string.reset_title).setTextColor(getResources().getColor(R.color.color_topBar_title_text));
+        topBar.setTitle(R.string.reset_title).setTextColor(getResources().getColor(R.color.color_topBar_title_white));
     }
 
     @Override

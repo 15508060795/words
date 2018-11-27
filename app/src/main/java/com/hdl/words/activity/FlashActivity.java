@@ -18,6 +18,7 @@ public class FlashActivity extends BaseActivity {
     int[] msg;
     @Override
     public void initParms(Bundle parms) {
+        setSteepStatusBar(false);
         setAllowFullScreen(true);
     }
 

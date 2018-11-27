@@ -26,7 +26,6 @@
     <string name="login_register">新用户注册</string>
 
     <!--toast-->
-
     <string name="toast_accountOrPassword_error">帐号密码错误</string>
     <string name="toast_complete_information">请将用户名密码填写完整</string>
     <string name="toast_exist_account">该账号已存在</string>
@@ -50,6 +49,8 @@
     <string name="translate">翻译</string>
     <string name="recite">背诵</string>
     <string name="personal_center">个人中心</string>
+    <!--翻译界面-->
+    <string name="translate_choose_language">选择语言</string>
     <!--setting界面-->
     <string name="logout">退出登录</string>
     <string name="dialog_logout_message">退出后将返回登录界面，确认退出吗?</string>

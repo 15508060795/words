@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_fragment">
+    <com.qmuiteam.qmui.widget.QMUITopBar
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/topBar_height">
+
+    </com.qmuiteam.qmui.widget.QMUITopBar>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_input"
+                style="@style/et_style"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/et_shape_black"
+                android:gravity="left"
+                android:hint="请输入你要查询的单词..."
+                android:maxLines="4" />
+
+            <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+                android:id="@+id/btn_translate"
+                style="@style/btn_style"
+                android:layout_width="100dp"
+                android:layout_gravity="right"
+                android:text="@string/translate" />
+
+            <TextView
+                android:id="@+id/tv_result"
+                style="@style/et_style"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/et_shape_black"
+                android:gravity="left"
+                android:hint="翻译结果"
+                android:focusable="false"
+                android:maxLines="4" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

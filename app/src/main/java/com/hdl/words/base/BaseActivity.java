@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.hdl.words.R;
 import com.hdl.words.fragment.LoginFragment;
 import com.hdl.words.fragment.MainFragment;
 import com.qmuiteam.qmui.util.QMUIDisplayHelper;
@@ -22,11 +23,11 @@ import me.yokeyword.fragmentation.SupportActivity;
  * Created by HDL on 2018/1/15.
  */
 
-public abstract class BaseActivity extends SupportActivity implements ISupportActivity,View.OnClickListener {
+public abstract class BaseActivity extends SupportActivity implements ISupportActivity{
     protected Context context;
    // protected int theme;
     /** 是否沉浸状态栏 **/
-    private boolean isSetStatusBar;
+    private boolean isSetStatusBar=false;
     /** 是否允许全屏 **/
     private boolean mAllowFullScreen = false;
     /** 是否禁止旋转屏幕 **/
@@ -47,7 +48,6 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
             mContextView = LayoutInflater.from(this).inflate(bindLayout(), null);
             bundle = getIntent().getExtras();
             initParms(bundle);
-            //loadTheme();
             loadConfigure();
             ButterKnife.bind(this);
             initTopBar();
@@ -73,6 +73,7 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
 //                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 //        }
         QMUIStatusBarHelper.translucent(this);
+        QMUIStatusBarHelper.setStatusBarLightMode(this);
     }
 
     /**
@@ -92,16 +93,12 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
     /**
      * [加载数据]
      */
-    public abstract void initData();
     protected abstract void initTopBar();
-    @Override
-    public void onClick(View view) {
-    }
+    public abstract void initData();
     protected void loadConfigure(){
         if (mAllowFullScreen) {
             QMUIDisplayHelper.setFullScreen(this);
         }
-        isSetStatusBar=false;
         if (isSetStatusBar) {
             steepStatusBar();
         }
@@ -110,30 +107,6 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
     }
-//    protected void loadTheme(){
-//        theme= MySession.getTheme(this);
-//        switch (theme){
-//            case 1:
-//                setTheme(R.style.AppTheme1);
-//                break;
-//            case 2:
-//                setTheme(R.style.AppTheme2);
-//                break;
-//            case 3:
-//                setTheme(R.style.AppTheme3);
-//                break;
-//            case 4:
-//                setTheme(R.style.AppTheme4);
-//                break;
-//            default:
-//                break;
-//        }
-//    }
-//    public int getThemeColor(){
-//        TypedValue typedValue = new TypedValue();
-//        getTheme().resolveAttribute(R.attr.colorPrimary,typedValue,true);
-//        return typedValue.data;
-//    }
     /**
      * [页面跳转]
      *

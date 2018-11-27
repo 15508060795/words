@@ -55,6 +55,8 @@ public class LoginFragment extends BaseFragment {
             case R.id.tv_login_newAdm:
                 start(RegisterFragment.newInstance());
                 break;
+            default:
+                break;
         }
     }
     /*    public void doLogin(final String username, final String password){

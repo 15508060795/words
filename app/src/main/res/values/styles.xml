@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimaryDark</item>
-        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <!--<item name="android:statusBarColor">@color/colorPrimaryDark</item>-->
         <item name="android:colorBackground">@color/colorPrimaryDark</item>
         <item name="android:navigationBarColor">@color/white</item>
     </style>
@@ -35,7 +35,7 @@
     <style name="et_style" parent="android:Widget.EditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>
-        <item name="android:background">@drawable/color_edittext</item>
+        <item name="android:background">@drawable/et_radius_bg</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textColorHint">@color/gray</item>
         <item name="android:layout_margin">@dimen/et_margin</item>
@@ -46,7 +46,7 @@
     <style name="et_phone_style" parent="android:Widget.EditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>
-        <item name="android:background">@drawable/color_edittext</item>
+        <item name="android:background">@drawable/et_radius_bg</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textColorHint">@color/gray</item>
         <item name="android:layout_margin">@dimen/et_margin</item>
@@ -59,7 +59,7 @@
     <style name="et_account_style" parent="android:Widget.EditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>
-        <item name="android:background">@drawable/color_edittext</item>
+        <item name="android:background">@drawable/et_radius_bg</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textColorHint">@color/gray</item>
         <item name="android:layout_margin">@dimen/et_margin</item>
@@ -73,7 +73,7 @@
     <style name="et_password_style" parent="android:Widget.EditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>
-        <item name="android:background">@drawable/color_edittext</item>
+        <item name="android:background">@drawable/et_radius_bg</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textColorHint">@color/gray</item>
         <item name="android:layout_margin">@dimen/et_margin</item>
@@ -86,7 +86,7 @@
     <style name="et_visible_password_style" parent="android:Widget.EditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>
-        <item name="android:background">@drawable/color_edittext</item>
+        <item name="android:background">@drawable/et_radius_bg</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textColorHint">@color/gray</item>
         <item name="android:layout_margin">@dimen/et_margin</item>
