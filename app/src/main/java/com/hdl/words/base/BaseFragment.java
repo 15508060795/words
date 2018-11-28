@@ -17,7 +17,6 @@ import me.yokeyword.fragmentation.SupportFragment;
  */
 
 public abstract class BaseFragment extends SupportFragment {
-    protected Activity mActivity;
     protected View root;
     protected boolean visible;
     protected final String TAG = this.getClass().getSimpleName();
@@ -25,7 +24,6 @@ public abstract class BaseFragment extends SupportFragment {
     @Override
     public void onAttach(Context context){
         super.onAttach(context);
-        mActivity=(Activity)context;
         bundle=getArguments();
         Log.w(TAG, "onAttach()");
     }
@@ -39,7 +37,7 @@ public abstract class BaseFragment extends SupportFragment {
                              Bundle savedInstanceState) {
         Log.w(TAG, "onCreateView()");
         if(root==null) {
-            root = LayoutInflater.from(mActivity).inflate(bindLayout(), null);
+            root = LayoutInflater.from(_mActivity).inflate(bindLayout(), null);
             ButterKnife.bind(this, root);
             initTopBar();
             initData();

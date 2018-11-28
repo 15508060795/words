@@ -1,15 +1,12 @@
 package com.hdl.words.fragment.main;
 
 import android.os.Bundle;
-import android.view.View;
 
 import com.hdl.words.R;
 import com.hdl.words.base.BaseFragment;
-import com.hdl.words.utils.ToastHelper;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 
 /**

@@ -9,7 +9,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.hdl.words.R;
 import com.hdl.words.fragment.LoginFragment;
 import com.hdl.words.fragment.MainFragment;
 import com.qmuiteam.qmui.util.QMUIDisplayHelper;
@@ -27,7 +26,7 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
     protected Context context;
    // protected int theme;
     /** 是否沉浸状态栏 **/
-    private boolean isSetStatusBar=false;
+    private boolean isSetStatusBar=true;
     /** 是否允许全屏 **/
     private boolean mAllowFullScreen = false;
     /** 是否禁止旋转屏幕 **/
@@ -48,7 +47,16 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
             mContextView = LayoutInflater.from(this).inflate(bindLayout(), null);
             bundle = getIntent().getExtras();
             initParms(bundle);
-            loadConfigure();
+            if (mAllowFullScreen) {
+                QMUIDisplayHelper.setFullScreen(this);
+            }
+            if (isSetStatusBar) {
+                steepStatusBar();
+            }
+            setContentView(mContextView);
+            if (!isAllowScreenRoate) {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            }
             ButterKnife.bind(this);
             initTopBar();
             initData();
@@ -64,49 +72,36 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
      * [沉浸状态栏]
      */
     private void steepStatusBar() {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//             //透明状态栏
-//            getWindow().addFlags(
-//                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//            // 透明导航栏
-//            getWindow().addFlags(
-//                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-//        }
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+             //透明状态栏
+            getWindow().addFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            // 透明导航栏
+            getWindow().addFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }*/
         QMUIStatusBarHelper.translucent(this);
         QMUIStatusBarHelper.setStatusBarLightMode(this);
     }
-
-    /**
-     * [初始化参数]
-     *
-     * @param parms
-     */
-    public abstract void initParms(Bundle parms);
 
     /**
      * [绑定布局]
      *
      * @return
      */
-    public abstract int bindLayout();
 
+    public abstract int bindLayout();
+    /**
+     * [初始化参数]
+     *
+     * @param parms
+     */
+    public abstract void initParms(Bundle parms);
     /**
      * [加载数据]
      */
     protected abstract void initTopBar();
     public abstract void initData();
-    protected void loadConfigure(){
-        if (mAllowFullScreen) {
-            QMUIDisplayHelper.setFullScreen(this);
-        }
-        if (isSetStatusBar) {
-            steepStatusBar();
-        }
-        setContentView(mContextView);
-        if (!isAllowScreenRoate) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
-    }
     /**
      * [页面跳转]
      *

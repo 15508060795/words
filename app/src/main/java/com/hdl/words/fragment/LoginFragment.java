@@ -20,10 +20,10 @@ import butterknife.OnClick;
  */
 public class LoginFragment extends BaseFragment {
     @BindView(R.id.et_login_ac)//帐号
-            EditText accountEt;
+    EditText accountEt;
     @BindView(R.id.et_login_pw)//密码
-            EditText passwordEt;
-    String account,password;
+    EditText passwordEt;
+    private String account,password;
     public static LoginFragment newInstance(){
         LoginFragment fragment=new LoginFragment();
         return fragment;
@@ -40,13 +40,13 @@ public class LoginFragment extends BaseFragment {
                 getData();
                 if(isNull()){
                     if(UserDbHelper.isCorrect(account,password)){
-                        MySession.setLoginState(mActivity,true);
+                        MySession.setLoginState(_mActivity,true);
                         startWithPop(new MainFragment());
                     }else{
-                        ToastHelper.shortToast(mActivity,R.string.toast_accountOrPassword_error);
+                        ToastHelper.shortToast(_mActivity,R.string.toast_accountOrPassword_error);
                     }
                 }else{
-                    ToastHelper.shortToast(mActivity,R.string.toast_complete_information);
+                    ToastHelper.shortToast(_mActivity,R.string.toast_complete_information);
                 }
                 break;
             case R.id.tv_login_rePw:

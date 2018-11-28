@@ -4,13 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center">
-
-    <com.qmuiteam.qmui.widget.QMUITopBar
-        android:layout_width="match_parent"
-        android:id="@+id/topBar"
-        android:layout_height="@dimen/topBar_height">
-    </com.qmuiteam.qmui.widget.QMUITopBar>
-
+    <include layout="@layout/topbar">
+    </include>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

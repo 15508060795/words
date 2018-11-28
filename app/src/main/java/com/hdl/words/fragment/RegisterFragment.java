@@ -30,7 +30,7 @@ public class RegisterFragment extends BaseFragment implements IRegister {
     EditText passwordEt;
     @BindView(R.id.et_rePassword)
     EditText rePasswordEt;
-    String account,password,rePassword;
+    private String account,password,rePassword;
 
     public static RegisterFragment newInstance(){
         RegisterFragment fragment=new RegisterFragment();
@@ -49,11 +49,11 @@ public class RegisterFragment extends BaseFragment implements IRegister {
                 if(dataIsNull()){
                     if(password.equals(rePassword)){
                         if(dataIsExist()){
-                            ToastHelper.shortToast(mActivity,R.string.toast_exist_account);
+                            ToastHelper.shortToast(_mActivity,R.string.toast_exist_account);
                         } else{
                             new UserBean(account,password).save();
                             setNull();
-                            QmuiDialogHelper.showMailSuccess(mActivity,R.string.toast_register_success);
+                            QmuiDialogHelper.showMailSuccess(_mActivity,R.string.toast_register_success);
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -63,10 +63,10 @@ public class RegisterFragment extends BaseFragment implements IRegister {
                             },1000);
                         }
                     }else{
-                        ToastHelper.shortToast(mActivity,R.string.toast_password_disagree);
+                        ToastHelper.shortToast(_mActivity,R.string.toast_password_disagree);
                     }
                 }else{
-                    ToastHelper.shortToast(mActivity,R.string.toast_input_all_information);
+                    ToastHelper.shortToast(_mActivity,R.string.toast_input_all_information);
                 }
                 break;
         }

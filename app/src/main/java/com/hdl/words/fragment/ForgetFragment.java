@@ -1,7 +1,6 @@
 package com.hdl.words.fragment;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 
@@ -29,7 +28,7 @@ public class ForgetFragment extends BaseFragment implements ILogin {
     EditText prePasswordEt;
     @BindView(R.id.et_nowPassword)
     EditText nowPasswordEt;
-    String account,prePassword,nowPassword;
+    private String account,prePassword,nowPassword;
     public static ForgetFragment newInstance(){
         ForgetFragment fragment=new ForgetFragment();
         return fragment;
@@ -48,16 +47,16 @@ public class ForgetFragment extends BaseFragment implements ILogin {
                     if(UserDbHelper.isExist(account)){
                         if(dataIsCurrent()){
                             UserDbHelper.update(account,nowPassword);
-                            QmuiDialogHelper.showMailSuccess(mActivity,R.string.toast_change_password_success);
+                            QmuiDialogHelper.showMailSuccess(_mActivity,R.string.toast_change_password_success);
                             QmuiDialogHelper.hide(1500);
                         }else{
-                            ToastHelper.shortToast(mActivity,R.string.toast_password_error);
+                            ToastHelper.shortToast(_mActivity,R.string.toast_password_error);
                         }
                     }else{
-                        ToastHelper.shortToast(mActivity,R.string.toast_account_not_exist);
+                        ToastHelper.shortToast(_mActivity,R.string.toast_account_not_exist);
                     }
                 }else{
-                    ToastHelper.shortToast(mActivity,R.string.toast_input_all_information);
+                    ToastHelper.shortToast(_mActivity,R.string.toast_input_all_information);
                 }
                 break;
             default:

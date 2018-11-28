@@ -14,17 +14,23 @@ public class FlashActivity extends BaseActivity {
     ImageView flashImg;
     @BindView(R.id.tv_flash)
     TextView flashTv;
-    int[] image;
-    int[] msg;
-    @Override
-    public void initParms(Bundle parms) {
-        setSteepStatusBar(false);
-        setAllowFullScreen(true);
-    }
+    private int[] image;
+    private int[] msg;
+
 
     @Override
     public int bindLayout() {
         return R.layout.activity_flash;
+    }
+
+    @Override
+    public void initParms(Bundle parms) {
+        setAllowFullScreen(true);
+    }
+
+    @Override
+    protected void initTopBar() {
+
     }
 
     @Override
@@ -58,10 +64,6 @@ public class FlashActivity extends BaseActivity {
                 startActivityAndCloseThis(MainActivity.class);
             }
         },2000);
-    }
-
-    @Override
-    protected void initTopBar() {
 
     }
 }

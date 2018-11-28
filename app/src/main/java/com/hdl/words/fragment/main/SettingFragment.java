@@ -46,14 +46,14 @@ public class SettingFragment extends BaseFragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MySession.setLoginState(mActivity,false);
-                new QMUIDialog.MessageDialogBuilder(mActivity)
+                MySession.setLoginState(_mActivity,false);
+                new QMUIDialog.MessageDialogBuilder(_mActivity)
                         .setMessage(R.string.dialog_logout_message)
                         .addAction(0,R.string.logout,QMUIDialogAction.ACTION_PROP_NEGATIVE ,new QMUIDialogAction.ActionListener() {
                             @Override
                             public void onClick(QMUIDialog dialog, int index) {
                                 dialog.dismiss();
-                                MySession.setLoginState(mActivity,false);
+                                MySession.setLoginState(_mActivity,false);
                                 assert getParentFragment() != null;
                                 ((MainFragment)getParentFragment()).startBrotherFragmentAndPop(new LoginFragment());
                             }
@@ -67,7 +67,7 @@ public class SettingFragment extends BaseFragment {
                         .show();
             }
         });
-        QMUIGroupListView.newSection(mActivity)
+        QMUIGroupListView.newSection(_mActivity)
                 //.setTitle("Section 1: 默认提供的样式")
                 //.setDescription("Section 1 的描述")
                 //.addItemView(immersion,null)

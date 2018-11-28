@@ -50,8 +50,9 @@ public class TranslateFragment extends BaseFragment {
     }
     @Override
     public void initTopBar() {
-        topBar.setBackgroundColor(getResources().getColor(R.color.black));
-        topBar.setTitle(R.string.translate_choose_language).setTextColor(getResources().getColor(R.color.color_topBar_title_black));
+
+        topBar.setBackgroundColor(getResources().getColor(R.color.color_topBar_bg));
+        topBar.setTitle(R.string.translate_choose_language).setTextColor(getResources().getColor(R.color.color_topBar_title_white));
 
 //        topBar.addRightImageButton(R.mipmap.add, R.id.topbar_right_add_button).setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -99,7 +100,6 @@ public class TranslateFragment extends BaseFragment {
 
     @Override
     public void initListener() {
-
     }
 
 }

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--固定的基本的layout栏的高度-->
-    <dimen name="topBar_height">45dp</dimen>
+    <dimen name="topBar_padding">20dp</dimen>
+    <dimen name="topBar_height">48dp</dimen>
+    <dimen name="layout_margin">65dp</dimen>
     <dimen name="bottomBar_height">50dp</dimen>
     <!--flash页面text字体大小-->
     <dimen name="tv_flash_size">20sp</dimen>
