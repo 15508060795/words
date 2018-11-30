@@ -1,16 +1,13 @@
 package com.hdl.words.implement;
 
-import com.hdl.words.Beans.ApiBean;
 import com.hdl.words.Beans.TranslateResultBean;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface GetTranslateRequest_Interface {
-    /*@GET("translate?q=apple&from=en&to=zh&appid="+ApiBean.TRANSLATE_APPID+"&salt=123&sign=7476c00651cec41851c08e8c54359207")*/
     @POST("translate?")
     @FormUrlEncoded
     Call<TranslateResultBean> getCall(

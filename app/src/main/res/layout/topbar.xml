@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.qmuiteam.qmui.widget.QMUIWindowInsetLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
+    android:layout_height="45dp"
     android:layout_width="match_parent">
 
 <com.qmuiteam.qmui.widget.QMUITopBar
     android:id="@+id/topBar"
     android:layout_width="match_parent"
-    android:layout_height="65dp"/>
+    android:layout_gravity="bottom"
+    android:layout_height="45dp"/>
 </com.qmuiteam.qmui.widget.QMUIWindowInsetLayout>

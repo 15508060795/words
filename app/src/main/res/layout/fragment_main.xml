@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/bottomBar_height"
-        android:fitsSystemWindows="true" />
+        />
 
     <com.qmuiteam.qmui.widget.QMUITabSegment
         android:id="@+id/bottomBar"

@@ -23,6 +23,7 @@
                 android:layout_height="150dp"
                 android:background="@drawable/et_shape_black"
                 android:gravity="left"
+                android:focusable="false"
                 android:hint="请输入你要查询的单词..."
                 android:maxLines="4" />
 

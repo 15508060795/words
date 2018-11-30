@@ -42,8 +42,10 @@ public class TranslateFragment extends BaseFragment {
     EditText inputEt;
     @BindView(R.id.tv_result)
     TextView resultTv;
-    private String input,result,fromText="自动检测",toText="自动检测";
+    private String input,result,fromText,toText;
     private int from=0,to=0;
+    private ArrayList<String>language;
+    private ArrayList<String>languageCode;
     public static TranslateFragment newInstance(){
         TranslateFragment fragment=new TranslateFragment();
         return fragment;
@@ -70,10 +72,6 @@ public class TranslateFragment extends BaseFragment {
         return R.layout.fragment_main_translate;
     }
     @Override
-    public void initData() {
-        LanguageBean.initData();
-    }
-    @Override
     public void initTopBar() {
 
         topBar.setBackgroundColor(getResources().getColor(R.color.color_topBar_bg));
@@ -81,10 +79,13 @@ public class TranslateFragment extends BaseFragment {
         topBar.getChildAt(0).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Log.e(TAG,LanguageBean.getInstance().getLanguage().size()+"");
+                Log.e(TAG,LanguageBean.getInstance().getLanguageCode().size()+"");
+/*                LanguageBean.getInstance().getLanguage();
+                LanguageBean.getInstance().getLanguageCode();*/
             }
         });
-        topBar.addLeftImageButton(R.mipmap.ic_launcher,0).setOnClickListener(new View.OnClickListener() {
+        /*topBar.addLeftImageButton(R.mipmap.ic_launcher,0).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ArrayAdapter adapter = new ArrayAdapter<>(_mActivity, R.layout.simple_list_item, LanguageBean.getLanguage());
@@ -121,9 +122,12 @@ public class TranslateFragment extends BaseFragment {
                 qmuiListPopup.setAnimStyle(QMUIPopup.ANIM_GROW_FROM_RIGHT);
                 qmuiListPopup.show(topBar.getChildAt(0));
             }
-        });
+        });*/
     }
-
+    @Override
+    public void initData() {
+        initList();
+    }
     @Override
     public void initListener() {
     }
@@ -155,5 +159,67 @@ public class TranslateFragment extends BaseFragment {
                 ToastHelper.shortToast(_mActivity,"请求失败");
             }
         });
+    }
+    private void initList(){
+        language=new ArrayList<>();
+        languageCode=new ArrayList<>();
+        language.add("自动检测");
+        language.add("中文");
+        language.add("英语");
+        language.add("粤语");
+        language.add("文言文");
+        language.add("日语");
+        language.add("韩语");
+        language.add("法语");
+        language.add("西班牙语");
+        language.add("泰语");
+        language.add("阿拉伯语");
+        language.add("俄语");
+        language.add("葡萄牙语");
+        language.add("德语");
+        language.add("意大利语");
+        language.add("希腊语");
+        language.add("荷兰语");
+        language.add("波兰语");
+        language.add("保加利亚语");
+        language.add("爱沙尼亚语");
+        language.add("丹麦语");
+        language.add("芬兰语");
+        language.add("捷克语");
+        language.add("罗马尼亚语");
+        language.add("斯洛文尼亚语");
+        language.add("瑞典语");
+        language.add("匈牙利语");
+        language.add("繁体中文");
+        language.add("越南语");
+        languageCode.add("auto");
+        languageCode.add("zh");
+        languageCode.add("en");
+        languageCode.add("yue");
+        languageCode.add("wyw");
+        languageCode.add("jp");
+        languageCode.add("kor");
+        languageCode.add("fra");
+        languageCode.add("spa");
+        languageCode.add("th");
+        languageCode.add("ara");
+        languageCode.add("ru");
+        languageCode.add("pt");
+        languageCode.add("de");
+        languageCode.add("it");
+        languageCode.add("el");
+        languageCode.add("nl");
+        languageCode.add("pl");
+        languageCode.add("bul");
+        languageCode.add("est");
+        languageCode.add("dan");
+        languageCode.add("fin");
+        languageCode.add("cs");
+        languageCode.add("rom");
+        languageCode.add("slo");
+        languageCode.add("swe");
+        languageCode.add("hu");
+        languageCode.add("cht");
+        languageCode.add("vie");
     }
 }

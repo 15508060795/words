@@ -1,9 +1,12 @@
 package com.hdl.words.fragment.main;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.widget.SeekBar;
 
 import com.hdl.words.R;
 import com.hdl.words.base.BaseFragment;
+import com.hdl.words.view.DashboardView1;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 
 import butterknife.BindView;
@@ -16,6 +19,10 @@ import butterknife.BindView;
 public class ReciteFragment extends BaseFragment {
     @BindView(R.id.topBar)
     QMUITopBar topBar;
+    @BindView(R.id.seekBar2)
+    DashboardView1 dashboardView1;
+    @BindView(R.id.seekBar6)
+    SeekBar seekBar;
     public static ReciteFragment newInstance(){
         ReciteFragment fragment=new ReciteFragment();
         return fragment;
@@ -36,6 +43,23 @@ public class ReciteFragment extends BaseFragment {
     @Override
     public void initData() {
 
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                seekBar.setProgress(progress);
+                dashboardView1.setRealTimeValue(50+progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     @Override
