@@ -1,13 +1,9 @@
 package com.hdl.words.view;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
@@ -15,7 +11,6 @@ import android.graphics.RectF;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 
@@ -27,15 +22,15 @@ import com.hdl.words.R;
  */
 
 public class DashboardView1 extends View {
-    private Context context;
+
     private int mRadius; // 扇形半径
-    private int mStartAngle = 300; // 起始角度
-    private int mSweepAngle = 120; // 绘制角度
-    private int mMin = 50; // 最小值
+    private int mStartAngle = 180; // 起始角度
+    private int mSweepAngle = 180; // 绘制角度
+    private int mMin = 0; // 最小值
     private int mMax = 100; // 最大值
     private int mSection = 10; // 值域（mMax-mMin）等分份数
     private int mPortion = 10; // 一个mSection等分份数
-    private String mHeaderText  ; // 表头
+    private String mHeaderText = "℃"; // 表头
     private int mRealTimeValue = mMin; // 实时读数
     private boolean isShowValue = true; // 是否显示实时读数
     private int mStrokeWidth; // 画笔宽度
@@ -55,17 +50,15 @@ public class DashboardView1 extends View {
 
     public DashboardView1(Context context) {
         this(context, null);
-        this.context=context;
     }
 
     public DashboardView1(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
-        this.context=context;
     }
 
     public DashboardView1(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.context=context;
+
         init();
     }
 
@@ -87,7 +80,7 @@ public class DashboardView1 extends View {
         mTexts = new String[mSection + 1]; // 需要显示mSection + 1个刻度读数
         for (int i = 0; i < mTexts.length; i++) {
             int n = (mMax - mMin) / mSection;
-            mTexts[i] = String.valueOf(mMax - i * n);
+            mTexts[i] = String.valueOf(mMin + i * n);
         }
     }
 
@@ -113,9 +106,7 @@ public class DashboardView1 extends View {
         // 由半径+指针短半径+实时读数文字高度确定的高度
         int height1 = mRadius + mStrokeWidth * 2 + mPSRadius + mRectText.height() * 3;
         // 由起始角度确定的高度
-        Log.e("起始角度调用","    ");
         float[] point1 = getCoordinatePoint(mRadius, mStartAngle);
-        Log.e("结束角度调用","    ");
         // 由结束角度确定的高度
         float[] point2 = getCoordinatePoint(mRadius, mStartAngle + mSweepAngle);
         // 取最大值
@@ -124,6 +115,7 @@ public class DashboardView1 extends View {
                 Math.max(point1[1] + mRadius + mStrokeWidth * 2, point2[1] + mRadius + mStrokeWidth * 2)
         );
         setMeasuredDimension(width, max + getPaddingTop() + getPaddingBottom());
+
         mCenterX = mCenterY = getMeasuredWidth() / 2f;
         mRectFArc.set(
                 getPaddingLeft() + mStrokeWidth,
@@ -207,13 +199,14 @@ public class DashboardView1 extends View {
             // 粗略把文字的宽度视为圆心角2*θ对应的弧长，利用弧长公式得到θ，下面用于修正角度
             float θ = (float) (180 * mRectText.width() / 2 /
                     (Math.PI * (mRadius - mLength2 - mRectText.height())));
+
             mPath.reset();
             mPath.addArc(
                     mRectFInnerArc,
                     mStartAngle + i * (mSweepAngle / mSection) - θ, // 正起始角度减去θ使文字居中对准长刻度
                     mSweepAngle
             );
-            canvas.drawTextOnPath(mTexts[i]+"%", mPath, 0, 0, mPaint);
+            canvas.drawTextOnPath(mTexts[i], mPath, 0, 0, mPaint);
         }
 
         /**
@@ -231,43 +224,24 @@ public class DashboardView1 extends View {
          * 画指针
          */
         float θ = mStartAngle + mSweepAngle * (mRealTimeValue - mMin) / (mMax - mMin); // 指针与水平线夹角
-        //让指针反向
-        θ=360-θ;
-        int d = dp2px(10); // 指针由1个等边3角星构成
+        int d = dp2px(5); // 指针由两个等腰三角形构成，d为共底边长的一半
         mPath.reset();
-//        float[] p1 = getCoordinatePoint(d, θ - 90);
-//        mPath.moveTo(p1[0], p1[1]);
-//        float[] p2 = getCoordinatePoint(mPLRadius, θ);
-//        mPath.lineTo(p2[0], p2[1]);
-//        float[] p3 = getCoordinatePoint(d, θ + 90);
-//        mPath.lineTo(p3[0], p3[1]);
-//        float[] p4 = getCoordinatePoint(mPSRadius, θ - 180);
-//        mPath.lineTo(p4[0], p4[1]);
-        float centerX,centerY;
-        //实现新的坐标,让图标绕圆圈X下半部分
-        if(θ>=0){
-            centerX=(float) Math.abs(mPLRadius*Math.sin((90.0-θ)/180*Math.PI));
-            centerY=(float)(mPLRadius*Math.sin(θ/180*Math.PI));
-            //X上半部分
-        }else{
-            centerX=(float) Math.abs(mPLRadius*Math.sin((θ+90.0)/180*Math.PI));
-            centerY=(float)(mPLRadius*Math.sin(θ/180*Math.PI));
-        }
-        float[] p1 = getCoordinatePoint(d, θ - 120);
-        mPath.moveTo(centerX+p1[0],centerY+p1[1]);
-        float[] p2 = getCoordinatePoint(d, θ);
-        mPath.lineTo(centerX+p2[0],centerY+p2[1]);
-        float[] p3 = getCoordinatePoint(d, θ + 120);
-        mPath.lineTo(centerX+p3[0], centerY+p3[1]);
+        float[] p1 = getCoordinatePoint(d, θ - 90);
+        mPath.moveTo(p1[0], p1[1]);
+        float[] p2 = getCoordinatePoint(mPLRadius, θ);
+        mPath.lineTo(p2[0], p2[1]);
+        float[] p3 = getCoordinatePoint(d, θ + 90);
+        mPath.lineTo(p3[0], p3[1]);
+        float[] p4 = getCoordinatePoint(mPSRadius, θ - 180);
+        mPath.lineTo(p4[0], p4[1]);
         mPath.close();
         canvas.drawPath(mPath, mPaint);
-
 
         /**
          * 画指针围绕的镂空圆心
          */
-//        mPaint.setColor(Color.WHITE);
-//        canvas.drawCircle(mCenterX, mCenterY, dp2px(2), mPaint);
+        mPaint.setColor(Color.WHITE);
+        canvas.drawCircle(mCenterX, mCenterY, dp2px(2), mPaint);
 
         /**
          * 画实时度数值
@@ -278,7 +252,7 @@ public class DashboardView1 extends View {
             mPaint.setColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
             String value = String.valueOf(mRealTimeValue);
             mPaint.getTextBounds(value, 0, value.length(), mRectText);
-            canvas.drawText("最大高度"+value+"%", mCenterX, mCenterY+mRectText.height()/2, mPaint);
+            canvas.drawText(value, mCenterX, mCenterY + mPSRadius + mRectText.height() * 2, mPaint);
         }
     }
 
@@ -294,6 +268,7 @@ public class DashboardView1 extends View {
 
     public float[] getCoordinatePoint(int radius, float angle) {
         float[] point = new float[2];
+
         double arcAngle = Math.toRadians(angle); //将角度转换为弧度
         if (angle < 90) {
             point[0] = (float) (mCenterX + Math.cos(arcAngle) * radius);
@@ -320,9 +295,10 @@ public class DashboardView1 extends View {
             point[0] = (float) (mCenterX + Math.cos(arcAngle) * radius);
             point[1] = (float) (mCenterY - Math.sin(arcAngle) * radius);
         }
-        Log.e("getCoordinatePoint"," angle "+angle+" radius "+radius+" point[0] "+point[0]+" point[1] "+point[1]);
+
         return point;
     }
+
     public int getRealTimeValue() {
         return mRealTimeValue;
     }
@@ -334,13 +310,5 @@ public class DashboardView1 extends View {
 
         mRealTimeValue = realTimeValue;
         postInvalidate();
-    }
-
-    public float getmCenterX() {
-        return mCenterX;
-    }
-
-    public float getmCenterY() {
-        return mCenterY;
     }
 }
