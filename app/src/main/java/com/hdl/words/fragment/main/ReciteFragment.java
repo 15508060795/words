@@ -1,11 +1,12 @@
 package com.hdl.words.fragment.main;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.SeekBar;
 
 import com.hdl.words.R;
 import com.hdl.words.base.BaseFragment;
-import com.hdl.words.view.CarDoorAngleDashboard;
+import com.hdl.words.view.DashboardView;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 
 import butterknife.BindView;
@@ -19,9 +20,7 @@ public class ReciteFragment extends BaseFragment {
     @BindView(R.id.topBar)
     QMUITopBar topBar;
     @BindView(R.id.seekBar2)
-    CarDoorAngleDashboard dashboardView1;
-    @BindView(R.id.seekBar6)
-    SeekBar seekBar;
+    DashboardView dashboardView1;
     public static ReciteFragment newInstance(){
         ReciteFragment fragment=new ReciteFragment();
         return fragment;
@@ -41,22 +40,11 @@ public class ReciteFragment extends BaseFragment {
 
     @Override
     public void initData() {
-
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        dashboardView1.setRealTimeValue(50);
+        dashboardView1.setOnProgressChangeListener(new DashboardView.OnProgressChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                seekBar.setProgress(progress);
-                dashboardView1.setRealTimeValue(50+progress);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
+            public void onProgressChange(DashboardView view, float progress) {
+                Log.e("sadasdasd",progress+"     ");
             }
         });
     }
