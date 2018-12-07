@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#708090</color>
-    <color name="colorPrimaryDark">#708090</color>
-    <color name="colorAccent">#708090</color>
+    <color name="colorPrimary">#94DBFF</color>
+    <color name="colorPrimaryDark">#94DBFF</color>
+    <color name="colorAccent">#000000</color>
+<!--    <color name="statusBarColor">#94DBFF</color>-->
 
     <!--drawable-->
     <color name="et_stroke_white">#FFFFFF</color>
@@ -21,23 +22,12 @@
 
 
     <!--主界面-->
-    <color name="color_topBar_bg">#708090</color>
-    <color name="color_topBar_white_bg">#FFFFFF</color>
-    <color name="color_topBar_title_white">#FFFFFF</color>
-    <color name="color_topBar_title_black">#000000</color>
-    <color name="color_bottomBar_normal">#000000</color>
-    <color name="color_bottomBar_select">#FFFFFF</color>
-    <color name="color_bottomBar_bg">#708090</color>
+    <color name="color_topBar_bg">#94DBFF</color>
+    <color name="color_topBar_title">#000000</color>
+    <color name="color_bottomBar_normal">#99A0AA</color>
+    <color name="color_bottomBar_select">#000000</color>
+    <color name="color_bottomBar_bg">#FFFFFF</color>
 
-
-        <color name="color_red">#FF5722</color>
-        <color name="color_orange">#FF9800</color>
-        <color name="color_yellow">#FFC107</color>
-        <color name="color_green">#3FB830</color>
-        <color name="color_blue">#00BAED</color>
-        <color name="color_dark">#263238</color>
-        <color name="color_dark_light">#455A64</color>
-        <color name="color_light">#ECEFF1</color>
 
 
 

@@ -14,9 +14,6 @@ public class FlashActivity extends BaseActivity {
     ImageView flashImg;
     @BindView(R.id.tv_flash)
     TextView flashTv;
-    private int[] image;
-    private int[] msg;
-
 
     @Override
     public int bindLayout() {
@@ -25,7 +22,7 @@ public class FlashActivity extends BaseActivity {
 
     @Override
     public void initParms(Bundle parms) {
-        setAllowFullScreen(true);
+
     }
 
     @Override
@@ -35,14 +32,14 @@ public class FlashActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        image=new int[]{
+        int[] image = new int[]{
                 R.mipmap.ic_flash_bg1,
                 R.mipmap.ic_flash_bg2,
                 R.mipmap.ic_flash_bg3,
                 R.mipmap.ic_flash_bg4,
                 R.mipmap.ic_flash_bg5
         };
-        msg=new int[]{
+        int[] msg = new int[]{
                 R.string.flash_note1,
                 R.string.flash_note2,
                 R.string.flash_note3,

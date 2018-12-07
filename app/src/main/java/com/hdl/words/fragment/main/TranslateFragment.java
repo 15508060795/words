@@ -75,7 +75,7 @@ public class TranslateFragment extends BaseFragment {
     public void initTopBar() {
 
         topBar.setBackgroundColor(getResources().getColor(R.color.color_topBar_bg));
-        topBar.setTitle(fromText+"—"+toText).setTextColor(getResources().getColor(R.color.color_topBar_title_white));
+        topBar.setTitle(fromText+"—"+toText).setTextColor(getResources().getColor(R.color.color_topBar_title));
         topBar.getChildAt(0).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

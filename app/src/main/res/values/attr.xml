@@ -19,5 +19,9 @@
         <attr name="real_value_note_color"  format="color"/>
         <attr name="real_value_color"  format="color"/>
         <attr name="bar_line_color"  format="color"/>
+        <attr name="reverse"  format="boolean"/>
+        <attr name="show_real_value"  format="boolean"/>
     </declare-styleable>
+
+
 </resources>

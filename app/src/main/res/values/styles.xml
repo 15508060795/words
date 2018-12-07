@@ -3,13 +3,11 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="QMUI.Compat.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorPrimaryDark</item>
-        <!--<item name="android:statusBarColor">@color/colorPrimaryDark</item>-->
-        <item name="android:colorBackground">@color/colorPrimaryDark</item>
-        <item name="android:navigationBarColor">@color/white</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="btn_style" parent="QMUI.RoundButton">
         <item name="android:textColor">?attr/colorAccent</item>
         <item name="qmui_borderColor">?attr/colorAccent</item>

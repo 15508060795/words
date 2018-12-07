@@ -40,19 +40,13 @@ public class ReciteFragment extends BaseFragment {
 
     @Override
     public void initData() {
-        dashboardView1.setRealTimeValue(50);
-        dashboardView1.setOnProgressChangeListener(new DashboardView.OnProgressChangeListener() {
-            @Override
-            public void onProgressChange(DashboardView view, float progress) {
-                Log.e("sadasdasd",progress+"     ");
-            }
-        });
+
     }
 
     @Override
     public void initTopBar() {
         topBar.setBackgroundColor(getResources().getColor(R.color.color_topBar_bg));
-        topBar.setTitle(R.string.recite).setTextColor(getResources().getColor(R.color.color_topBar_title_white));
+        topBar.setTitle(R.string.recite).setTextColor(getResources().getColor(R.color.color_topBar_title));
     }
 
     @Override

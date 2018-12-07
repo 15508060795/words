@@ -90,7 +90,7 @@ public class MainFragment extends BaseFragment {
         tabSegment.setupWithViewPager(viewPager);
         viewPager.setAdapter(new FragmentPagerViewAdapter(getChildFragmentManager(),fragments));
         viewPager.setCurrentItem(FIRST);
-        viewPager.setSwipeable(false);
+        viewPager.setSwipeable(true);
     }
 
     @Override

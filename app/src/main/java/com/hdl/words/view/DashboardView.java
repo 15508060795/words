@@ -1,6 +1,5 @@
 package com.hdl.words.view;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -10,7 +9,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
@@ -20,7 +18,7 @@ import android.view.View;
 import com.hdl.words.R;
 
 /**
- * Date 2018/12/4 9:56
+ * Date 2018/12/3 9:56
  * author HDL
  * Mail 229101253@qq.com
  */
@@ -31,14 +29,16 @@ public class DashboardView extends View {
     private int innerRadius;//内环半径
     private int barWidth;//圆环宽度
     private int borderWidth;//外环距离view宽度
-    private int startAngle ; // 起始角度   请注意图形不要超过Y轴右半轴
+    private int startAngle ; // 起始角度
     private int sweepAngle ; // 绘制角度
     private int min ; // 最小值
     private int max ; // 最大值
     private int section ; // 值域（max-min）等分份数
     private int portion ; // 一个section等分份数
     private int realValue = min; // 实时读数
-    private boolean isShowValue = true; // 是否显示实时读数
+    private boolean isShowRealValue; // 是否显示实时读数
+    private boolean isReverse ;//是否反向
+    private int isReverseValue;//将boolean转换为int,方便后续计算
     private int strokeWidth ; // 画笔宽度
     private int scaleHeight ; // 长刻度的相对圆弧的长度
     private int scaleTextHeight ; // 刻度读数顶部的相对圆弧的长度
@@ -82,8 +82,6 @@ public class DashboardView extends View {
     private OnProgressChangeListener onProgressChangeListener;
 
 
-
-
     public DashboardView(Context context) {
         this(context, null);
         this.context=context;
@@ -108,7 +106,7 @@ public class DashboardView extends View {
         scaleTextHeight = scaleHeight + 1;
         pointSize = 25;
         barWidth=50;//圆环宽度
-        borderWidth=150;//外环距离view宽度
+        borderWidth=200;//外环距离view宽度
         startAngle = 300; // 起始角度
         sweepAngle = 120; // 绘制角度
         min = 50; // 最小值
@@ -132,8 +130,13 @@ public class DashboardView extends View {
         sectionTextSize = 2;//N等分的Text大小
         barLineWidth = 3;//圆环内部线的宽度
         barLineLength = 10;  //圆环内部线的宽度
-        
+        isReverse = true;//是否反向
+        isReverseValue = 1;//默认反向
+        isShowRealValue = true;//是否显示实时读数
+
         paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setStrokeCap(Paint.Cap.ROUND);
         //外圆弧画笔
         outerPaint = new Paint();
         outerPaint.setStrokeWidth(strokeWidth);
@@ -155,20 +158,14 @@ public class DashboardView extends View {
         pointPaint =new Paint();
         //刻度 包括点和线画笔
         scalePaint = new Paint();
-
-        paint.setAntiAlias(true);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-
         outerRectF = new RectF();
         innerRectF = new RectF();
         barRectF = new RectF();
         sectionTextRectF = new RectF();
         path = new Path();
         rectText = new Rect();
-
     }
     private void initAttributes(Context context,AttributeSet attrs){
-        @SuppressLint("Recycle")
         TypedArray typedArray=context.obtainStyledAttributes(attrs, R.styleable.DashboardView);
         barWidth=typedArray.getInteger(R.styleable.DashboardView_bar_width,barWidth);
         startAngle=typedArray.getInteger(R.styleable.DashboardView_start_angle,startAngle);
@@ -179,7 +176,8 @@ public class DashboardView extends View {
         portion=typedArray.getInteger(R.styleable.DashboardView_portion,portion);
         realValue=typedArray.getInteger(R.styleable.DashboardView_real_Value,realValue);
         pointSize=typedArray.getInteger(R.styleable.DashboardView_point_size,pointSize);
-
+        isReverse=typedArray.getBoolean(R.styleable.DashboardView_reverse,isReverse);
+        isShowRealValue=typedArray.getBoolean(R.styleable.DashboardView_show_real_value,isShowRealValue);
         backgroundColor=typedArray.getColor(R.styleable.DashboardView_view_background,backgroundColor);
         barNormalColor=typedArray.getColor(R.styleable.DashboardView_bar_normal_color,barNormalColor);
         barSelectColor=typedArray.getColor(R.styleable.DashboardView_bar_select_color,barSelectColor);
@@ -193,10 +191,18 @@ public class DashboardView extends View {
     }
     private void initTextData(){
         texts = new String[section + 1]; // 需要显示section + 1个刻度读数
-        for (int i = 0; i < texts.length; i++) {
-            int n = (max - min) / section;
-            texts[i] = String.valueOf(max - i * n);
+        if(isReverse){
+            for (int i = 0; i < texts.length; i++) {
+                int n = (max - min) / section;
+                texts[i] = String.valueOf(max - i * n);
+            }
+        } else{
+            for (int i = 0; i < texts.length; i++) {
+                int n = (max - min) / section;
+                texts[texts.length-1-i] = String.valueOf(max - i * n);
+            }
         }
+
     }
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -208,17 +214,19 @@ public class DashboardView extends View {
         setPadding(mPadding, mPadding, mPadding, mPadding);
         int width = resolveSize(dp2px(200), widthMeasureSpec);
         int height = resolveSize(dp2px(200), heightMeasureSpec);
-        outerRadius = (width - mPadding * 2 - strokeWidth * 2) / 2-borderWidth;
+        outerRadius = (width - mPadding * 2 - strokeWidth * 2-borderWidth*2) / 2;
         innerRadius=outerRadius-barWidth;
         paint.setTextSize(sp2px(16));
-        if (isShowValue) { // 显示实时读数，View高度增加字体高度3倍
+        if (isShowRealValue) { // 显示实时读数，View高度增加字体高度3倍
             paint.getTextBounds("0", 0, "0".length(), rectText);
         } else {
             paint.getTextBounds("0", 0, 0, rectText);
         }
         setMeasuredDimension(width, height);
-        mCenterX = getMeasuredWidth() / 2f;
-        mCenterY = getMeasuredHeight()/2f;
+        mCenterX = Math.min(width,height)/2f;
+        mCenterY = Math.min(width,height)/2f;
+        Log.e("mCenterX",mCenterX+"   ");
+        Log.e("mCenterY",mCenterY+"   ");
         //外环
         outerRectF.set(
                 mCenterX-outerRadius-strokeWidth,
@@ -238,7 +246,6 @@ public class DashboardView extends View {
                 mCenterY+innerRadius+strokeWidth,
                 mCenterY+innerRadius+strokeWidth
         );
-
         //长刻度读数
         sectionTextRectF.set(
                 mCenterX-outerRadius-strokeWidth,
@@ -254,52 +261,34 @@ public class DashboardView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawColor(backgroundColor);
-        /**
-         * 画外圆弧
-         */
+        /*画外圆弧*/
         canvas.drawArc(outerRectF, startAngle, sweepAngle, true, outerPaint);
-        /**
-         * 画圆环
-         */
-        canvas.drawArc(barRectF, startAngle+sweepAngle,
-                -(sweepAngle*(realValue-min)/(max-min)),
+        /*画圆环*/
+        canvas.drawArc(barRectF, startAngle+sweepAngle*isReverseValue,
+                (float) Math.pow(-1,isReverseValue)*(sweepAngle*(realValue-min)/(max-min)),
                 true, barPaint);
-        /**
-         * 画内圆弧
-         */
+        /*画内圆弧*/
         canvas.drawArc(innerRectF, startAngle, sweepAngle, true, innerPaint);
-        /**
-         * 画长刻度
-         * 画好起始角度的一条刻度后通过canvas绕着原点旋转来画剩下的长刻度
-         * 目前长刻度和短刻度都跟角度适配
-         */
+        /*     
+            画长刻度
+            画好起始角度的一条刻度后通过canvas绕着原点旋转来画剩下的长刻度
+            目前长刻度和短刻度都跟角度适配
+        */
         drawSectionScale(canvas);
-
-        /**
-         * 画短刻度
-         * 同样采用canvas的旋转原理
-         */
+         /*画短刻度
+         同样采用canvas的旋转原理*/
         drawPortionScale(canvas);
-
-        /**
-         * 画圆环内部白线
-         * 同样采用canvas的旋转原理
-         */
+         /*画圆环内部白线
+         同样采用canvas的旋转原理*/
         drawBarLineScale(canvas);
-        /**
-         * 画大刻度读数
-         * 添加一个圆弧path，文字沿着path绘制
-         * 目前刻度读数是跟着圆环走的
-         */
+         /*画大刻度读数
+         添加一个圆弧path，文字沿着path绘制
+         目前刻度读数是跟着圆环走的*/
         drawSectionScaleText(canvas);
-        /**
-         * 画指针
-         * 指针也实现跟着圆环走!
-         */
+         /*画指针
+         指针也实现跟着圆环走!*/
         drawPoint(canvas);
-        /**
-         * 画实时度数值
-         */
+         /*画实时度数值*/
         drawRealValue(canvas);
         invalidate();
     }
@@ -313,7 +302,9 @@ public class DashboardView extends View {
         float x1 = (float) (mCenterX+mPadding +  (outerRadius + scaleHeight) * cos);
         float y1 = (float) (mCenterY+mPadding +  (outerRadius + scaleHeight) * sin);
         canvas.save();
-        canvas.rotate(sweepAngle,mCenterX,mCenterY);
+        if(isReverse){
+            canvas.rotate(sweepAngle,mCenterX,mCenterY);
+        }
         float angle = sweepAngle * 1f / (section) ;
         for (int i = 0; i <=section; i++) {
             if(i*(max-min)/section <= (realValue-min)){
@@ -322,7 +313,12 @@ public class DashboardView extends View {
                 scalePaint.setColor(scaleNormalColor);
             }
             canvas.drawPoint(x1, y1, scalePaint);
-            canvas.rotate(-angle, mCenterX, mCenterY);
+            if(isReverse){
+                canvas.rotate(-angle, mCenterX, mCenterY);
+            }else{
+                canvas.rotate(angle, mCenterX, mCenterY);
+            }
+
         }
         canvas.restore();
     }
@@ -335,11 +331,17 @@ public class DashboardView extends View {
         scalePaint.setStrokeCap(Paint.Cap.ROUND);
         float x3 = (float) (mCenterX + mPadding + (outerRadius + scaleHeight ) * cos);
         float y3 = (float) (mCenterY + mPadding + (outerRadius + scaleHeight ) * sin);
-        canvas.rotate(sweepAngle,mCenterX,mCenterY);
+        if(isReverse){
+            canvas.rotate(sweepAngle,mCenterX,mCenterY);
+        }
         float angle = sweepAngle * 1f / (section * portion) ;
         for (int i = 0; i <= section * portion; i++) {
             if (i % portion == 0) { // 避免与长刻度画重合
-                canvas.rotate(-angle, mCenterX, mCenterY);
+                if(isReverse){
+                    canvas.rotate(-angle, mCenterX, mCenterY);
+                }else{
+                    canvas.rotate(angle, mCenterX, mCenterY);
+                }
                 continue;
             }
             if(i*(max-min)/(portion*section)<= (realValue-min)){
@@ -348,7 +350,12 @@ public class DashboardView extends View {
                 scalePaint.setColor(scaleNormalColor);
             }
             canvas.drawPoint(x3,y3,scalePaint);
-            canvas.rotate(-angle, mCenterX, mCenterY);
+            if(isReverse){
+                canvas.rotate(-angle, mCenterX, mCenterY);
+            }else{
+                canvas.rotate(angle, mCenterX, mCenterY);
+            }
+
         }
         canvas.restore();
     }
@@ -363,7 +370,9 @@ public class DashboardView extends View {
         float y4 = (float) (mCenterY+mPadding   + (outerRadius - barLineLength)  * sin);
         float angle = sweepAngle * 1f / (section * portion) ;
         //先旋转至底部
-        canvas.rotate(sweepAngle,mCenterX,mCenterY);
+        if(isReverse){
+            canvas.rotate(sweepAngle,mCenterX,mCenterY);
+        }
         scalePaint.setColor(barLineColor);
         scalePaint.setStrokeWidth(barLineWidth);
         for (int i = 0;
@@ -371,7 +380,12 @@ public class DashboardView extends View {
              i++) {
             canvas.drawLine(x2,y2,x4,y4,scalePaint);
             //逆向画线或者点
-            canvas.rotate(-angle, mCenterX, mCenterY);
+            if(isReverse){
+                canvas.rotate(-angle, mCenterX, mCenterY);
+            }else{
+                canvas.rotate(angle, mCenterX, mCenterY);
+            }
+
         }
         canvas.restore();
     }
@@ -383,49 +397,70 @@ public class DashboardView extends View {
         scalePaint.setStrokeCap(Paint.Cap.BUTT);
         for (int i = 0; i < texts.length; i++) {
             paint.getTextBounds(texts[i], 0, texts[i].length(), rectText);
-            // 粗略把文字的宽度视为圆心角2*θ对应的弧长，利用弧长公式得到θ，下面用于修正角度
-            float θ = (float) (180 * rectText.width() / 2 /
+            // 粗略把文字的宽度视为圆心角2*angle对应的弧长，利用弧长公式得到angle，下面用于修正角度
+            float angle = (float) (180 * rectText.width() / 2 /
                     (Math.PI * (outerRadius - scaleTextHeight - rectText.height())));
             path.reset();
             path.addArc(
                     sectionTextRectF,
-                    startAngle + i * (sweepAngle / section) - θ, // 正起始角度减去θ使文字居中对准长刻度
+                    startAngle + i * (sweepAngle / section) - angle, // 正起始角度减去angle使文字居中对准长刻度
                     sweepAngle
             );
-            if(i*(max-min)/section == (max-realValue)){
-                scalePaint.setColor(scaleSelectColor);
+            if(isReverse){
+                if(i*(max-min)/section == (max-realValue)){
+                    scalePaint.setColor(scaleSelectColor);
+                }else{
+                    scalePaint.setColor(scaleNormalColor);
+                }
             }else{
-                scalePaint.setColor(scaleNormalColor);
+                if(i*(max-min)/section == (realValue-min)){
+                    scalePaint.setColor(scaleSelectColor);
+                }else{
+                    scalePaint.setColor(scaleNormalColor);
+                }
             }
+
             canvas.drawTextOnPath(texts[i], path, rectText.width()/2, -rectText.height()/2, scalePaint);
         }
     }
     private void drawPoint(Canvas canvas){
         pointPaint.setColor(pointColor);//指针颜色为白色
-        float θ = startAngle + sweepAngle * (float)(max-realValue) / (max - min); // 指针与水平线夹角
-        θ=θ%360;
+        float angle;
+        if(isReverse){
+            angle = startAngle + sweepAngle * (float)(max-realValue) / (max - min); // 指针与水平线夹角
+        }else{
+            angle = startAngle + sweepAngle * (float)(realValue-min) / (max - min); // 指针与水平线夹角
+        }
+        angle=angle%360;
         path.reset();
-        float centerX=0,centerY=0;
-        //实现新的坐标,让图标绕圆圈X下半部分
-//        if(θ>=0){
-//            centerX=(float) Math.abs((innerRadius-1.5*pointSize)*Math.sin((90.0-θ)/180*Math.PI));
-//            centerY=(float)((innerRadius-1.5*pointSize)*Math.sin(θ/180*Math.PI));
-//            //X上半部分
-//        }else{
-//            centerX=(float) Math.abs((innerRadius-1.5*pointSize)*Math.sin((θ+90.0)/180*Math.PI));
-//            centerY=(float)((innerRadius-1.5*pointSize)*Math.sin(θ/180*Math.PI));
-//        }
-        p1 = getCoordinatePoint(pointSize,θ - 120);
-        path.moveTo(centerX+p1[0],centerY+p1[1]);
-        p2 = getCoordinatePoint(pointSize, θ);
-        path.lineTo(centerX+p2[0],centerY+p2[1]);
-        p3 = getCoordinatePoint(pointSize, θ + 120);
-        path.lineTo(centerX+p3[0], centerY+p3[1]);
+        //offsetRadius设置指针距离圆心的位置.
+        double offsetRadius=(innerRadius-1.5*pointSize);
+        float offsetX,offsetY;
+        if(angle>=0&&angle<=90){
+            offsetX=(float) Math.abs(offsetRadius*Math.cos(angle/180*Math.PI));
+            offsetY=(float)(offsetRadius*Math.sin(angle/180*Math.PI));
+            //X上半部分
+        }else if(angle > 90 && angle <=180) {
+            offsetX=-(float) Math.abs(offsetRadius*Math.cos(angle/180*Math.PI));
+            offsetY=(float)(offsetRadius*Math.sin(angle/180*Math.PI));
+        }else if(angle > 180 && angle <=270){
+            offsetX=-(float) Math.abs(offsetRadius*Math.cos(angle/180*Math.PI));
+            offsetY=(float)(offsetRadius*Math.sin(angle/180*Math.PI));
+        }else{
+            offsetX=(float) Math.abs(offsetRadius*Math.cos(angle/180*Math.PI));
+            offsetY=(float)(offsetRadius*Math.sin(angle/180*Math.PI));
+        }
+        p1 = getCoordinatePoint(pointSize,angle - 120);
+        path.moveTo(offsetX+p1[0],offsetY+p1[1]);
+        p2 = getCoordinatePoint(pointSize, angle);
+        path.lineTo(offsetX+p2[0],offsetY+p2[1]);
+        p3 = getCoordinatePoint(pointSize, angle + 120);
+        path.lineTo(offsetX+p3[0], offsetY+p3[1]);
         path.close();
         canvas.drawPath(path, pointPaint);
     }
     private void drawRealValue(Canvas canvas){
-        if (isShowValue) {
+        if (isShowRealValue) {
             paint.setTextSize(sp2px(16));
             paint.setTextAlign(Paint.Align.CENTER);
             paint.setColor(realValueNoteColor);
@@ -446,10 +481,8 @@ public class DashboardView extends View {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp,
                 Resources.getSystem().getDisplayMetrics());
     }
-    //注意更改角度问题
+    /*注意更改角度问题*/
     public float[] getCoordinatePoint(int radius, float angle) {
-
-
         float[] point = new float[2];
         double arcAngle = Math.toRadians(angle); //将角度转换为弧度
         if (angle < 90) {
@@ -482,7 +515,6 @@ public class DashboardView extends View {
     public int getrealValue() {
         return realValue;
     }
-
     public void setrealValue(int realValue) {
         if (this.realValue == realValue || realValue < min || realValue > max) {
             return;
@@ -519,32 +551,45 @@ public class DashboardView extends View {
     }
     private void moved(float x,float y) {
         float distanceX=x-mCenterX;
-//        if(distanceX<0)
-//            return;
         float distanceY=y-mCenterY;
         float distance = (float) Math.sqrt(Math.pow((distanceX), 2)
                 + Math.pow((distanceY), 2));
-        //右半边角度适配已解决!
         if(distance<=outerRadius&&distance>=innerRadius-pointSize*2.5){
             float angle=(float)(Math.atan((distanceY/distanceX))/Math.PI*180);
-            Log.e("sdad111",angle+"     ");
-            if(angle<=(startAngle+sweepAngle)%360&&angle>=-(360-startAngle)){
-                if(distanceX>=0){
-                    angle=angle%360;//将角度转换为正值
-                    //将角度转换为value值
-                    realValue=Math.round((((startAngle+sweepAngle)%360-angle)/sweepAngle)*(max-min)+min);
-                    onProgressChangeListener.onProgressChange(this,realValue);
-                    invalidate();
-                }else{
-                    angle=angle%360+180;//将角度转换为正值
-                    //将角度转换为value值
-                    realValue=Math.round((((startAngle+sweepAngle)%360-angle)/sweepAngle)*(max-min)+min);
-                    onProgressChangeListener.onProgressChange(this,realValue);
-                    invalidate();
+           /* 让angle转换为0-360*/
+            if(distanceX>=0){
+                angle=angle%360;//将角度转换为正值
+                if(angle<0){
+                    angle+=360;
+                }
+            }else{
+                angle=angle%360+180;//将角度转换为正值
+            }
+            /*判断开始角度和绘制角度加起来超过一圈的情况*/
+            if(startAngle+sweepAngle>=360){
+                if(angle<=(startAngle+sweepAngle)%360||angle>=startAngle){
+                    if(isReverse){
+                        realValue=Math.round(((startAngle+sweepAngle-angle)%360/sweepAngle)*(max-min)+min);
+                    }else{
+                        realValue=max-Math.round(((startAngle+sweepAngle-angle)%360/sweepAngle)*(max-min));
+                    }
+                }
+            }else{
+                if(angle>=startAngle&&angle<=startAngle+sweepAngle){
+                    if(isReverse){
+                        realValue=Math.round(((startAngle+sweepAngle-angle)/sweepAngle)*(max-min)+min);
+                    }else{
+                        realValue=max-Math.round(((startAngle+sweepAngle-angle)/sweepAngle)*(max-min));
+                    }
                 }
 
             }
+            if(onProgressChangeListener!=null){
+                onProgressChangeListener.onProgressChange(this,realValue);
+            }
+            invalidate();
         }
+
     }
     public interface OnProgressChangeListener{
         void onProgressChange(DashboardView view, float progress);
@@ -571,6 +616,9 @@ public class DashboardView extends View {
 
     public void setMax(int max) {
         this.max = max;
+        if(realValue>max){
+            realValue=max;
+        }
         initTextData();
     }
 
@@ -588,7 +636,7 @@ public class DashboardView extends View {
     }
 
     public void setShowValue(boolean showValue) {
-        isShowValue = showValue;
+        this.isShowRealValue = showValue;
     }
 
     public void setPointSize(int pointSize) {
@@ -630,5 +678,19 @@ public class DashboardView extends View {
 
     public void setBarLineColor(int barLineColor) {
         this.barLineColor = barLineColor;
+    }
+
+    public void setReverse(boolean reverse) {
+        this.isReverse = reverse;
+        setIsReverseValue(reverse);
+        initTextData();
+    }
+
+    public void setIsReverseValue(boolean reverse) {
+        if(reverse){
+            this.isReverseValue=1;
+        }else{
+            this.isReverseValue=0;
+        }
     }
 }

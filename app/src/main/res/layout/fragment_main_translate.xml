@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/bg_fragment">
-    <include layout="@layout/topbar">
+    android:orientation="vertical">
+    <include
+        layout="@layout/top_bar">
     </include>
     <ScrollView
         android:layout_width="match_parent"
@@ -23,7 +23,6 @@
                 android:layout_height="150dp"
                 android:background="@drawable/et_shape_black"
                 android:gravity="left"
-                android:focusable="false"
                 android:hint="请输入你要查询的单词..."
                 android:maxLines="4" />
 

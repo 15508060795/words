@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/bg_fragment">
-    <include layout="@layout/topbar">
+    <include
+        layout="@layout/top_bar">
     </include>
     <LinearLayout
         android:layout_marginTop="@dimen/medium_layout_spacing"

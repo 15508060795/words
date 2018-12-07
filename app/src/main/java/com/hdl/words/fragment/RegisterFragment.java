@@ -85,7 +85,7 @@ public class RegisterFragment extends BaseFragment implements IRegister {
                 pop();
             }
         });
-        topBar.setTitle(R.string.register_title).setTextColor(getResources().getColor(R.color.color_topBar_title_white));
+        topBar.setTitle(R.string.register_title).setTextColor(getResources().getColor(R.color.color_topBar_title));
 
     }
 
