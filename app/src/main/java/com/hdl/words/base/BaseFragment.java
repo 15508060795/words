@@ -1,6 +1,5 @@
 package com.hdl.words.base;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;

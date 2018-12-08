@@ -59,6 +59,12 @@ public class TranslateFragment extends BaseFragment {
     public void onClick(View v){
         switch (v.getId()){
             case R.id.btn_translate:
+/*                if(topBar.getVisibility()==View.VISIBLE){
+                    topBar.setVisibility(View.INVISIBLE);
+                }else{
+                    topBar.setVisibility(View.VISIBLE);
+                }*/
+
                 input=inputEt.getText().toString().trim();
                 if(!input.isEmpty()){
 

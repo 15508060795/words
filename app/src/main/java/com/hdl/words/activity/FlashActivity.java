@@ -22,7 +22,7 @@ public class FlashActivity extends BaseActivity {
 
     @Override
     public void initParms(Bundle parms) {
-
+        setAllowFullScreen(true);
     }
 
     @Override

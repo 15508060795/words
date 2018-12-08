@@ -3,13 +3,11 @@ package com.hdl.words.base;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 
 import com.hdl.words.fragment.LoginFragment;
 import com.hdl.words.fragment.MainFragment;
@@ -32,7 +30,7 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
     /** 是否允许全屏 **/
     private boolean mAllowFullScreen = false;
     /** 是否禁止旋转屏幕 **/
-    private boolean isAllowScreenRoate = false;
+    private boolean isAllowScreenRoate = true;
     //上个activity传过来的参数
     protected Bundle bundle;
     /** 当前Activity渲染的视图View **/

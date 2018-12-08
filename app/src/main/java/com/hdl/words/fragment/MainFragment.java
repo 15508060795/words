@@ -3,6 +3,7 @@ package com.hdl.words.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.view.View;
 
 import com.hdl.words.R;
 import com.hdl.words.adapter.FragmentPagerViewAdapter;
@@ -11,6 +12,7 @@ import com.hdl.words.fragment.main.ReciteFragment;
 import com.hdl.words.fragment.main.SettingFragment;
 import com.hdl.words.fragment.main.TranslateFragment;
 import com.qmuiteam.qmui.widget.QMUITabSegment;
+import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.qmuiteam.qmui.widget.QMUIViewPager;
 
 import butterknife.BindView;
@@ -26,7 +28,9 @@ public class MainFragment extends BaseFragment {
     @BindView(R.id.pager)
     QMUIViewPager viewPager;
     @BindView(R.id.bottomBar)//底部状态栏
-    QMUITabSegment tabSegment;
+            QMUITabSegment tabSegment;
+/*    @BindView(R.id.topBar)//底部状态栏
+            QMUITopBar topBar;*/
     private BaseFragment[] fragments=new BaseFragment[3];
     private int[] tabs=new int[]{R.string.translate,R.string.recite,R.string.personal_center};
     public static final int FIRST = 0;
@@ -95,7 +99,14 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void initTopBar() {
-
+        /*topBar.setBackgroundColor(getResources().getColor(R.color.color_topBar_bg));
+        topBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pop();
+            }
+        });
+        topBar.setTitle(R.string.reset_title).setTextColor(getResources().getColor(R.color.color_topBar_title));*/
     }
 
     @Override

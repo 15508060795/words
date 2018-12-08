@@ -3,17 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/color_topBar_bg"
+    android:fitsSystemWindows="true">
     <include
-        layout="@layout/top_bar">
+        layout="@layout/top_bar"
+        >
     </include>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/bg_fragment"
         android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/medium_layout_spacing"
             android:orientation="vertical">
 
             <EditText
@@ -22,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@drawable/et_shape_black"
+                android:padding="0dp"
                 android:gravity="left"
                 android:hint="请输入你要查询的单词..."
                 android:maxLines="4" />
@@ -38,6 +44,7 @@
                 style="@style/et_style"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
+                android:padding="0dp"
                 android:background="@drawable/et_shape_black"
                 android:gravity="left"
                 android:hint="翻译结果"

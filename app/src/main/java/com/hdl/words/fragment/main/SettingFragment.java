@@ -77,7 +77,7 @@ public class SettingFragment extends BaseFragment {
 
     @Override
     public void initTopBar() {
-        topBar.setBackgroundColor(getResources().getColor(R.color.color_topBar_bg));
+        topBar.setBackgroundColor(getResources().getColor(R.color.white));
         topBar.setTitle(R.string.personal_center).setTextColor(getResources().getColor(R.color.color_topBar_title));
     }
 

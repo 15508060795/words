@@ -4,88 +4,100 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/bg_fragment">
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
     <include
         layout="@layout/top_bar">
     </include>
-    <LinearLayout
-        android:layout_marginTop="@dimen/medium_layout_spacing"
-        android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/space_80"
-        android:gravity="center"
-        android:paddingLeft="@dimen/space_20"
-        android:paddingRight="@dimen/space_20"
-        android:paddingTop="@dimen/medium_layout_spacing"
-        android:paddingBottom="@dimen/medium_layout_spacing"
-        android:orientation="horizontal">
 
-        <com.qmuiteam.qmui.widget.QMUIRadiusImageView
-            android:id="@+id/img_user_head"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/ic_default_head" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/medium_layout_spacing"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_height="@dimen/space_80"
+            android:layout_marginTop="@dimen/medium_layout_spacing"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/space_20"
+            android:paddingTop="@dimen/medium_layout_spacing"
+            android:paddingRight="@dimen/space_20"
+            android:paddingBottom="@dimen/medium_layout_spacing">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:gravity="center_vertical"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/tv_user_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:focusable="false"
-                    android:text="会笑的小栋"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/textView_large_note" />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
+            <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+                android:id="@+id/img_user_head"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_default_head" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/medium_layout_spacing"
                 android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:enabled="false"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_tidings_msg"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="@dimen/medium_layout_spacing"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tv_user_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:focusable="false"
+                        android:text="会笑的小栋"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textView_large_note" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:enabled="false"
                     android:gravity="center_vertical"
-                    android:maxLines="1"
-                    android:text="IOTAT帐号:"
-                    android:textColor="@color/qmui_config_color_gray_5"
-                    android:textSize="@dimen/textView_medium_note" />
+                    android:orientation="horizontal">
 
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/tv_tidings_msg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/medium_layout_spacing"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:text="IOTAT帐号:"
+                        android:textColor="@color/qmui_config_color_gray_5"
+                        android:textSize="@dimen/textView_medium_note" />
 
+                </RelativeLayout>
+
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-    <com.qmuiteam.qmui.widget.grouplist.QMUIGroupListView
-        android:id="@+id/lv_setting"
-        android:layout_marginTop="@dimen/medium_layout_spacing"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    </com.qmuiteam.qmui.widget.grouplist.QMUIGroupListView>
+        <com.qmuiteam.qmui.widget.grouplist.QMUIGroupListView
+            android:id="@+id/lv_setting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/medium_layout_spacing">
+
+        </com.qmuiteam.qmui.widget.grouplist.QMUIGroupListView>
+
+    </LinearLayout>
+
 </LinearLayout>

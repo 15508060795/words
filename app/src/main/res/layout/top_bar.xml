@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.qmuiteam.qmui.widget.QMUITopBar
+<com.qmuiteam.qmui.widget.QMUIWindowInsetLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/topBar"
     android:layout_width="match_parent"
-    android:clipToPadding="true"
-    android:fitsSystemWindows="true"
-    android:layout_height="45dp"/>
+    android:layout_height="@dimen/topBar_height"
+    android:fitsSystemWindows="true">
+    <com.qmuiteam.qmui.widget.QMUITopBar
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/topBar_height" />
 
+</com.qmuiteam.qmui.widget.QMUIWindowInsetLayout>
