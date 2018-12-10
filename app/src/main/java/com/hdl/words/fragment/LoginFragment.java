@@ -59,33 +59,6 @@ public class LoginFragment extends BaseFragment {
                 break;
         }
     }
-    /*    public void doLogin(final String username, final String password){
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    OkHttpClient client=new OkHttpClient();
-                    FormBody formBody=new FormBody.Builder()
-                            .add("username",username)
-                            .add("password",password)
-                            .build();
-                    Request request=new Request.Builder()
-                            .url(ApiBean.BASE_URL+ApiBean.LOGIN_URL)
-                            .post(formBody)
-                            .build();
-                    Response response = null;
-                    try{
-                        response=client.newCall(request).execute();
-                        if(response.isSuccessful()) {
-                            onLoginSuccess(response);
-                        } else {
-                            onLoginError(response);
-                        }
-                    }catch (IOException e){
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
-        }*/
     @Override
     public int bindLayout() {
         return R.layout.fragment_login;
