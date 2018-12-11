@@ -16,6 +16,9 @@ import com.qmuiteam.qmui.widget.grouplist.QMUICommonListItemView;
 import com.qmuiteam.qmui.widget.grouplist.QMUIGroupListView;
 
 import butterknife.BindView;
+/**
+ * Created by HDL on 2018/11/9.
+ */
 
 public class SettingFragment extends BaseFragment {
     @BindView(R.id.topBar)

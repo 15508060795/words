@@ -7,7 +7,7 @@ import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 
 /**
  * Date 2018/10/9 10:12
- * auther HDL
+ * author HDL
  * Mail 229101253@qq.com
  */
 public  class QmuiDialogHelper {

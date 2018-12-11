@@ -19,7 +19,7 @@ import butterknife.OnClick;
 
 /**
  * time: 11/1/2018
- * auther: CHe
+ * author: CHe
  */
 public class RegisterFragment extends BaseFragment implements IRegister {
     @BindView(R.id.topBar)

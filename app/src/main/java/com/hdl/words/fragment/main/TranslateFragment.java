@@ -1,17 +1,25 @@
 package com.hdl.words.fragment.main;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hdl.words.Beans.ApiBean;
 import com.hdl.words.Beans.LanguageBean;
@@ -37,7 +45,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 /**
- * Created by HDL on 2018/1/9.
+ * Created by HDL on 2018/11/9.
  */
 
 public class TranslateFragment extends BaseFragment {
@@ -47,10 +55,10 @@ public class TranslateFragment extends BaseFragment {
     EditText inputEt;
     @BindView(R.id.tv_result)
     TextView resultTv;
+    private Button leftTopBarBtn,rightTopBarBtn;
+    private ImageView titleTopBarImg;
     private String input,result,fromText,toText;
-    private int fromPositon=0,toPosition=0;
-/*    private ArrayList<String>language;
-    private ArrayList<String>languageCode;*/
+    private int fromPosition=0,toPosition=0;
     public static TranslateFragment newInstance(){
         TranslateFragment fragment=new TranslateFragment();
         return fragment;
@@ -64,17 +72,10 @@ public class TranslateFragment extends BaseFragment {
     public void onClick(View v){
         switch (v.getId()){
             case R.id.btn_translate:
-/*                if(topBar.getVisibility()==View.VISIBLE){
-                    topBar.setVisibility(View.INVISIBLE);
-                }else{
-                    topBar.setVisibility(View.VISIBLE);
-                }*/
-
                 input=inputEt.getText().toString().trim();
                 if(!input.isEmpty()){
                     translate(input);
                 }
-                getData();
                 break;
         }
     }
@@ -84,20 +85,23 @@ public class TranslateFragment extends BaseFragment {
     }
     @Override
     public void initTopBar() {
-
         topBar.setBackgroundColor(getResources().getColor(R.color.color_topBar_bg));
-        topBar.setTitle(fromText+"—"+toText).setTextColor(getResources().getColor(R.color.color_topBar_title));
-        topBar.getChildAt(0).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e(TAG,LanguageBean.getInstance().getLanguage().size()+"");
-                Log.e(TAG,LanguageBean.getInstance().getLanguageCode().size()+"");
-            }
-        });
-        ImageView centerView=new ImageView(_mActivity);
-        centerView.setImageResource(R.mipmap.ic_switch);
-        topBar.setCenterView(centerView);
-        topBar.addLeftTextButton(LanguageBean.getInstance().getLanguage().get(0),0).setOnClickListener(new View.OnClickListener() {
+        leftTopBarBtn=topBar.addLeftTextButton(LanguageBean.getInstance().getLanguage().get(0),0);
+        leftTopBarBtn.setTextColor(getResources().getColor(R.color.white));
+        titleTopBarImg=new ImageView(_mActivity);
+        titleTopBarImg.setImageResource(R.mipmap.ic_switch);
+        topBar.setCenterView(titleTopBarImg);
+        rightTopBarBtn =topBar.addRightTextButton(LanguageBean.getInstance().getLanguage().get(1),0);
+        rightTopBarBtn.setTextColor(getResources().getColor(R.color.white));
+    }
+    @Override
+    public void initData() {
+        fromPosition=0;
+        toPosition=1;
+    }
+    @Override
+    public void initListener() {
+        leftTopBarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ArrayAdapter adapter = new ArrayAdapter<>(_mActivity, R.layout.simple_list_item, LanguageBean.getInstance().getLanguage());
@@ -107,16 +111,17 @@ public class TranslateFragment extends BaseFragment {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 fromText=LanguageBean.getInstance().getLanguage().get(position);
-                                fromPositon=position;
-                                topBar.setTitle(fromText+"—"+toText).setTextColor(getResources().getColor(R.color.color_topBar_title));
+                                fromPosition=position;
+                                leftTopBarBtn.setText(LanguageBean.getInstance().getLanguage().get(position));
                                 qmuiListPopup.dismiss();
                             }
                         });
-                qmuiListPopup.setAnimStyle(QMUIPopup.ANIM_GROW_FROM_RIGHT);
-                qmuiListPopup.show(topBar.getChildAt(0));
+                qmuiListPopup.setAnimStyle(QMUIPopup.ANIM_GROW_FROM_LEFT);
+                qmuiListPopup.show(leftTopBarBtn);
             }
         });
-        topBar.addRightTextButton(LanguageBean.getInstance().getLanguage().get(0),0).setOnClickListener(new View.OnClickListener() {
+
+        rightTopBarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ArrayAdapter adapter = new ArrayAdapter<>(_mActivity, R.layout.simple_list_item, LanguageBean.getInstance().getLanguage());
@@ -127,26 +132,50 @@ public class TranslateFragment extends BaseFragment {
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 toText=LanguageBean.getInstance().getLanguage().get(position);
                                 toPosition=position;
-                                topBar.setTitle(fromText+"—"+toText).setTextColor(getResources().getColor(R.color.color_topBar_title));
+                                rightTopBarBtn.setText(LanguageBean.getInstance().getLanguage().get(position));
                                 qmuiListPopup.dismiss();
                             }
                         });
                 qmuiListPopup.setAnimStyle(QMUIPopup.ANIM_GROW_FROM_RIGHT);
-                qmuiListPopup.show(topBar.getChildAt(0));
+                qmuiListPopup.show(rightTopBarBtn);
+            }
+        });
+        titleTopBarImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ObjectAnimator animator=ObjectAnimator.ofFloat(titleTopBarImg,"rotation", 0f, 180f);
+                animator.setDuration(500);
+                animator.addListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        titleTopBarImg.setClickable(false);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        titleTopBarImg.setClickable(true);
+                        int position=fromPosition;
+                        fromPosition=toPosition;
+                        toPosition=position;
+                        leftTopBarBtn.setText(LanguageBean.getInstance().getLanguage().get(fromPosition));
+                        rightTopBarBtn.setText(LanguageBean.getInstance().getLanguage().get(toPosition));
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                });
+                animator.start();
             }
         });
     }
-    @Override
-    public void initData() {
-        fromPositon=0;
-        toPosition=1;
-    }
-    @Override
-    public void initListener() {
-    }
-    public void getData(){
 
-    }
     private void translate(String input){
         Retrofit retrofit=new Retrofit.Builder()
                 .baseUrl(ApiBean.TRANSLATE_URL)
@@ -157,7 +186,7 @@ public class TranslateFragment extends BaseFragment {
         String sign=ApiBean.getStringMD5(ApiBean.TRANSLATE_APP_ID+input+ApiBean.TRANSLATE_SALT+ApiBean.TRANSLATE_KEY);
         Call<TranslateResultBean>call=request.getCall(
                 input,
-                LanguageBean.getInstance().getLanguage().get(fromPositon),
+                LanguageBean.getInstance().getLanguage().get(fromPosition),
                 LanguageBean.getInstance().getLanguageCode().get(toPosition),
                 ApiBean.TRANSLATE_APP_ID,
                 ApiBean.TRANSLATE_SALT,
@@ -169,7 +198,8 @@ public class TranslateFragment extends BaseFragment {
                 ToastHelper.shortToast(_mActivity,"请求成功");
                 Log.e(TAG,response.body()+"");
                 Log.e(TAG,response.body().getTrans_result().get(0).getDst()+"");
-                resultTv.setText(response.body().getTrans_result().get(0).getDst()+"");
+                result=response.body().getTrans_result().get(0).getDst();
+                resultTv.setText(result);
             }
             @Override
             public void onFailure(Call<TranslateResultBean> call, Throwable t) {

@@ -15,7 +15,7 @@ import butterknife.OnClick;
 
 /**
  * Date 2018/8/2 10:06
- * auther HDL
+ * author HDL
  * Mail 229101253@qq.com
  */
 public class LoginFragment extends BaseFragment {

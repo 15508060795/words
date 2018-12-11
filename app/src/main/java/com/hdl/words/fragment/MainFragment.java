@@ -20,7 +20,7 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * Date 2018/8/2 9:56
- * auther HDL
+ * author HDL
  * Mail 229101253@qq.com
  */
 
@@ -29,8 +29,6 @@ public class MainFragment extends BaseFragment {
     QMUIViewPager viewPager;
     @BindView(R.id.bottomBar)//底部状态栏
             QMUITabSegment tabSegment;
-/*    @BindView(R.id.topBar)//底部状态栏
-            QMUITopBar topBar;*/
     private BaseFragment[] fragments=new BaseFragment[3];
     private int[] tabs=new int[]{R.string.translate,R.string.recite,R.string.personal_center};
     public static final int FIRST = 0;
@@ -56,22 +54,6 @@ public class MainFragment extends BaseFragment {
     }
     @Override
     public void initData() {
-/*        if(findChildFragment(TranslateFragment.class)==null){
-            fragments[FIRST]=TranslateFragment.newInstance();
-            fragments[SECOND]=ReciteFragment.newInstance();
-            fragments[THIRD]=SettingFragment.newInstance();
-            loadMultipleRootFragment(R.id.fl_main,
-                    FIRST,
-                    fragments[FIRST],
-                    fragments[SECOND],
-                    fragments[THIRD]
-            );
-        }else{
-            fragments[FIRST]=findChildFragment(TranslateFragment.class);
-            fragments[SECOND]=findChildFragment(TranslateFragment.class);
-            fragments[THIRD]=findChildFragment(TranslateFragment.class);
-        }*/
-
         fragments[FIRST]=TranslateFragment.newInstance();
         fragments[SECOND]=ReciteFragment.newInstance();
         fragments[THIRD]=SettingFragment.newInstance();
@@ -99,14 +81,7 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void initTopBar() {
-        /*topBar.setBackgroundColor(getResources().getColor(R.color.color_topBar_bg));
-        topBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pop();
-            }
-        });
-        topBar.setTitle(R.string.reset_title).setTextColor(getResources().getColor(R.color.color_topBar_title));*/
+
     }
 
     @Override

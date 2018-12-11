@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * Date 2018/10/22 12:19
- * auther HDL
+ * author HDL
  * Mail 229101253@qq.com
  */
 public class UserBean extends DataSupport implements Serializable {

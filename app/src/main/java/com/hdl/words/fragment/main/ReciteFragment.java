@@ -13,8 +13,9 @@ import butterknife.BindView;
 
 
 /**
- * Created by HDL on 2018/1/9.c
+ * Created by HDL on 2018/11/9.
  */
+
 
 public class ReciteFragment extends BaseFragment {
     @BindView(R.id.topBar)

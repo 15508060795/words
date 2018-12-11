@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 /**
  * Date 2018/10/9 12:13
- * auther HDL
+ * author HDL
  * Mail 229101253@qq.com
  */
 public class ToastHelper {
