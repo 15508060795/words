@@ -26,7 +26,7 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
     protected Context context;
    // protected int theme;
     /** 是否沉浸状态栏 **/
-    private boolean isSetStatusBar=true;
+    private boolean isSetStatusBar=false;
     /** 是否允许全屏 **/
     private boolean mAllowFullScreen = false;
     /** 是否禁止旋转屏幕 **/
@@ -46,7 +46,7 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
         if(mContextView==null){
             mContextView = LayoutInflater.from(this).inflate(bindLayout(), null);
             bundle = getIntent().getExtras();
-            initParms(bundle);
+            initParams(bundle);
             if (mAllowFullScreen) {
                 QMUIDisplayHelper.setFullScreen(this);
             }
@@ -92,9 +92,9 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
     /**
      * [初始化参数]
      *
-     * @param parms
+     * @param params
      */
-    public abstract void initParms(Bundle parms);
+    public abstract void initParams(Bundle params);
     /**
      * [加载数据]
      */
@@ -218,6 +218,5 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
     public void setSteepStatusBar(boolean isSetStatusBar) {
         this.isSetStatusBar = isSetStatusBar;
     }
-
 
 }

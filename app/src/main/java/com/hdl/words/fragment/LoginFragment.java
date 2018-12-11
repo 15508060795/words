@@ -7,6 +7,7 @@ import android.widget.EditText;
 import com.hdl.words.R;
 import com.hdl.words.SharedPreferences.MySession;
 import com.hdl.words.base.BaseFragment;
+import com.hdl.words.fragment.main.setting.PersonalDataFragment;
 import com.hdl.words.litepal.UserDbHelper;
 import com.hdl.words.utils.ToastHelper;
 
@@ -41,7 +42,7 @@ public class LoginFragment extends BaseFragment {
                 if(isNull()){
                     if(UserDbHelper.isCorrect(account,password)){
                         MySession.setLoginState(_mActivity,true);
-                        startWithPop(new MainFragment());
+                        startWithPop(MainFragment.newInstance());
                     }else{
                         ToastHelper.shortToast(_mActivity,R.string.toast_accountOrPassword_error);
                     }

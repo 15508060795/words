@@ -2,6 +2,7 @@ package com.hdl.words.fragment.main;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.hdl.words.R;
@@ -9,6 +10,7 @@ import com.hdl.words.SharedPreferences.MySession;
 import com.hdl.words.base.BaseFragment;
 import com.hdl.words.fragment.LoginFragment;
 import com.hdl.words.fragment.MainFragment;
+import com.hdl.words.fragment.main.setting.PersonalDataFragment;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction;
@@ -43,6 +45,20 @@ public class SettingFragment extends BaseFragment {
 
     @Override
     public void initData() {
+        QMUICommonListItemView personalData=groupListView.createItemView("个人资料");
+        personalData.setAccessoryType(QMUICommonListItemView.ACCESSORY_TYPE_CUSTOM);
+        personalData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle=new Bundle();
+                bundle.putString("account","account");
+                assert getParentFragment() != null;
+                Log.e("getParentFragment",getParentFragment()+"  ");
+                ((MainFragment)getParentFragment()).startBrotherFragment(PersonalDataFragment.newInstance(bundle));
+            }
+        });
+
+
 
         QMUICommonListItemView logout=groupListView.createItemView("退出登录");
         logout.setAccessoryType(QMUICommonListItemView.ACCESSORY_TYPE_CUSTOM);
@@ -58,7 +74,7 @@ public class SettingFragment extends BaseFragment {
                                 dialog.dismiss();
                                 MySession.setLoginState(_mActivity,false);
                                 assert getParentFragment() != null;
-                                ((MainFragment)getParentFragment()).startBrotherFragmentAndPop(new LoginFragment());
+                                ((MainFragment)getParentFragment()).startBrotherFragmentAndPop(LoginFragment.newInstance());
                             }
                         })
                         .addAction(R.string.cancel, new QMUIDialogAction.ActionListener() {
@@ -74,6 +90,7 @@ public class SettingFragment extends BaseFragment {
                 //.setTitle("Section 1: 默认提供的样式")
                 //.setDescription("Section 1 的描述")
                 //.addItemView(immersion,null)
+                .addItemView(personalData,null)
                 .addItemView(logout,null)
                 .addTo(groupListView);
     }

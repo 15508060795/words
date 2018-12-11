@@ -21,8 +21,9 @@ public class FlashActivity extends BaseActivity {
     }
 
     @Override
-    public void initParms(Bundle parms) {
+    public void initParams(Bundle params) {
         setAllowFullScreen(true);
+
     }
 
     @Override

@@ -7,6 +7,9 @@ import com.hdl.words.SharedPreferences.MySession;
 import com.hdl.words.base.BaseActivity;
 import com.hdl.words.fragment.LoginFragment;
 import com.hdl.words.fragment.MainFragment;
+import com.hdl.words.fragment.main.setting.PersonalDataFragment;
+
+import me.yokeyword.fragmentation.SupportFragment;
 
 
 public class MainActivity extends BaseActivity {
@@ -16,7 +19,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void initParms(Bundle parms) {
+    public void initParams(Bundle params) {
 
     }
     @Override
@@ -30,12 +33,12 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initData() {
         if(MySession.getLoginState(this)){
-            MainFragment mainFragment=MainFragment.newInstance();
-            loadRootFragment(R.id.fl_main,mainFragment);
+            loadRootFragment(R.id.fl_main,MainFragment.newInstance());
         }else{
-            LoginFragment loginFragment=LoginFragment.newInstance();
-            loadRootFragment(R.id.fl_main,loginFragment);
+            loadRootFragment(R.id.fl_main,LoginFragment.newInstance());
         }
     }
+    public void startBrotherFragment(SupportFragment targetFragment) { start(targetFragment); }
+    public void startBrotherFragmentAndPop(SupportFragment targetFragment) { startWithPop(targetFragment); }
 
 }

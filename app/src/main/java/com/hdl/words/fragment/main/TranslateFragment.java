@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -57,8 +58,7 @@ public class TranslateFragment extends BaseFragment {
     TextView resultTv;
     private Button leftTopBarBtn,rightTopBarBtn;
     private ImageView titleTopBarImg;
-    private String input,result,fromText,toText;
-    private int fromPosition=0,toPosition=0;
+    private int fromPosition=0,toPosition=1;
     public static TranslateFragment newInstance(){
         TranslateFragment fragment=new TranslateFragment();
         return fragment;
@@ -72,9 +72,9 @@ public class TranslateFragment extends BaseFragment {
     public void onClick(View v){
         switch (v.getId()){
             case R.id.btn_translate:
-                input=inputEt.getText().toString().trim();
-                if(!input.isEmpty()){
-                    translate(input);
+                String inputStr = inputEt.getText().toString().trim();
+                if(!inputStr.isEmpty()){
+                    translate(inputStr);
                 }
                 break;
         }
@@ -96,8 +96,6 @@ public class TranslateFragment extends BaseFragment {
     }
     @Override
     public void initData() {
-        fromPosition=0;
-        toPosition=1;
     }
     @Override
     public void initListener() {
@@ -110,7 +108,6 @@ public class TranslateFragment extends BaseFragment {
                         QMUIDisplayHelper.dp2px(_mActivity, 240), new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                fromText=LanguageBean.getInstance().getLanguage().get(position);
                                 fromPosition=position;
                                 leftTopBarBtn.setText(LanguageBean.getInstance().getLanguage().get(position));
                                 qmuiListPopup.dismiss();
@@ -120,31 +117,11 @@ public class TranslateFragment extends BaseFragment {
                 qmuiListPopup.show(leftTopBarBtn);
             }
         });
-
-        rightTopBarBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ArrayAdapter adapter = new ArrayAdapter<>(_mActivity, R.layout.simple_list_item, LanguageBean.getInstance().getLanguage());
-                final QMUIListPopup qmuiListPopup = new QMUIListPopup(_mActivity, QMUIPopup.DIRECTION_TOP, adapter);
-                qmuiListPopup.create(QMUIDisplayHelper.dp2px(_mActivity, 120),
-                        QMUIDisplayHelper.dp2px(_mActivity, 240), new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                toText=LanguageBean.getInstance().getLanguage().get(position);
-                                toPosition=position;
-                                rightTopBarBtn.setText(LanguageBean.getInstance().getLanguage().get(position));
-                                qmuiListPopup.dismiss();
-                            }
-                        });
-                qmuiListPopup.setAnimStyle(QMUIPopup.ANIM_GROW_FROM_RIGHT);
-                qmuiListPopup.show(rightTopBarBtn);
-            }
-        });
         titleTopBarImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ObjectAnimator animator=ObjectAnimator.ofFloat(titleTopBarImg,"rotation", 0f, 180f);
-                animator.setDuration(500);
+                animator.setDuration(250);
                 animator.addListener(new Animator.AnimatorListener() {
                     @Override
                     public void onAnimationStart(Animator animation) {
@@ -153,12 +130,12 @@ public class TranslateFragment extends BaseFragment {
 
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        titleTopBarImg.setClickable(true);
                         int position=fromPosition;
                         fromPosition=toPosition;
                         toPosition=position;
                         leftTopBarBtn.setText(LanguageBean.getInstance().getLanguage().get(fromPosition));
                         rightTopBarBtn.setText(LanguageBean.getInstance().getLanguage().get(toPosition));
+                        titleTopBarImg.setClickable(true);
                     }
 
                     @Override
@@ -174,6 +151,25 @@ public class TranslateFragment extends BaseFragment {
                 animator.start();
             }
         });
+        rightTopBarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayAdapter adapter = new ArrayAdapter<>(_mActivity, R.layout.simple_list_item, LanguageBean.getInstance().getLanguage());
+                final QMUIListPopup qmuiListPopup = new QMUIListPopup(_mActivity, QMUIPopup.DIRECTION_TOP, adapter);
+                qmuiListPopup.create(QMUIDisplayHelper.dp2px(_mActivity, 120),
+                        QMUIDisplayHelper.dp2px(_mActivity, 240), new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                toPosition=position;
+                                rightTopBarBtn.setText(LanguageBean.getInstance().getLanguage().get(position));
+                                qmuiListPopup.dismiss();
+                            }
+                        });
+                qmuiListPopup.setAnimStyle(QMUIPopup.ANIM_GROW_FROM_RIGHT);
+                qmuiListPopup.show(rightTopBarBtn);
+            }
+        });
+
     }
 
     private void translate(String input){
@@ -198,8 +194,8 @@ public class TranslateFragment extends BaseFragment {
                 ToastHelper.shortToast(_mActivity,"请求成功");
                 Log.e(TAG,response.body()+"");
                 Log.e(TAG,response.body().getTrans_result().get(0).getDst()+"");
-                result=response.body().getTrans_result().get(0).getDst();
-                resultTv.setText(result);
+                String resultStr=response.body().getTrans_result().get(0).getDst();
+                resultTv.setText(resultStr);
             }
             @Override
             public void onFailure(Call<TranslateResultBean> call, Throwable t) {
@@ -207,68 +203,5 @@ public class TranslateFragment extends BaseFragment {
             }
         });
     }
-/*    private void initList(){
-        language=new ArrayList<>();
-        languageCode=new ArrayList<>();
-        language.add("自动检测");
-        language.add("中文");
-        language.add("英语");
-        language.add("粤语");
-        language.add("文言文");
-        language.add("日语");
-        language.add("韩语");
-        language.add("法语");
-        language.add("西班牙语");
-        language.add("泰语");
-        language.add("阿拉伯语");
-        language.add("俄语");
-        language.add("葡萄牙语");
-        language.add("德语");
-        language.add("意大利语");
-        language.add("希腊语");
-        language.add("荷兰语");
-        language.add("波兰语");
-        language.add("保加利亚语");
-        language.add("爱沙尼亚语");
-        language.add("丹麦语");
-        language.add("芬兰语");
-        language.add("捷克语");
-        language.add("罗马尼亚语");
-        language.add("斯洛文尼亚语");
-        language.add("瑞典语");
-        language.add("匈牙利语");
-        language.add("繁体中文");
-        language.add("越南语");
-        languageCode.add("auto");
-        languageCode.add("zh");
-        languageCode.add("en");
-        languageCode.add("yue");
-        languageCode.add("wyw");
-        languageCode.add("jp");
-        languageCode.add("kor");
-        languageCode.add("fra");
-        languageCode.add("spa");
-        languageCode.add("th");
-        languageCode.add("ara");
-        languageCode.add("ru");
-        languageCode.add("pt");
-        languageCode.add("de");
-        languageCode.add("it");
-        languageCode.add("el");
-        languageCode.add("nl");
-        languageCode.add("pl");
-        languageCode.add("bul");
-        languageCode.add("est");
-        languageCode.add("dan");
-        languageCode.add("fin");
-        languageCode.add("cs");
-        languageCode.add("rom");
-        languageCode.add("slo");
-        languageCode.add("swe");
-        languageCode.add("hu");
-        languageCode.add("cht");
-        languageCode.add("vie");
-        fromPositon=0;
-        toPosition=1;
-    }*/
+
 }
