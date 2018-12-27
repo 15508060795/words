@@ -119,4 +119,5 @@ public abstract class BaseFragment extends SupportFragment {
             //网络数据刷新
         }
     }
+
 }

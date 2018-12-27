@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.qmuiteam.qmui.widget.QMUIWindowInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.qmuiteam.qmui.widget.QMUIWindowInsetLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <android.support.v7.widget.FitWindowsFrameLayout
+    <com.hdl.words.view.WindowInsetsFrameLayout
+        android:id="@+id/fl_main_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/fl_main_fragment"
-        android:layout_marginBottom="@dimen/bottomBar_height" />
-<!--    <com.qmuiteam.qmui.widget.QMUIViewPager
-        android:id="@+id/pager"
+        android:layout_marginBottom="@dimen/bottomBar_height"
+        />
+<!--    <com.hdl.words.view.WindowInsetsViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/bottomBar_height"
         android:overScrollMode="never"
         android:fitsSystemWindows="true"
         android:background="@color/bg_fragment" />-->
-
-
     <com.qmuiteam.qmui.widget.QMUITabSegment
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
@@ -26,5 +26,6 @@
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:textSize="12sp"
-        app:qmui_tab_icon_position="top" />
+        app:qmui_tab_icon_position="top"
+        />
 </com.qmuiteam.qmui.widget.QMUIWindowInsetLayout>

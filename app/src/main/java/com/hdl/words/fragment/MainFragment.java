@@ -10,6 +10,7 @@ import com.hdl.words.base.BaseFragment;
 import com.hdl.words.fragment.main.ReciteFragment;
 import com.hdl.words.fragment.main.SettingFragment;
 import com.hdl.words.fragment.main.TranslateFragment;
+import com.hdl.words.view.WindowInsetsViewPager;
 import com.qmuiteam.qmui.widget.QMUITabSegment;
 import com.qmuiteam.qmui.widget.QMUIViewPager;
 
@@ -23,10 +24,10 @@ import me.yokeyword.fragmentation.SupportFragment;
  */
 
 public class MainFragment extends BaseFragment {
-/*    @BindView(R.id.pager)
-    QMUIViewPager viewPager;*/
+/*    @BindView(R.id.viewpager)
+    WindowInsetsViewPager viewPager;*/
     @BindView(R.id.bottomBar)//底部状态栏
-            QMUITabSegment tabSegment;
+    QMUITabSegment tabSegment;
     private BaseFragment[] fragments=new BaseFragment[3];
     public static final int FIRST = 0;
     public static final int SECOND = 1;
@@ -78,10 +79,9 @@ public class MainFragment extends BaseFragment {
                 ContextCompat.getDrawable(_mActivity, R.mipmap.ic_bottom_personal_center),
                 getString(R.string.personal_center), true));
         tabSegment.selectTab(0);
-        /*tabSegment.setupWithViewPager(viewPager);
+/*        tabSegment.setupWithViewPager(viewPager);
         viewPager.setAdapter(new FragmentPagerViewAdapter(getChildFragmentManager(),fragments));
-        viewPager.setCurrentItem(FIRST);
-        viewPager.setSwipeable(true);*/
+        viewPager.setCurrentItem(FIRST);*/
     }
 
     @Override

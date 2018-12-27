@@ -26,7 +26,7 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
     protected Context context;
    // protected int theme;
     /** 是否沉浸状态栏 **/
-    private boolean isSetStatusBar=false;
+    private boolean isSetStatusBar = true;
     /** 是否允许全屏 **/
     private boolean mAllowFullScreen = false;
     /** 是否禁止旋转屏幕 **/
