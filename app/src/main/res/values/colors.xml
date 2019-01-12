@@ -3,7 +3,7 @@
     <color name="colorPrimary">#708090</color>
     <color name="colorPrimaryDark">#778899</color>
     <color name="colorAccent">#000000</color>
-    <color name="statusBarColor">#778899</color>
+    <color name="statusBarColor">#00000000</color>
 
     <!--drawable-->
     <color name="et_stroke_white">#FFFFFF</color>
@@ -12,6 +12,7 @@
     <color name="tv_color">#FFFFFF</color>
     <color name="tv_hint_color">#FFFFFF</color>
     <!--基础颜色-->
+    <color name="transparent">#00000000</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="gray">#D8DCE4</color>

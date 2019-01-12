@@ -5,14 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 
 import com.hdl.words.R;
-import com.hdl.words.adapter.FragmentPagerViewAdapter;
 import com.hdl.words.base.BaseFragment;
 import com.hdl.words.fragment.main.ReciteFragment;
 import com.hdl.words.fragment.main.SettingFragment;
 import com.hdl.words.fragment.main.TranslateFragment;
-import com.hdl.words.view.WindowInsetsViewPager;
 import com.qmuiteam.qmui.widget.QMUITabSegment;
-import com.qmuiteam.qmui.widget.QMUIViewPager;
 
 import butterknife.BindView;
 import me.yokeyword.fragmentation.SupportFragment;
@@ -24,8 +21,6 @@ import me.yokeyword.fragmentation.SupportFragment;
  */
 
 public class MainFragment extends BaseFragment {
-/*    @BindView(R.id.viewpager)
-    WindowInsetsViewPager viewPager;*/
     @BindView(R.id.bottomBar)//底部状态栏
     QMUITabSegment tabSegment;
     private BaseFragment[] fragments=new BaseFragment[3];
@@ -33,13 +28,7 @@ public class MainFragment extends BaseFragment {
     public static final int SECOND = 1;
     public static final int THIRD = 2;
     public static MainFragment newInstance(){
-        MainFragment fragment=new MainFragment();
-        return  fragment;
-    }
-    public static MainFragment newInstance(Bundle bundle){
-        MainFragment fragment=new MainFragment();
-        fragment.setArguments(bundle);
-        return  fragment;
+        return new MainFragment();
     }
     @Override
     public int bindLayout() {
@@ -52,6 +41,7 @@ public class MainFragment extends BaseFragment {
     }
     @Override
     public void initData() {
+
         if(findChildFragment(TranslateFragment.class)==null){
             fragments[FIRST]=TranslateFragment.newInstance();
             fragments[SECOND]=ReciteFragment.newInstance();
@@ -62,7 +52,6 @@ public class MainFragment extends BaseFragment {
             fragments[SECOND]=findChildFragment(ReciteFragment.class);
             fragments[THIRD]=findChildFragment(SettingFragment.class);
         }
-
         tabSegment.setDefaultNormalColor(getResources().getColor(R.color.color_bottomBar_normal));
         tabSegment.setDefaultSelectedColor(getResources().getColor(R.color.color_bottomBar_select));
         tabSegment.setBackgroundColor(getResources().getColor(R.color.color_bottomBar_bg));
@@ -79,9 +68,6 @@ public class MainFragment extends BaseFragment {
                 ContextCompat.getDrawable(_mActivity, R.mipmap.ic_bottom_personal_center),
                 getString(R.string.personal_center), true));
         tabSegment.selectTab(0);
-/*        tabSegment.setupWithViewPager(viewPager);
-        viewPager.setAdapter(new FragmentPagerViewAdapter(getChildFragmentManager(),fragments));
-        viewPager.setCurrentItem(FIRST);*/
     }
 
     @Override

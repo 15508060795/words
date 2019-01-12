@@ -1,6 +1,5 @@
 package com.hdl.words.fragment;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
@@ -30,14 +29,9 @@ public class ForgetFragment extends BaseFragment implements ILogin {
     EditText nowPasswordEt;
     private String account,prePassword,nowPassword;
     public static ForgetFragment newInstance(){
-        ForgetFragment fragment=new ForgetFragment();
-        return fragment;
+        return new ForgetFragment();
     }
-    public static ForgetFragment newInstance(Bundle bundle){
-        ForgetFragment fragment=new ForgetFragment();
-        fragment.setArguments(bundle);
-        return fragment;
-    }
+
     @OnClick({R.id.btn_submit})
     public void onClick(View view){
         switch (view.getId()){
@@ -78,12 +72,12 @@ public class ForgetFragment extends BaseFragment implements ILogin {
                 pop();
             }
         });
-        topBar.setTitle(R.string.reset_title).setTextColor(getResources().getColor(R.color.color_topBar_title));
+        topBar.setTitle(R.string.reset_title);
     }
 
     @Override
     public void initData() {
-
+        setSwipeBackEnable(true);
     }
 
     @Override

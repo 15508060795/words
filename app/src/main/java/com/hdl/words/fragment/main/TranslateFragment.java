@@ -1,26 +1,16 @@
 package com.hdl.words.fragment.main;
 
 import android.animation.Animator;
-import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.PropertyValuesHolder;
 import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hdl.words.Beans.ApiBean;
 import com.hdl.words.Beans.LanguageBean;
@@ -33,8 +23,6 @@ import com.qmuiteam.qmui.util.QMUIDisplayHelper;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.qmuiteam.qmui.widget.popup.QMUIListPopup;
 import com.qmuiteam.qmui.widget.popup.QMUIPopup;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -60,13 +48,7 @@ public class TranslateFragment extends BaseFragment {
     private ImageView titleTopBarImg;
     private int fromPosition=0,toPosition=1;
     public static TranslateFragment newInstance(){
-        TranslateFragment fragment=new TranslateFragment();
-        return fragment;
-    }
-    public static TranslateFragment newInstance(Bundle bundle){
-        TranslateFragment fragment=new TranslateFragment();
-        fragment.setArguments(bundle);
-        return fragment;
+        return new TranslateFragment();
     }
     @OnClick({R.id.btn_translate})
     public void onClick(View v){
@@ -85,14 +67,13 @@ public class TranslateFragment extends BaseFragment {
     }
     @Override
     public void initTopBar() {
-        topBar.setBackgroundColor(getResources().getColor(R.color.color_topBar_bg));
-        leftTopBarBtn=topBar.addLeftTextButton(LanguageBean.getInstance().getLanguage().get(0),0);
-        leftTopBarBtn.setTextColor(getResources().getColor(R.color.white));
-        titleTopBarImg=new ImageView(_mActivity);
+        leftTopBarBtn = topBar.addLeftTextButton(LanguageBean.getInstance().getLanguage().get(0),0);
+        leftTopBarBtn.setTextColor(getResources().getColor(R.color.color_topBar_title));
+        titleTopBarImg = new ImageView(_mActivity);
         titleTopBarImg.setImageResource(R.mipmap.ic_switch);
         topBar.setCenterView(titleTopBarImg);
-        rightTopBarBtn =topBar.addRightTextButton(LanguageBean.getInstance().getLanguage().get(1),0);
-        rightTopBarBtn.setTextColor(getResources().getColor(R.color.white));
+        rightTopBarBtn = topBar.addRightTextButton(LanguageBean.getInstance().getLanguage().get(1),0);
+        rightTopBarBtn.setTextColor(getResources().getColor(R.color.color_topBar_title));
     }
     @Override
     public void initData() {
@@ -107,9 +88,9 @@ public class TranslateFragment extends BaseFragment {
                 qmuiListPopup.create(QMUIDisplayHelper.dp2px(_mActivity, 120),
                         QMUIDisplayHelper.dp2px(_mActivity, 240), new AdapterView.OnItemClickListener() {
                             @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                fromPosition=position;
-                                leftTopBarBtn.setText(LanguageBean.getInstance().getLanguage().get(position));
+                            public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
+                                fromPosition = pos;
+                                leftTopBarBtn.setText(LanguageBean.getInstance().getLanguage().get(pos));
                                 qmuiListPopup.dismiss();
                             }
                         });

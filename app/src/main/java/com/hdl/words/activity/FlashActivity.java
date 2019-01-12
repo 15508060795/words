@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.hdl.words.R;
 import com.hdl.words.base.BaseActivity;
+
 import java.util.Random;
 import butterknife.BindView;
 

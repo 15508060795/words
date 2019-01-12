@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@color/color_topBar_bg"
+    android:background="@color/bg_fragment"
     android:fitsSystemWindows="true">
     <include
         layout="@layout/top_bar"/>
@@ -11,6 +12,7 @@
         android:id="@+id/rv_recite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg_fragment"/>
+        android:overScrollMode="never"
+        />
 
 </LinearLayout>

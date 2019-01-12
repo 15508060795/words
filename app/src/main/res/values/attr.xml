@@ -1,27 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="DashboardView">
-        <attr name="min" format="integer"/>
-        <attr name="max" format="integer"/>
-        <attr name="section" format="integer"/>
-        <attr name="portion" format="integer"/>
-        <attr name="start_angle"  format="integer"/>
-        <attr name="sweep_angle"  format="integer"/>
-        <attr name="bar_width"  format="integer"/>
-        <attr name="real_Value"  format="integer"/>
-        <attr name="point_size"  format="dimension"/>
-        <attr name="view_background"  format="color"/>
-        <attr name="bar_normal_color"  format="color"/>
-        <attr name="bar_select_color"  format="color"/>
-        <attr name="point_color"  format="color"/>
-        <attr name="scale_normal_color"  format="color"/>
-        <attr name="scale_select_color"  format="color"/>
-        <attr name="real_value_note_color"  format="color"/>
-        <attr name="real_value_color"  format="color"/>
-        <attr name="bar_line_color"  format="color"/>
-        <attr name="reverse"  format="boolean"/>
-        <attr name="show_real_value"  format="boolean"/>
+    <declare-styleable name="SwipeBackLayout">
+        <attr name="edge_flag">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+            <enum name="bottom" value="2" />
+            <enum name="all" value="3" />
+        </attr>
+        <attr name="shadow_left" format="reference"/>
+        <attr name="shadow_right" format="reference"/>
+        <attr name="shadow_bottom" format="reference"/>
     </declare-styleable>
 
+    <attr name="SwipeBackLayoutStyle" format="reference"/>
 
 </resources>

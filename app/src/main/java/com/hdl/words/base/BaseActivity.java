@@ -1,5 +1,6 @@
 package com.hdl.words.base;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -24,13 +25,12 @@ import me.yokeyword.fragmentation.SupportActivity;
 
 public abstract class BaseActivity extends SupportActivity implements ISupportActivity{
     protected Context context;
-   // protected int theme;
     /** 是否沉浸状态栏 **/
     private boolean isSetStatusBar = true;
     /** 是否允许全屏 **/
     private boolean mAllowFullScreen = false;
     /** 是否禁止旋转屏幕 **/
-    private boolean isAllowScreenRoate = true;
+    private boolean isAllowScreenRotate = true;
     //上个activity传过来的参数
     protected Bundle bundle;
     /** 当前Activity渲染的视图View **/
@@ -43,7 +43,7 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "BaseActivity-->onCreate()");
-        if(mContextView==null){
+        if(mContextView == null){
             mContextView = LayoutInflater.from(this).inflate(bindLayout(), null);
             bundle = getIntent().getExtras();
             initParams(bundle);
@@ -54,14 +54,13 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
                 steepStatusBar();
             }
             setContentView(mContextView);
-            if (!isAllowScreenRoate) {
+            if (!isAllowScreenRotate) {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
             ButterKnife.bind(this);
             initTopBar();
             initData();
-            context=this;
-            ActivityCollector.addActivity(this);
+            context = this;
         }else{
 
         }
@@ -71,13 +70,14 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
     /**
      * [沉浸状态栏]
      */
+    @TargetApi(19)
     private void steepStatusBar() {
-             //透明状态栏
-/*            getWindow().addFlags(
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            // 透明导航栏
-            getWindow().addFlags(
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);*/
+/*        //透明状态栏
+        getWindow().addFlags(
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        // 透明导航栏
+        getWindow().addFlags(
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);*/
         QMUIStatusBarHelper.translucent(this);
         QMUIStatusBarHelper.setStatusBarLightMode(this);
     }
@@ -173,7 +173,6 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ActivityCollector.removeActivity(this);
         Log.w(TAG, "onDestroy()");
 
     }
@@ -198,7 +197,7 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
      * @param isAllowScreenRoate
      */
     public void setScreenRoate(boolean isAllowScreenRoate) {
-        this.isAllowScreenRoate = isAllowScreenRoate;
+        this.isAllowScreenRotate = isAllowScreenRoate;
     }
 
     /**

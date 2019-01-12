@@ -29,7 +29,7 @@ public class SettingFragment extends BaseFragment {
     QMUIGroupListView groupListView;
 
     public static SettingFragment newInstance(){
-        SettingFragment fragment=new SettingFragment();
+        SettingFragment fragment = new SettingFragment();
         return fragment;
     }
     public static SettingFragment newInstance(Bundle bundle){
@@ -97,8 +97,7 @@ public class SettingFragment extends BaseFragment {
 
     @Override
     public void initTopBar() {
-        topBar.setBackgroundColor(getResources().getColor(R.color.white));
-        topBar.setTitle(R.string.personal_center).setTextColor(getResources().getColor(R.color.color_topBar_title));
+        topBar.setTitle(R.string.personal_center);
     }
 
     @Override

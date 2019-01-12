@@ -1,6 +1,5 @@
 package com.hdl.words.fragment;
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
@@ -33,13 +32,7 @@ public class RegisterFragment extends BaseFragment implements IRegister {
     private String account,password,rePassword;
 
     public static RegisterFragment newInstance(){
-        RegisterFragment fragment=new RegisterFragment();
-        return fragment;
-    }
-    public static RegisterFragment newInstance(Bundle bundle){
-        RegisterFragment fragment=new RegisterFragment();
-        fragment.setArguments(bundle);
-        return fragment;
+        return new RegisterFragment();
     }
     @OnClick({R.id.btn_register})
     public void onClick(View view){
@@ -85,13 +78,13 @@ public class RegisterFragment extends BaseFragment implements IRegister {
                 pop();
             }
         });
-        topBar.setTitle(R.string.register_title).setTextColor(getResources().getColor(R.color.color_topBar_title));
+        topBar.setTitle(R.string.register_title);
 
     }
 
     @Override
     public void initData() {
-
+        setSwipeBackEnable(true);
     }
 
     @Override

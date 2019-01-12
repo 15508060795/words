@@ -1,5 +1,6 @@
 package com.hdl.words.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.widget.Toast;
@@ -11,10 +12,12 @@ import android.widget.Toast;
  */
 public class ToastHelper {
     private static Toast toast;
+
     /**
      * [简化Toast]
      * @param msg
      */
+    @SuppressLint("ShowToast")
     public static void shortToast(Context context, CharSequence msg){
         if(toast==null){
             toast = Toast.makeText(context,msg,Toast.LENGTH_SHORT);
@@ -31,6 +34,7 @@ public class ToastHelper {
      * [简化Toast]
      * @param msg
      */
+    @SuppressLint("ShowToast")
     public static void longToast(Context context, CharSequence msg){
         if(toast==null){
             toast = Toast.makeText(context,msg,Toast.LENGTH_LONG);
@@ -43,6 +47,7 @@ public class ToastHelper {
     public static void longToast(Context context, int resId){
         longToast(context,context.getResources().getString(resId));
     }
+    @SuppressLint("ShowToast")
     public static void toastTime(Context context, CharSequence msg, int duration){
         if(toast==null){
             toast = Toast.makeText(context,msg,Toast.LENGTH_LONG);

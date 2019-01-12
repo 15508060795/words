@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <item name="word" type="id"/>
+    <item name="qmuidemo" type="id"/>
     <item name="topbar_left_text_button" type="id"/>
     <item name="topbar_right_text_button" type="id"/>
+    <item name="qmui_arch_swipe_layout_in_back" type="id"/>
 </resources>

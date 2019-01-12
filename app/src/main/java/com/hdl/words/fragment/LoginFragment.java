@@ -1,13 +1,11 @@
 package com.hdl.words.fragment;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
 import com.hdl.words.R;
 import com.hdl.words.SharedPreferences.MySession;
 import com.hdl.words.base.BaseFragment;
-import com.hdl.words.fragment.main.setting.PersonalDataFragment;
 import com.hdl.words.litepal.UserDbHelper;
 import com.hdl.words.utils.ToastHelper;
 
@@ -26,13 +24,7 @@ public class LoginFragment extends BaseFragment {
     EditText passwordEt;
     private String account,password;
     public static LoginFragment newInstance(){
-        LoginFragment fragment=new LoginFragment();
-        return fragment;
-    }
-    public static LoginFragment newInstance(Bundle bundle){
-        LoginFragment fragment=new LoginFragment();
-        fragment.setArguments(bundle);
-        return fragment;
+        return new LoginFragment();
     }
     @OnClick({R.id.btn_login,R.id.tv_login_rePw,R.id.tv_login_newAdm})
     public void onClick(View v) {
@@ -80,8 +72,8 @@ public class LoginFragment extends BaseFragment {
 
     }
     private void getData(){
-        account=accountEt.getText().toString().trim();
-        password=passwordEt.getText().toString().trim();
+        account = accountEt.getText().toString().trim();
+        password = passwordEt.getText().toString().trim();
     }
     private boolean isNull(){
         if(account.isEmpty()|password.isEmpty()){

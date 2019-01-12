@@ -7,7 +7,7 @@ import java.util.List;
 
 public class LanguageBean {
     private static volatile LanguageBean mLanguageBean;
-    private  final List<String> Language=new ArrayList<String>(){
+    private final List<String> Language=new ArrayList<String>(){
         {
             add("自动检测");
             add("中文");

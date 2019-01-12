@@ -1,13 +1,23 @@
 package com.hdl.words.fragment.main;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
+import com.hdl.words.Beans.ItemDescription;
 import com.hdl.words.R;
 import com.hdl.words.base.BaseFragment;
-import com.hdl.words.view.DashboardView;
+import com.hdl.words.base.BaseRecyclerAdapter;
+import com.hdl.words.base.RecyclerViewHolder;
+import com.hdl.words.decoration.GridDividerItemDecoration;
+import com.hdl.words.fragment.MainFragment;
+import com.hdl.words.fragment.main.recite.ReciteDetailFragment;
 import com.qmuiteam.qmui.widget.QMUITopBar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -23,13 +33,7 @@ public class ReciteFragment extends BaseFragment {
     @BindView(R.id.rv_recite)
     RecyclerView mReciteRv;
     public static ReciteFragment newInstance(){
-        ReciteFragment fragment=new ReciteFragment();
-        return fragment;
-    }
-    public static ReciteFragment newInstance(Bundle bundle){
-        ReciteFragment fragment=new ReciteFragment();
-        fragment.setArguments(bundle);
-        return fragment;
+        return new ReciteFragment();
     }
 
     @Override
@@ -38,22 +42,60 @@ public class ReciteFragment extends BaseFragment {
     }
 
 
-
     @Override
     public void initData() {
-        mReciteRv.setLayoutManager(new GridLayoutManager(_mActivity,3));
-        //mReciteRv.setAdapter();
+        int spanCount = 3;
+        mReciteRv.setLayoutManager(new GridLayoutManager(_mActivity,spanCount));
+        mReciteRv.addItemDecoration(new GridDividerItemDecoration(_mActivity ,spanCount));
+        List<ItemDescription> list = new ArrayList<>();
+        String[] name = new String[]{"4级词汇","6级词汇","基础词汇","考研英语","错词本","生词本"};
+        int[] iconRes = new int[]{};
+        for(int i=0; i<name.length ;i++){
+            ItemDescription description = new ItemDescription();
+            description.setName(name[i]);
+            description.setIconRes(R.mipmap.ic_default_head);
+            list.add(description);
+        }
+        ItemAdapter itemAdapter = new ItemAdapter(_mActivity,list);
+        mReciteRv.setAdapter(itemAdapter);
+        itemAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View itemView, int pos) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("type",pos);
+                assert getParentFragment() != null;
+                ((MainFragment)getParentFragment()).startBrotherFragment(ReciteDetailFragment.newInstance(bundle));
+            }
+        });
+
     }
 
     @Override
     public void initTopBar() {
-        mTopBar.setBackgroundColor(getResources().getColor(R.color.color_topBar_bg));
-        mTopBar.setTitle(R.string.recite).setTextColor(getResources().getColor(R.color.color_topBar_title));
+        mTopBar.setTitle(R.string.recite);
     }
 
     @Override
     public void initListener() {
 
     }
+    static class ItemAdapter extends BaseRecyclerAdapter<ItemDescription> {
 
+        public ItemAdapter(Context ctx, List<ItemDescription> list) {
+            super(ctx, list);
+        }
+
+        @Override
+        public int getItemLayoutId(int viewType) {
+            return R.layout.recite_item_layout;
+        }
+
+        @Override
+        public void bindData(RecyclerViewHolder holder, int position, ItemDescription item) {
+            holder.setText(R.id.tv_item_name,item.getName());
+            if(item.getIconRes() != 0){
+                holder.getImageView(R.id.img_item_icon).setImageResource(item.getIconRes());
+            }
+        }
+    }
 }

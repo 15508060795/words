@@ -2,29 +2,30 @@ package com.hdl.words.base;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 import me.yokeyword.fragmentation.SupportFragment;
+import me.yokeyword.fragmentation.SwipeBackLayout;
+import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
 
 /**
  * Created by HDL on 2018/1/16.
  */
 
-public abstract class BaseFragment extends SupportFragment {
-    protected View root;
-    protected boolean visible;
+public abstract class BaseFragment extends SwipeBackFragment {
+    protected View rootView;
     protected final String TAG = this.getClass().getSimpleName();
     protected Bundle bundle;
     @Override
     public void onAttach(Context context){
         super.onAttach(context);
-        bundle=getArguments();
+        bundle = getArguments();
         Log.w(TAG, "onAttach()");
     }
     @Override
@@ -33,23 +34,23 @@ public abstract class BaseFragment extends SupportFragment {
         Log.w(TAG, "onCreate()");
     }
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.w(TAG, "onCreateView()");
-        if(root==null) {
-            root = LayoutInflater.from(_mActivity).inflate(bindLayout(), null);
-            ButterKnife.bind(this, root);
+        setSwipeBackEnable(false);
+        if(rootView == null) {
+            rootView = LayoutInflater.from(_mActivity).inflate(bindLayout(), null);
+            ButterKnife.bind(this, rootView);
             initTopBar();
             initData();
             initListener();
-            FragmentCollector.addFragment(this);
         }else{
-            ViewGroup parent = (ViewGroup) root.getParent();
+            ViewGroup parent = (ViewGroup) rootView.getParent();
             if (parent != null) {
-                parent.removeView(root);
+                parent.removeView(rootView);
             }
         }
-        return root;
+        return attachToSwipeBack(rootView);
     }
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -64,8 +65,7 @@ public abstract class BaseFragment extends SupportFragment {
     @Override
     public void onResume() {
         super.onResume();
-        visible=true;
-        Log.w(TAG, "onResume()visible:"+visible);
+        Log.w(TAG, "onResume()");
     }
     @Override
     public void onPause() {
@@ -76,9 +76,8 @@ public abstract class BaseFragment extends SupportFragment {
     @Override
     public void onStop() {
         super.onStop();
-        visible=false;
         hideSoftInput();
-        Log.w(TAG, "onStop()visible:"+visible);
+        Log.w(TAG, "onStop()");
     }
     @Override
     public void onDestroyView() {
@@ -89,7 +88,6 @@ public abstract class BaseFragment extends SupportFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        FragmentCollector.removeFragment(this);
         hideSoftInput();
         Log.w(TAG, "onDestroy()");
     }
@@ -103,21 +101,4 @@ public abstract class BaseFragment extends SupportFragment {
     public abstract void initTopBar();
     public abstract void initData();
     public abstract void initListener();
-
-
-
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (hidden) {   // 不在最前端显示 相当于调用了onPause();
-            visible=false;
-            Log.i(TAG,"visible:"+visible);
-            return;
-        }else{  // 在最前端显示 相当于调用了onResume();
-            visible=true;
-            Log.i(TAG,"visible:"+visible);
-            //网络数据刷新
-        }
-    }
-
 }
