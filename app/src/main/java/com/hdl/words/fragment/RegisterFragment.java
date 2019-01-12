@@ -93,9 +93,9 @@ public class RegisterFragment extends BaseFragment implements IRegister {
     }
     @Override
     public void getData(){
-        account=accountEt.getText().toString().trim();
-        password=passwordEt.getText().toString().trim();
-        rePassword=rePasswordEt.getText().toString().trim();
+        account = accountEt.getText().toString().trim();
+        password = passwordEt.getText().toString().trim();
+        rePassword = rePasswordEt.getText().toString().trim();
     }
 
     @Override

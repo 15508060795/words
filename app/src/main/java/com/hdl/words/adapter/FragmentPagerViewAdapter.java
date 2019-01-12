@@ -14,7 +14,7 @@ public class FragmentPagerViewAdapter extends FragmentPagerAdapter {
     }
     public FragmentPagerViewAdapter(FragmentManager fm, BaseFragment[] fragments) {
         super(fm);
-        this.fragments=fragments;
+        this.fragments = fragments;
     }
 
     @Override

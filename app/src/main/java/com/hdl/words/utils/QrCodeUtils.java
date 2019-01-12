@@ -73,7 +73,7 @@ public class QrCodeUtils {
         try {
             //得到结果
             re = reader.decode(bitmap);
-            if(re.getText()!=null){
+            if(re.getText() != null){
                 result=re.getText();
             }
         } catch (NotFoundException | ChecksumException | FormatException e) {

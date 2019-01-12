@@ -23,7 +23,7 @@ public class PersonalDataFragment extends BaseFragment {
     @BindView(R.id.collapsing_topbar_layout)
     QMUICollapsingTopBarLayout collapsingTopBarLayout;
     public static PersonalDataFragment newInstance(Bundle bundle){
-        PersonalDataFragment fragment=new PersonalDataFragment();
+        PersonalDataFragment fragment = new PersonalDataFragment();
         fragment.setArguments(bundle);
         return fragment;
     }

@@ -17,8 +17,8 @@ public class UserBean extends DataSupport implements Serializable {
 
     }
     public UserBean(String account, String password){
-        this.account=account;
-        this.password=password;
+        this.account = account;
+        this.password = password;
     }
     public String getAccount() {
         return account;

@@ -76,25 +76,25 @@ public class LanguageBean {
     private LanguageBean(){
 
     }
-    public  List<String> getLanguage() {
+    public List<String> getLanguage() {
         return Language;
     }
 
-    public  List<String> getLanguageCode() {
+    public List<String> getLanguageCode() {
         return LanguageCode;
     }
 
     public static LanguageBean getInstance(){
-        if(mLanguageBean==null){
+        if(mLanguageBean == null){
             synchronized (LanguageBean.class){
-                if(mLanguageBean==null){
-                    mLanguageBean=new LanguageBean();
+                if(mLanguageBean == null){
+                    mLanguageBean = new LanguageBean();
                 }
             }
         }
         return mLanguageBean;
     }
-    private  void initData(){
+    private void initData(){
         if(Language.isEmpty()&&LanguageCode.isEmpty()){
             Language.add("自动检测");
             Language.add("中文");

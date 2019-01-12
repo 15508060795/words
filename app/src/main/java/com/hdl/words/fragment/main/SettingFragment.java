@@ -29,11 +29,10 @@ public class SettingFragment extends BaseFragment {
     QMUIGroupListView groupListView;
 
     public static SettingFragment newInstance(){
-        SettingFragment fragment = new SettingFragment();
-        return fragment;
+        return new SettingFragment();
     }
     public static SettingFragment newInstance(Bundle bundle){
-        SettingFragment fragment=new SettingFragment();
+        SettingFragment fragment = new SettingFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -45,22 +44,19 @@ public class SettingFragment extends BaseFragment {
 
     @Override
     public void initData() {
-        QMUICommonListItemView personalData=groupListView.createItemView("个人资料");
+        QMUICommonListItemView personalData = groupListView.createItemView("个人资料");
         personalData.setAccessoryType(QMUICommonListItemView.ACCESSORY_TYPE_CUSTOM);
         personalData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle=new Bundle();
+                Bundle bundle = new Bundle();
                 bundle.putString("account","account");
                 assert getParentFragment() != null;
                 Log.e("getParentFragment",getParentFragment()+"  ");
                 ((MainFragment)getParentFragment()).startBrotherFragment(PersonalDataFragment.newInstance(bundle));
             }
         });
-
-
-
-        QMUICommonListItemView logout=groupListView.createItemView("退出登录");
+        QMUICommonListItemView logout = groupListView.createItemView("退出登录");
         logout.setAccessoryType(QMUICommonListItemView.ACCESSORY_TYPE_CUSTOM);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -14,7 +14,7 @@ public  class QmuiDialogHelper {
     private static QMUITipDialog dialog;
     public static void showLoading(Context context, CharSequence msg){
         dialogInit();
-        dialog=new QMUITipDialog.Builder(context)
+        dialog = new QMUITipDialog.Builder(context)
                 .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
                 .setTipWord(msg)
                 .create();
@@ -46,7 +46,7 @@ public  class QmuiDialogHelper {
         showMailFail(context,context.getResources().getString(resId));
     }
     public static void hide(){
-        if(dialog!=null){
+        if(dialog != null){
             dialog.dismiss();
         }
     }
@@ -59,9 +59,9 @@ public  class QmuiDialogHelper {
         },duration);
     }
     private static void dialogInit(){
-        if(dialog!=null){
+        if(dialog != null){
             hide();
-            dialog=null;
+            dialog = null;
         }
     }
 }

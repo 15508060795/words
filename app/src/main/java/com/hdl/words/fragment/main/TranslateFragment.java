@@ -101,7 +101,7 @@ public class TranslateFragment extends BaseFragment {
         titleTopBarImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ObjectAnimator animator=ObjectAnimator.ofFloat(titleTopBarImg,"rotation", 0f, 180f);
+                ObjectAnimator animator = ObjectAnimator.ofFloat(titleTopBarImg,"rotation", 0f, 180f);
                 animator.setDuration(250);
                 animator.addListener(new Animator.AnimatorListener() {
                     @Override
@@ -111,9 +111,9 @@ public class TranslateFragment extends BaseFragment {
 
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        int position=fromPosition;
-                        fromPosition=toPosition;
-                        toPosition=position;
+                        int position = fromPosition;
+                        fromPosition = toPosition;
+                        toPosition = position;
                         leftTopBarBtn.setText(LanguageBean.getInstance().getLanguage().get(fromPosition));
                         rightTopBarBtn.setText(LanguageBean.getInstance().getLanguage().get(toPosition));
                         titleTopBarImg.setClickable(true);
@@ -141,7 +141,7 @@ public class TranslateFragment extends BaseFragment {
                         QMUIDisplayHelper.dp2px(_mActivity, 240), new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                toPosition=position;
+                                toPosition = position;
                                 rightTopBarBtn.setText(LanguageBean.getInstance().getLanguage().get(position));
                                 qmuiListPopup.dismiss();
                             }
@@ -154,14 +154,14 @@ public class TranslateFragment extends BaseFragment {
     }
 
     private void translate(String input){
-        Retrofit retrofit=new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiBean.TRANSLATE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         GetTranslateRequest_Interface request=retrofit.create(GetTranslateRequest_Interface.class);
         String sign=ApiBean.getStringMD5(ApiBean.TRANSLATE_APP_ID+input+ApiBean.TRANSLATE_SALT+ApiBean.TRANSLATE_KEY);
-        Call<TranslateResultBean>call=request.getCall(
+        Call<TranslateResultBean> call = request.getCall(
                 input,
                 LanguageBean.getInstance().getLanguage().get(fromPosition),
                 LanguageBean.getInstance().getLanguageCode().get(toPosition),
@@ -175,7 +175,7 @@ public class TranslateFragment extends BaseFragment {
                 ToastHelper.shortToast(_mActivity,"请求成功");
                 Log.e(TAG,response.body()+"");
                 Log.e(TAG,response.body().getTrans_result().get(0).getDst()+"");
-                String resultStr=response.body().getTrans_result().get(0).getDst();
+                String resultStr = response.body().getTrans_result().get(0).getDst();
                 resultTv.setText(resultStr);
             }
             @Override

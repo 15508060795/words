@@ -15,9 +15,9 @@ import java.util.List;
  * Mail 229101253@qq.com
  */
 public class UserDbHelper {
-    private static final String TAG="UserDbHelper";
+    private static final String TAG = "UserDbHelper";
     public static boolean isExist(String account){
-        List<UserBean> list=DataSupport.where("account=?",account).find(UserBean.class);
+        List<UserBean> list = DataSupport.where("account=?",account).find(UserBean.class);
         if(list.size()!=0){
             Log.e(TAG,"用户名存在");
             return true;
@@ -28,8 +28,8 @@ public class UserDbHelper {
 
     }
     public static boolean isCorrect(String account, String password){
-        List<UserBean> list=DataSupport.where("account=? AND password=?",account,password).find(UserBean.class);
-        if(list.size()!=0) {
+        List<UserBean> list = DataSupport.where("account=? AND password=?",account,password).find(UserBean.class);
+        if(list.size() != 0) {
             Log.e(TAG,"帐号密码正确");
             return true;
         }else{
@@ -40,7 +40,7 @@ public class UserDbHelper {
 
     }
     public static void update(String account, String nowPassword){
-        ContentValues values=new ContentValues();
+        ContentValues values = new ContentValues();
         values.put("password",nowPassword);
         DataSupport.updateAll(UserBean.class,values,"account=?",account);
         Log.e(TAG,"数据更新成功");

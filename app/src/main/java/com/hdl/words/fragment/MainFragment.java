@@ -23,7 +23,7 @@ import me.yokeyword.fragmentation.SupportFragment;
 public class MainFragment extends BaseFragment {
     @BindView(R.id.bottomBar)//底部状态栏
     QMUITabSegment tabSegment;
-    private BaseFragment[] fragments=new BaseFragment[3];
+    private BaseFragment[] fragments = new BaseFragment[3];
     public static final int FIRST = 0;
     public static final int SECOND = 1;
     public static final int THIRD = 2;
@@ -41,16 +41,15 @@ public class MainFragment extends BaseFragment {
     }
     @Override
     public void initData() {
-
-        if(findChildFragment(TranslateFragment.class)==null){
-            fragments[FIRST]=TranslateFragment.newInstance();
-            fragments[SECOND]=ReciteFragment.newInstance();
-            fragments[THIRD]=SettingFragment.newInstance();
+        if(findChildFragment(TranslateFragment.class) == null){
+            fragments[FIRST] = TranslateFragment.newInstance();
+            fragments[SECOND] = ReciteFragment.newInstance();
+            fragments[THIRD] = SettingFragment.newInstance();
             loadMultipleRootFragment(R.id.fl_main_fragment,FIRST,fragments[FIRST],fragments[SECOND],fragments[THIRD]);
         }else{
-            fragments[FIRST]=findChildFragment(TranslateFragment.class);
-            fragments[SECOND]=findChildFragment(ReciteFragment.class);
-            fragments[THIRD]=findChildFragment(SettingFragment.class);
+            fragments[FIRST] = findChildFragment(TranslateFragment.class);
+            fragments[SECOND] = findChildFragment(ReciteFragment.class);
+            fragments[THIRD] = findChildFragment(SettingFragment.class);
         }
         tabSegment.setDefaultNormalColor(getResources().getColor(R.color.color_bottomBar_normal));
         tabSegment.setDefaultSelectedColor(getResources().getColor(R.color.color_bottomBar_select));

@@ -53,9 +53,9 @@ public class FlashActivity extends BaseActivity {
                 R.string.flash_note9,
                 R.string.flash_note10
         };
-        int flashCode=new Random().nextInt(5);
+        int flashCode = new Random().nextInt(5);
         flashImg.setImageResource(image[flashCode]);
-        int msgCode=new Random().nextInt(10);
+        int msgCode = new Random().nextInt(10);
         flashTv.setText(getString(msg[msgCode]));
         new Handler().postDelayed(new Runnable() {
             @Override

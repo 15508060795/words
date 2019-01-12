@@ -19,7 +19,7 @@ public class ToastHelper {
      */
     @SuppressLint("ShowToast")
     public static void shortToast(Context context, CharSequence msg){
-        if(toast==null){
+        if(toast == null){
             toast = Toast.makeText(context,msg,Toast.LENGTH_SHORT);
         }else{
             toast.setText(msg);
@@ -36,7 +36,7 @@ public class ToastHelper {
      */
     @SuppressLint("ShowToast")
     public static void longToast(Context context, CharSequence msg){
-        if(toast==null){
+        if(toast == null){
             toast = Toast.makeText(context,msg,Toast.LENGTH_LONG);
         }else{
             toast.setText(msg);
@@ -49,7 +49,7 @@ public class ToastHelper {
     }
     @SuppressLint("ShowToast")
     public static void toastTime(Context context, CharSequence msg, int duration){
-        if(toast==null){
+        if(toast == null){
             toast = Toast.makeText(context,msg,Toast.LENGTH_LONG);
         }else{
             toast.setText(msg);
@@ -61,12 +61,12 @@ public class ToastHelper {
         toastTime(context,context.getResources().getString(resId),duration);
     }
     public static void hide(Context context){
-        if(toast!=null){
+        if(toast != null){
             toast.cancel();
         }
     }
     public static void hide(long time){
-        if(toast!=null){
+        if(toast != null){
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
