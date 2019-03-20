@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <com.hdl.words.view.WindowInsetsFrameLayout
+    <com.hdl.words.weight.WindowInsetsFrameLayout
         android:id="@+id/fl_main_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

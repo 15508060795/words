@@ -9,9 +9,11 @@ import com.hdl.words.base.BaseFragment;
 
 public class FragmentPagerViewAdapter extends FragmentPagerAdapter {
     private BaseFragment[] fragments;
+
     public FragmentPagerViewAdapter(FragmentManager fm) {
         super(fm);
     }
+
     public FragmentPagerViewAdapter(FragmentManager fm, BaseFragment[] fragments) {
         super(fm);
         this.fragments = fragments;
@@ -26,8 +28,10 @@ public class FragmentPagerViewAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return fragments.length;
     }
+
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
 
     }
+
 }

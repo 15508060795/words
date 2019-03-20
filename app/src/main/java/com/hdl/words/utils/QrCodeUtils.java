@@ -58,9 +58,10 @@ public class QrCodeUtils {
         }
         return resultBitmap;
     }
+
     //识别二维码的函数
     public static String recogQRcode(ImageView imageView) {
-        String result=null;
+        String result = null;
         Bitmap QRbmp = ((BitmapDrawable) (imageView).getDrawable()).getBitmap();   //将图片bitmap化
         int width = QRbmp.getWidth();
         int height = QRbmp.getHeight();
@@ -73,8 +74,8 @@ public class QrCodeUtils {
         try {
             //得到结果
             re = reader.decode(bitmap);
-            if(re.getText() != null){
-                result=re.getText();
+            if (re.getText() != null) {
+                result = re.getText();
             }
         } catch (NotFoundException | ChecksumException | FormatException e) {
             e.printStackTrace();
@@ -93,9 +94,11 @@ public class QrCodeUtils {
             startActivity(intent);
         }*/
     }
+
     //识别图片所需要的RGBLuminanceSource类
     public static class RGBLuminanceSource extends LuminanceSource {
         private byte bitmapPixels[];
+
         protected RGBLuminanceSource(Bitmap bitmap) {
             super(bitmap.getWidth(), bitmap.getHeight());
 

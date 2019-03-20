@@ -19,14 +19,16 @@ import me.yokeyword.fragmentation.SupportHelper;
  */
 public class PersonalDataFragment extends BaseFragment {
     @BindView(R.id.topBar)
-    QMUITopBar topBar;
+    QMUITopBar mTopBar;
     @BindView(R.id.collapsing_topbar_layout)
-    QMUICollapsingTopBarLayout collapsingTopBarLayout;
-    public static PersonalDataFragment newInstance(Bundle bundle){
+    QMUICollapsingTopBarLayout mCollapsingTopBarLayout;
+
+    public static PersonalDataFragment newInstance(Bundle bundle) {
         PersonalDataFragment fragment = new PersonalDataFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
+
     @Override
     public int bindLayout() {
         return R.layout.fragment_personal_data;
@@ -34,19 +36,19 @@ public class PersonalDataFragment extends BaseFragment {
 
     @Override
     public void initTopBar() {
-        topBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
+        mTopBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pop();
             }
         });
-        topBar.addRightTextButton("SDA",0).setOnClickListener(new View.OnClickListener() {
+        mTopBar.addRightTextButton("SDA", 0).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SupportHelper.showFragmentStackHierarchyView((SupportActivity)_mActivity);
+                SupportHelper.showFragmentStackHierarchyView((SupportActivity) _mActivity);
             }
         });
-        collapsingTopBarLayout.setTitle(getString(R.string.personal_data));
+        mCollapsingTopBarLayout.setTitle(getString(R.string.personal_data));
     }
 
     @Override

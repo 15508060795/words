@@ -1,4 +1,4 @@
-package com.hdl.words.view;
+package com.hdl.words.weight;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -25,9 +25,10 @@ public class WindowInsetsFrameLayout extends FrameLayout {
     public WindowInsetsFrameLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
+
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public WindowInsetsFrameLayout(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context,attrs,defStyleAttr);
+        super(context, attrs, defStyleAttr);
         setOnHierarchyChangeListener(new OnHierarchyChangeListener() {
             @Override
             public void onChildViewAdded(View parent, View child) {

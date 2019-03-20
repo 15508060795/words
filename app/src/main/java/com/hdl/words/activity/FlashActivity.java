@@ -4,17 +4,19 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.hdl.words.R;
 import com.hdl.words.base.BaseActivity;
 
 import java.util.Random;
+
 import butterknife.BindView;
 
 public class FlashActivity extends BaseActivity {
     @BindView(R.id.img_flash)
-    ImageView flashImg;
+    ImageView mFlashImg;
     @BindView(R.id.tv_flash)
-    TextView flashTv;
+    TextView mFlashTv;
 
     @Override
     public int bindLayout() {
@@ -29,7 +31,6 @@ public class FlashActivity extends BaseActivity {
 
     @Override
     protected void initTopBar() {
-
     }
 
     @Override
@@ -54,15 +55,15 @@ public class FlashActivity extends BaseActivity {
                 R.string.flash_note10
         };
         int flashCode = new Random().nextInt(5);
-        flashImg.setImageResource(image[flashCode]);
+        mFlashImg.setImageResource(image[flashCode]);
         int msgCode = new Random().nextInt(10);
-        flashTv.setText(getString(msg[msgCode]));
+        mFlashTv.setText(getString(msg[msgCode]));
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 startActivityAndCloseThis(MainActivity.class);
             }
-        },2000);
+        }, 2000);
 
     }
 }

@@ -8,10 +8,12 @@ package com.hdl.words.Beans;
 public class ItemDescription {
     private String mName;
     private int mIconRes;
-    public ItemDescription(){
+
+    public ItemDescription() {
 
     }
-    public ItemDescription(String name, int resId){
+
+    public ItemDescription(String name, int resId) {
         this.mName = name;
         this.mIconRes = resId;
     }

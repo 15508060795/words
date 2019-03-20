@@ -4,13 +4,12 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 
-import com.hdl.words.Beans.UserBean;
 import com.hdl.words.R;
 import com.hdl.words.base.BaseFragment;
-import com.hdl.words.implement.IRegister;
-import com.hdl.words.litepal.UserDbHelper;
+import com.hdl.words.presenter.RegisterPresenterImpl;
 import com.hdl.words.utils.QmuiDialogHelper;
 import com.hdl.words.utils.ToastHelper;
+import com.hdl.words.view.IRegisterView;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 
 import butterknife.BindView;
@@ -20,50 +19,33 @@ import butterknife.OnClick;
  * time: 11/1/2018
  * author: CHe
  */
-public class RegisterFragment extends BaseFragment implements IRegister {
+public class RegisterFragment extends BaseFragment implements IRegisterView {
     @BindView(R.id.topBar)
-    QMUITopBar topBar;
+    QMUITopBar mTopBar;
     @BindView(R.id.et_account)
-    EditText accountEt;
+    EditText mAccountEt;
     @BindView(R.id.et_password)
-    EditText passwordEt;
+    EditText mPasswordEt;
     @BindView(R.id.et_rePassword)
-    EditText rePasswordEt;
-    private String account,password,rePassword;
+    EditText mRePasswordEt;
+    private RegisterPresenterImpl mPresenter;
 
-    public static RegisterFragment newInstance(){
+    public static RegisterFragment newInstance() {
         return new RegisterFragment();
     }
+
     @OnClick({R.id.btn_register})
-    public void onClick(View view){
-        switch (view.getId()){
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.btn_register:
-                getData();
-                if(dataIsNull()){
-                    if(password.equals(rePassword)){
-                        if(dataIsExist()){
-                            ToastHelper.shortToast(_mActivity,R.string.toast_exist_account);
-                        } else{
-                            new UserBean(account,password).save();
-                            setNull();
-                            QmuiDialogHelper.showMailSuccess(_mActivity,R.string.toast_register_success);
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    QmuiDialogHelper.hide();
-                                    pop();
-                                }
-                            },1000);
-                        }
-                    }else{
-                        ToastHelper.shortToast(_mActivity,R.string.toast_password_disagree);
-                    }
-                }else{
-                    ToastHelper.shortToast(_mActivity,R.string.toast_input_all_information);
-                }
+                String account = mAccountEt.getText().toString().trim();
+                String password1 = mPasswordEt.getText().toString().trim();
+                String password2 = mRePasswordEt.getText().toString().trim();
+                mPresenter.register(account, password1, password2);
                 break;
         }
     }
+
     @Override
     public int bindLayout() {
         return R.layout.fragment_register;
@@ -71,53 +53,59 @@ public class RegisterFragment extends BaseFragment implements IRegister {
 
     @Override
     public void initTopBar() {
-        topBar.setBackgroundColor(getResources().getColor(R.color.color_topBar_bg));
-        topBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
+        mTopBar.setBackgroundColor(getResources().getColor(R.color.color_topBar_bg));
+        mTopBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pop();
             }
         });
-        topBar.setTitle(R.string.register_title);
+        mTopBar.setTitle(R.string.register_title);
 
     }
 
     @Override
     public void initData() {
         setSwipeBackEnable(true);
+        mPresenter = new RegisterPresenterImpl(this);
     }
 
     @Override
     public void initListener() {
 
     }
+
     @Override
-    public void getData(){
-        account = accountEt.getText().toString().trim();
-        password = passwordEt.getText().toString().trim();
-        rePassword = rePasswordEt.getText().toString().trim();
+    public void showToast(int resId) {
+        ToastHelper.shortToast(_mActivity, resId);
     }
 
     @Override
-    public boolean dataIsNull() {
-        if(account.isEmpty()|password.isEmpty()|rePassword.isEmpty()){
-            return false;
-        }else {
-            return true;
-        }
+    public void showLoadingDialog(int resId) {
+        QmuiDialogHelper.showLoading(_mActivity, resId);
     }
 
     @Override
-    public boolean dataIsExist() {
-        if(UserDbHelper.isExist(account))
-            return true;
-        else
-            return false;
+    public void registerSucceed(String msg) {
+        QmuiDialogHelper.showSuccess(_mActivity, msg);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startWithPop(MainFragment.newInstance());
+                hideDialog();
+            }
+        }, 1500);
+
     }
 
-    private void setNull(){
-        accountEt.setText("");
-        passwordEt.setText("");
-        rePasswordEt.setText("");
+    @Override
+    public void registerFail(String msg) {
+        QmuiDialogHelper.showFail(_mActivity, msg, 1000);
     }
+
+    @Override
+    public void hideDialog() {
+        QmuiDialogHelper.hide();
+    }
+
 }

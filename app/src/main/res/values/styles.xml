@@ -1,16 +1,5 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="QMUI.Compat.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:statusBarColor">@color/statusBarColor</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-    </style>
-
     <style name="btn_style" parent="QMUI.RoundButton">
         <item name="android:textColor">?attr/colorAccent</item>
         <item name="qmui_borderColor">?attr/colorAccent</item>

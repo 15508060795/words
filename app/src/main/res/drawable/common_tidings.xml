@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-
 <item android:state_pressed="true">
     <shape android:shape="rectangle">
-
         <!-- 点击时填充的颜色 -->
         <solid android:color="?attr/colorAccent" />
     </shape>
@@ -12,7 +10,6 @@
     <shape android:shape="rectangle">
         <!-- 默认填充的颜色 -->
         <solid android:color="@color/white"/>
-
     </shape>
 </item>
 

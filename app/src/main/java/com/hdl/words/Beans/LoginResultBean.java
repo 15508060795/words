@@ -7,19 +7,19 @@ package com.hdl.words.Beans;
 public class LoginResultBean {
 
     /**
-     * error : 1
-     * message : 登录失败
+     * result : true
+     * message : 登录成功
      */
 
-    private int error;
+    private boolean result;
     private String message;
 
-    public int getError() {
-        return error;
+    public boolean isResult() {
+        return result;
     }
 
-    public void setError(int error) {
-        this.error = error;
+    public void setResult(boolean result) {
+        this.result = result;
     }
 
     public String getMessage() {

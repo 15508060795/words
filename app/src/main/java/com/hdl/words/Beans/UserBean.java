@@ -13,13 +13,16 @@ public class UserBean extends DataSupport implements Serializable {
     private static final long serialVersionUID = -2642333866421319389L;
     private String account;
     private String password;
-    public UserBean(){
+
+    public UserBean() {
 
     }
-    public UserBean(String account, String password){
+
+    public UserBean(String account, String password) {
         this.account = account;
         this.password = password;
     }
+
     public String getAccount() {
         return account;
     }

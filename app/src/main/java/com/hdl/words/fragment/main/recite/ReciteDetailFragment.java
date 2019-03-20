@@ -23,12 +23,14 @@ public class ReciteDetailFragment extends BaseFragment {
     @BindView(R.id.empty_view)
     QMUIEmptyView mEmptyView;
     @BindView(R.id.imageView)
-    ImageView imageView;
-    public static ReciteDetailFragment newInstance(Bundle bundle){
+    ImageView mImageView;
+
+    public static ReciteDetailFragment newInstance(Bundle bundle) {
         ReciteDetailFragment fragment = new ReciteDetailFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
+
     @Override
     public int bindLayout() {
         return R.layout.fragment_recite_detail;
@@ -46,12 +48,12 @@ public class ReciteDetailFragment extends BaseFragment {
         int[] titles = new int[]{
                 R.string.cet_4,
                 R.string.cet_6,
-                R.string.base_word,
-                R.string.postgraduate_word,
+                R.string.everyday_word,
                 R.string.wrong_word_list,
+                R.string.right_word_list,
                 R.string.vocab_word_list
         };
-        String title = getString(titles[bundle.getInt("type")]);
+        String title = getString(titles[mBundle.getInt("type")]);
         mTopBar.setTitle(title);
     }
 
@@ -68,8 +70,8 @@ public class ReciteDetailFragment extends BaseFragment {
             @Override
             public void run() {
                 mEmptyView.setVisibility(View.GONE);
-                imageView.setVisibility(View.VISIBLE);
+                mImageView.setVisibility(View.VISIBLE);
             }
-        },2000);
+        }, 2000);
     }
 }

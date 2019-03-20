@@ -11,8 +11,9 @@ import org.litepal.LitePal;
  */
 public class BaseApplication extends Application {
 
-    private static Context context;
-    public static Context getContext() {
+    private Context context;
+
+    public Context getContext() {
         return context;
     }
 

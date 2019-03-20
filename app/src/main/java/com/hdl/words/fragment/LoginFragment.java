@@ -4,10 +4,11 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.hdl.words.R;
-import com.hdl.words.SharedPreferences.MySession;
 import com.hdl.words.base.BaseFragment;
-import com.hdl.words.litepal.UserDbHelper;
+import com.hdl.words.presenter.LoginPresenterImpl;
+import com.hdl.words.utils.QmuiDialogHelper;
 import com.hdl.words.utils.ToastHelper;
+import com.hdl.words.view.ILoginView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -17,41 +18,36 @@ import butterknife.OnClick;
  * author HDL
  * Mail 229101253@qq.com
  */
-public class LoginFragment extends BaseFragment {
-    @BindView(R.id.et_login_ac)//帐号
-    EditText accountEt;
-    @BindView(R.id.et_login_pw)//密码
-    EditText passwordEt;
-    private String account,password;
-    public static LoginFragment newInstance(){
+public class LoginFragment extends BaseFragment implements ILoginView {
+    @BindView(R.id.et_login_ac)
+    EditText mAccountEt;
+    @BindView(R.id.et_login_pw)
+    EditText mPasswordEt;
+    private LoginPresenterImpl mPresenter;
+
+    public static LoginFragment newInstance() {
         return new LoginFragment();
     }
-    @OnClick({R.id.btn_login,R.id.tv_login_rePw,R.id.tv_login_newAdm})
+
+    @OnClick({R.id.btn_login, R.id.tv_login_rePw, R.id.tv_login_newAdm})
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_login:
-                getData();
-                if(isNull()){
-                    if(UserDbHelper.isCorrect(account,password)){
-                        MySession.setLoginState(_mActivity,true);
-                        startWithPop(MainFragment.newInstance());
-                    }else{
-                        ToastHelper.shortToast(_mActivity,R.string.toast_accountOrPassword_error);
-                    }
-                }else{
-                    ToastHelper.shortToast(_mActivity,R.string.toast_complete_information);
-                }
+                String account = mAccountEt.getText().toString().trim();
+                String password = mPasswordEt.getText().toString().trim();
+                mPresenter.login(account, password);
                 break;
             case R.id.tv_login_rePw:
-                start(ForgetFragment.newInstance());
+                mPresenter.skipForget();
                 break;
             case R.id.tv_login_newAdm:
-                start(RegisterFragment.newInstance());
+                mPresenter.skipRegister();
                 break;
             default:
                 break;
         }
     }
+
     @Override
     public int bindLayout() {
         return R.layout.fragment_login;
@@ -59,7 +55,7 @@ public class LoginFragment extends BaseFragment {
 
     @Override
     public void initData() {
-
+        mPresenter = new LoginPresenterImpl(this);
     }
 
     @Override
@@ -71,15 +67,41 @@ public class LoginFragment extends BaseFragment {
     public void initListener() {
 
     }
-    private void getData(){
-        account = accountEt.getText().toString().trim();
-        password = passwordEt.getText().toString().trim();
+
+    @Override
+    public void showToast(int resId) {
+        ToastHelper.shortToast(_mActivity, resId);
     }
-    private boolean isNull(){
-        if(account.isEmpty()|password.isEmpty()){
-            return false;
-        }else {
-            return true;
-        }
+
+    @Override
+    public void skipRegister() {
+        start(RegisterFragment.newInstance());
     }
+
+    @Override
+    public void skipForget() {
+        start(ForgetFragment.newInstance());
+    }
+
+    @Override
+    public void loginSucceed(String msg) {
+        hideDialog();
+        startWithPop(MainFragment.newInstance());
+    }
+
+    @Override
+    public void loginFail(String msg) {
+        QmuiDialogHelper.showFail(_mActivity, msg, 1000);
+    }
+
+    @Override
+    public void showLoadingDialog(int resId) {
+        QmuiDialogHelper.showLoading(_mActivity, resId);
+    }
+
+    @Override
+    public void hideDialog() {
+        QmuiDialogHelper.hide();
+    }
+
 }

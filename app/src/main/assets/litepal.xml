@@ -13,7 +13,7 @@
         以了。例：
         <version value="1" ></version>
     -->
-    <version value="1" ></version>
+    <version value="2" ></version>
 
     <!--
         这里是实体类和数据库中的表的映射配置，一个类对应数据库中一张表，类中的一个字
@@ -24,6 +24,7 @@
     -->
     <list>
         <mapping class="com.hdl.words.Beans.UserBean"></mapping>
+        <mapping class="com.hdl.words.Beans.PersonalDataBean"></mapping>
     </list>
 
     <!--

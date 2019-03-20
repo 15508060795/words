@@ -56,7 +56,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
         bindData(holder, position, mData.get(position));
     }
 
-    public T getItem(int pos){
+    public T getItem(int pos) {
         return mData.get(pos);
     }
 
@@ -68,7 +68,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
     public void add(int pos, T item) {
         mData.add(pos, item);
         notifyItemInserted(pos);
-}
+    }
 
     public void delete(int pos) {
         mData.remove(pos);

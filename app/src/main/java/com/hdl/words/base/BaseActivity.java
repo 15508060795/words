@@ -23,30 +23,40 @@ import me.yokeyword.fragmentation.SupportActivity;
  * Created by HDL on 2018/1/15.
  */
 
-public abstract class BaseActivity extends SupportActivity implements ISupportActivity{
-    protected Context context;
-    /** 是否沉浸状态栏 **/
+public abstract class BaseActivity extends SupportActivity implements ISupportActivity {
+    protected Context mContext;
+    /**
+     * 是否沉浸状态栏
+     **/
     private boolean isSetStatusBar = true;
-    /** 是否允许全屏 **/
+    /**
+     * 是否允许全屏
+     **/
     private boolean mAllowFullScreen = false;
-    /** 是否禁止旋转屏幕 **/
+    /**
+     * 是否禁止旋转屏幕
+     **/
     private boolean isAllowScreenRotate = true;
     //上个activity传过来的参数
-    protected Bundle bundle;
-    /** 当前Activity渲染的视图View **/
-    protected View mContextView ;
-    /** 日志输出标志 **/
-    protected final String TAG = this.getClass().getSimpleName();
+    protected Bundle mBundle;
+    /**
+     * 当前Activity渲染的视图View
+     **/
+    protected View mContextView;
+    /**
+     * 日志输出标志
+     **/
+    protected final String TAG = getClass().getSimpleName();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "BaseActivity-->onCreate()");
-        if(mContextView == null){
+        if (mContextView == null) {
             mContextView = LayoutInflater.from(this).inflate(bindLayout(), null);
-            bundle = getIntent().getExtras();
-            initParams(bundle);
+            mBundle = getIntent().getExtras();
+            initParams(mBundle);
             if (mAllowFullScreen) {
                 QMUIDisplayHelper.setFullScreen(this);
             }
@@ -60,8 +70,8 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
             ButterKnife.bind(this);
             initTopBar();
             initData();
-            context = this;
-        }else{
+            mContext = this;
+        } else {
 
         }
 
@@ -89,25 +99,30 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
      */
 
     public abstract int bindLayout();
+
     /**
      * [初始化参数]
      *
      * @param params
      */
     public abstract void initParams(Bundle params);
+
     /**
      * [加载数据]
      */
     protected abstract void initTopBar();
+
     public abstract void initData();
+
     /**
      * [页面跳转]
      *
      * @param clz
      */
     public void startActivity(Class<?> clz) {
-        startActivity(new Intent(this,clz));
+        startActivity(new Intent(this, clz));
     }
+
     /**
      * [携带数据的页面跳转]
      *
@@ -122,14 +137,17 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
         }
         startActivity(intent);
     }
-    public void startActivityAndCloseThis(Class<?> clz){
+
+    public void startActivityAndCloseThis(Class<?> clz) {
         startActivity(clz);
         this.finish();
     }
+
     public void startActivityAndCloseThis(Class<?> clz, Bundle bundle) {
         startActivity(clz, bundle);
         this.finish();
     }
+
     /**
      * [含有Bundle通过Class打开编辑界面]
      *
@@ -145,50 +163,56 @@ public abstract class BaseActivity extends SupportActivity implements ISupportAc
         }
         startActivityForResult(intent, requestCode);
     }
+
     @Override
     protected void onRestart() {
         super.onRestart();
         Log.w(TAG, "onRestart()");
     }
+
     @Override
     protected void onStart() {
         super.onStart();
         Log.w(TAG, "onStart()");
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         Log.w(TAG, "onResume()");
     }
+
     @Override
     protected void onPause() {
         super.onPause();
         Log.w(TAG, "onPause()");
     }
+
     @Override
     protected void onStop() {
         super.onStop();
         Log.w(TAG, "onStop()");
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         Log.w(TAG, "onDestroy()");
 
     }
+
     //若为栈顶，最小化应用,否则杀死该Activity
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             //if(this==task.topActivity.getPackageName())
-            if(getTopFragment() instanceof MainFragment ||getTopFragment()instanceof LoginFragment){
+            if (getTopFragment() instanceof MainFragment || getTopFragment() instanceof LoginFragment) {
                 moveTaskToBack(true);
                 return true;//return true;拦截事件传递,从而屏蔽back键。
             }
         }
         return super.onKeyDown(keyCode, event);
     }
-
 
 
     /**

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/bg_fragment"
     android:fitsSystemWindows="true">
@@ -18,23 +19,18 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/et_input"
-                style="@style/et_style"
+            <android.support.v7.widget.SearchView
+                android:id="@+id/search_input"
+                android:background="@drawable/et_radius_bg"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="@drawable/et_shape_black"
-                android:padding="0dp"
-                android:gravity="left"
-                android:hint="请输入你要查询的单词..."
-                android:maxLines="4" />
+                android:layout_height="45dp"
+                android:layout_margin="10dp"
+                app:iconifiedByDefault="false"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                app:queryHint="@string/translate_search_note">
 
-            <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
-                android:id="@+id/btn_translate"
-                style="@style/btn_style"
-                android:layout_width="100dp"
-                android:layout_gravity="right"
-                android:text="@string/translate" />
+            </android.support.v7.widget.SearchView>
 
             <TextView
                 android:id="@+id/tv_result"
@@ -44,7 +40,7 @@
                 android:padding="0dp"
                 android:background="@drawable/et_shape_black"
                 android:gravity="left"
-                android:hint="翻译结果"
+                android:hint="@string/translate_search_result_note"
                 android:focusable="false"
                 android:maxLines="4" />
         </LinearLayout>

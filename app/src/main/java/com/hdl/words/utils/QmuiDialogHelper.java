@@ -10,9 +10,10 @@ import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
  * author HDL
  * Mail 229101253@qq.com
  */
-public  class QmuiDialogHelper {
+public class QmuiDialogHelper {
     private static QMUITipDialog dialog;
-    public static void showLoading(Context context, CharSequence msg){
+
+    public static void showLoading(Context context, CharSequence msg, int duration) {
         dialogInit();
         dialog = new QMUITipDialog.Builder(context)
                 .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
@@ -20,8 +21,22 @@ public  class QmuiDialogHelper {
                 .create();
         dialog.setCancelable(false);
         dialog.show();
+        hide(duration);
     }
-    public static void showMailSuccess(Context context, CharSequence msg){
+
+    public static void showLoading(Context context, int resId, int duration) {
+        showLoading(context, context.getResources().getString(resId), duration);
+    }
+
+    public static void showLoading(Context context, int resId) {
+        showLoading(context, context.getResources().getString(resId), 0);
+    }
+
+    public static void showLoading(Context context, CharSequence msg) {
+        showLoading(context, msg, 0);
+    }
+
+    public static void showSuccess(Context context, CharSequence msg, int duration) {
         dialogInit();
         dialog = new QMUITipDialog.Builder(context)
                 .setIconType(QMUITipDialog.Builder.ICON_TYPE_SUCCESS)
@@ -29,11 +44,22 @@ public  class QmuiDialogHelper {
                 .create();
         dialog.setCancelable(false);
         dialog.show();
+        hide(duration);
     }
-    public static void showMailSuccess(Context context, int resId){
-        showMailSuccess(context,context.getResources().getString(resId));
+
+    public static void showSuccess(Context context, int resId, int duration) {
+        showSuccess(context, context.getResources().getString(resId), duration);
     }
-    public static void showMailFail(Context context, CharSequence msg){
+
+    public static void showSuccess(Context context, CharSequence msg) {
+        showSuccess(context, msg, 0);
+    }
+
+    public static void showSuccess(Context context, int resId) {
+        showSuccess(context, context.getResources().getString(resId), 0);
+    }
+
+    public static void showFail(Context context, CharSequence msg, int duration) {
         dialogInit();
         dialog = new QMUITipDialog.Builder(context)
                 .setIconType(QMUITipDialog.Builder.ICON_TYPE_FAIL)
@@ -41,25 +67,40 @@ public  class QmuiDialogHelper {
                 .create();
         dialog.setCancelable(false);
         dialog.show();
+        hide(duration);
     }
-    public static void showMailFail(Context context, int resId){
-        showMailFail(context,context.getResources().getString(resId));
+
+    public static void showFail(Context context, CharSequence msg) {
+        showFail(context, msg, 0);
     }
-    public static void hide(){
-        if(dialog != null){
+
+    public static void showFail(Context context, int resId, int duration) {
+        showFail(context, context.getResources().getString(resId), duration);
+    }
+
+    public static void showFail(Context context, int resId) {
+        showFail(context, context.getResources().getString(resId), 0);
+    }
+
+    public static void hide() {
+        if (dialog != null) {
             dialog.dismiss();
         }
     }
-    public static void hide(int duration){
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                hide();
-            }
-        },duration);
+
+    public static void hide(int duration) {
+        if (duration > 0) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    hide();
+                }
+            }, duration);
+        }
     }
-    private static void dialogInit(){
-        if(dialog != null){
+
+    private static void dialogInit() {
+        if (dialog != null) {
             hide();
             dialog = null;
         }

@@ -22,51 +22,55 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 public class MainFragment extends BaseFragment {
     @BindView(R.id.bottomBar)//底部状态栏
-    QMUITabSegment tabSegment;
+            QMUITabSegment mTabSegment;
     private BaseFragment[] fragments = new BaseFragment[3];
     public static final int FIRST = 0;
     public static final int SECOND = 1;
     public static final int THIRD = 2;
-    public static MainFragment newInstance(){
+
+    public static MainFragment newInstance() {
         return new MainFragment();
     }
+
     @Override
     public int bindLayout() {
         return R.layout.fragment_main;
     }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
     }
+
     @Override
     public void initData() {
-        if(findChildFragment(TranslateFragment.class) == null){
+        if (findChildFragment(TranslateFragment.class) == null) {
             fragments[FIRST] = TranslateFragment.newInstance();
             fragments[SECOND] = ReciteFragment.newInstance();
             fragments[THIRD] = SettingFragment.newInstance();
-            loadMultipleRootFragment(R.id.fl_main_fragment,FIRST,fragments[FIRST],fragments[SECOND],fragments[THIRD]);
-        }else{
+            loadMultipleRootFragment(R.id.fl_main_fragment, FIRST, fragments[FIRST], fragments[SECOND], fragments[THIRD]);
+        } else {
             fragments[FIRST] = findChildFragment(TranslateFragment.class);
             fragments[SECOND] = findChildFragment(ReciteFragment.class);
             fragments[THIRD] = findChildFragment(SettingFragment.class);
         }
-        tabSegment.setDefaultNormalColor(getResources().getColor(R.color.color_bottomBar_normal));
-        tabSegment.setDefaultSelectedColor(getResources().getColor(R.color.color_bottomBar_select));
-        tabSegment.setBackgroundColor(getResources().getColor(R.color.color_bottomBar_bg));
-        tabSegment.addTab(new QMUITabSegment.Tab(
+        mTabSegment.setDefaultNormalColor(getResources().getColor(R.color.color_bottomBar_normal));
+        mTabSegment.setDefaultSelectedColor(getResources().getColor(R.color.color_bottomBar_select));
+        mTabSegment.setBackgroundColor(getResources().getColor(R.color.color_bottomBar_bg));
+        mTabSegment.addTab(new QMUITabSegment.Tab(
                 ContextCompat.getDrawable(_mActivity, R.mipmap.ic_bottom_translate),
                 ContextCompat.getDrawable(_mActivity, R.mipmap.ic_bottom_translate),
                 getString(R.string.translate), true));
-        tabSegment.addTab(new QMUITabSegment.Tab(
+        mTabSegment.addTab(new QMUITabSegment.Tab(
                 ContextCompat.getDrawable(_mActivity, R.mipmap.ic_bottom_recite),
                 ContextCompat.getDrawable(_mActivity, R.mipmap.ic_bottom_recite),
                 getString(R.string.recite), true));
-        tabSegment.addTab(new QMUITabSegment.Tab(
+        mTabSegment.addTab(new QMUITabSegment.Tab(
                 ContextCompat.getDrawable(_mActivity, R.mipmap.ic_bottom_personal_center),
                 ContextCompat.getDrawable(_mActivity, R.mipmap.ic_bottom_personal_center),
                 getString(R.string.personal_center), true));
-        tabSegment.selectTab(0);
+        mTabSegment.selectTab(0);
     }
 
     @Override
@@ -76,7 +80,7 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void initListener() {
-        tabSegment.addOnTabSelectedListener(new QMUITabSegment.OnTabSelectedListener() {
+        mTabSegment.addOnTabSelectedListener(new QMUITabSegment.OnTabSelectedListener() {
             @Override
             public void onTabSelected(int index) {
                 showHideFragment(fragments[index]);
@@ -102,7 +106,12 @@ public class MainFragment extends BaseFragment {
     /**
      * start other BrotherFragment
      */
-    public void startBrotherFragment(SupportFragment targetFragment) { start(targetFragment); }
-    public void startBrotherFragmentAndPop(SupportFragment targetFragment) { startWithPop(targetFragment); }
+    public void startBrotherFragment(SupportFragment fragment) {
+        start(fragment);
+    }
+
+    public void startBrotherFragmentAndPop(SupportFragment fragment) {
+        startWithPop(fragment);
+    }
 }
 
