@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.qmuiteam.qmui.widget.QMUIAppBarLayout
+ <!--   <com.qmuiteam.qmui.widget.QMUIAppBarLayout
         android:layout_width="match_parent"
         android:layout_height="256dp"
         android:fitsSystemWindows="true">
@@ -48,13 +48,14 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:padding="@dimen/space_10"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        >
+        &lt;!&ndash;app:layout_behavior="@string/appbar_scrolling_view_behavior"&ndash;&gt;
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/large_text"
             android:textSize="22sp"/>
 
-    </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.NestedScrollView>-->
 </android.support.design.widget.CoordinatorLayout>

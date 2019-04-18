@@ -14,4 +14,13 @@
 
     <attr name="SwipeBackLayoutStyle" format="reference"/>
 
+    <declare-styleable name="SlideBarSearchView">
+        <attr name="tv_default_Color" format="color"/>
+        <attr name="tv_select_Color" format="color"/>
+        <attr name="tv_size" format="dimension"/>
+        <attr name="select_index" format="integer"/>
+
+    </declare-styleable>
+
+
 </resources>

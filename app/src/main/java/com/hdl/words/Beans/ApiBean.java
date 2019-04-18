@@ -10,10 +10,11 @@ import java.security.NoSuchAlgorithmException;
 
 public class ApiBean {
     //http://118.24.107.35:8080/
-    public static final String BASE_URL = "http://192.168.1.120:8555/";//服务器默认URL
+    public static final String BASE_URL = "http://192.168.1.106:8555/";//服务器默认URL
     public static final String LOGIN_URL = "user/login?";
     public static final String REGISTER_URL = "user/register?";
     public static final String CHANGE_PASSWORD_URL = "user/changePassword?";
+    public static final String CET_FOUR_WORD_URL = "word/cet_4/getAllWords?";
     public static final String TRANSLATE_URL = "https://fanyi-api.baidu.com/api/trans/vip/";//百度翻译URL
     public static final String TRANSLATE_APP_ID = "20181126000239627";
     public static final String TRANSLATE_SALT = "123";

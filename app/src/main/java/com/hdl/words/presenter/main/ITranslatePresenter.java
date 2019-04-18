@@ -6,7 +6,7 @@ package com.hdl.words.presenter.main;
  * Description:
  */
 public interface ITranslatePresenter {
-    void translate(int from, int to, String str);
+    void translate(int from, int to, String str, boolean fromUser);
 
     void fromTypeChange();
 

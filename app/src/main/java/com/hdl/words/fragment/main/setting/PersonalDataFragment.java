@@ -18,10 +18,10 @@ import me.yokeyword.fragmentation.SupportHelper;
  * Mail 229101253@qq.com
  */
 public class PersonalDataFragment extends BaseFragment {
-    @BindView(R.id.topBar)
-    QMUITopBar mTopBar;
-    @BindView(R.id.collapsing_topbar_layout)
-    QMUICollapsingTopBarLayout mCollapsingTopBarLayout;
+   /* @BindView(R.id.topBar)
+    QMUITopBar mTopBar;*/
+    /*@BindView(R.id.collapsing_topbar_layout)
+    QMUICollapsingTopBarLayout mCollapsingTopBarLayout;*/
 
     public static PersonalDataFragment newInstance(Bundle bundle) {
         PersonalDataFragment fragment = new PersonalDataFragment();
@@ -36,7 +36,7 @@ public class PersonalDataFragment extends BaseFragment {
 
     @Override
     public void initTopBar() {
-        mTopBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
+        /*mTopBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pop();
@@ -48,7 +48,7 @@ public class PersonalDataFragment extends BaseFragment {
                 SupportHelper.showFragmentStackHierarchyView((SupportActivity) _mActivity);
             }
         });
-        mCollapsingTopBarLayout.setTitle(getString(R.string.personal_data));
+        mCollapsingTopBarLayout.setTitle(getString(R.string.personal_data));*/
     }
 
     @Override

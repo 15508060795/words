@@ -35,7 +35,8 @@ public class LoginFragment extends BaseFragment implements ILoginView {
             case R.id.btn_login:
                 String account = mAccountEt.getText().toString().trim();
                 String password = mPasswordEt.getText().toString().trim();
-                mPresenter.login(account, password);
+                //mPresenter.login(account, password);
+                startWithPop(MainFragment.newInstance());
                 break;
             case R.id.tv_login_rePw:
                 mPresenter.skipForget();

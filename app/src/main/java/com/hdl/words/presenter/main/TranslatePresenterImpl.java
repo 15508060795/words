@@ -1,6 +1,7 @@
 package com.hdl.words.presenter.main;
 
 import android.annotation.SuppressLint;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.hdl.words.Beans.ApiBean;
@@ -28,7 +29,7 @@ public class TranslatePresenterImpl extends BasePresenter<TranslateFragment> imp
     }
 
     @Override
-    public void translate(int from, int to, String str) {
+    public void translate(int from, int to, String str, final boolean fromUser) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiBean.TRANSLATE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -48,21 +49,20 @@ public class TranslatePresenterImpl extends BasePresenter<TranslateFragment> imp
         call.enqueue(new Callback<TranslateResultBean>() {
             @SuppressLint("SetTextI18n")
             @Override
-            public void onResponse(Call<TranslateResultBean> call, Response<TranslateResultBean> response) {
+            public void onResponse(@NonNull Call<TranslateResultBean> call, @NonNull Response<TranslateResultBean> response) {
                 String resultStr;
-                Log.e(TAG, response.body() + "");
                 try {
                     resultStr = response.body().getTrans_result().get(0).getDst();
-                    Log.e(TAG, response.body().getTrans_result().get(0).getDst() + "");
+                    Log.e(TAG, resultStr + "");
                 } catch (NullPointerException e) {
                     resultStr = "";
                     Log.e(TAG, "输入内容有误，返回结果为null");
                 }
-                mView.translateResult(resultStr);
+                mView.translateResult(resultStr,fromUser);
             }
 
             @Override
-            public void onFailure(Call<TranslateResultBean> call, Throwable t) {
+            public void onFailure(@NonNull Call<TranslateResultBean> call, @NonNull Throwable t) {
                 mView.showToast(R.string.network_request_error);
             }
         });

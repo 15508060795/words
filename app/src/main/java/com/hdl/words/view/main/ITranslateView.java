@@ -8,7 +8,7 @@ package com.hdl.words.view.main;
 public interface ITranslateView {
     void languageSwitch();
 
-    void translateResult(String result);
+    void translateResult(String result,boolean fromUser);
 
     void fromTypeChange();
 

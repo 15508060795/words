@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">杀死单词</string>
+    <string name="app_name">我爱记单词</string>
     <!--基础词汇-->
     <string name="cancel">取消</string>
     <string name="delete">删除</string>

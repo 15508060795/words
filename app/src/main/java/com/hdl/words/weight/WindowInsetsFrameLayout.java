@@ -37,6 +37,7 @@ public class WindowInsetsFrameLayout extends FrameLayout {
 
             @Override
             public void onChildViewRemoved(View parent, View child) {
+
             }
         });
     }
