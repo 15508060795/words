@@ -2,7 +2,6 @@ package com.hdl.words.fragment.main.recite;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,13 +11,11 @@ import com.hdl.words.R;
 import com.hdl.words.base.BaseFragment;
 import com.hdl.words.base.BaseRecyclerAdapter;
 import com.hdl.words.base.RecyclerViewHolder;
-import com.hdl.words.model.CETFourWordModelImpl;
-import com.hdl.words.utils.ToastHelper;
+import com.hdl.words.decoration.RecycleViewDivider;
 import com.hdl.words.weight.SlideBarSearchView;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.BindView;
 
@@ -65,7 +62,8 @@ public class WordListFragment extends BaseFragment {
     @Override
     public void initData() {
         setSwipeBackEnable(true);
-        mDataList = CETFourWordModelImpl.getInstance().getDataList();
+        mDataList = (List<WordResultBean.DataBean>) mBundle.getSerializable("list");
+        //mDataList = CETFourWordModelImpl.getInstance().getDataList();
         mAdapter = new ItemAdapter(_mActivity, mDataList);
         mWordListRv.setLayoutManager(new LinearLayoutManager(
                         _mActivity,
@@ -73,6 +71,8 @@ public class WordListFragment extends BaseFragment {
                         false
                 )
         );
+        mWordListRv.addItemDecoration(new RecycleViewDivider(
+                _mActivity, LinearLayoutManager.VERTICAL, R.drawable.divider_mileage) );
         mWordListRv.setAdapter(mAdapter);
     }
 
@@ -81,12 +81,15 @@ public class WordListFragment extends BaseFragment {
         mListRSV.setOnItemTouchListener(new SlideBarSearchView.OnItemTouchListener() {
             @Override
             public void onItemTouch(int pos, String item) {
-                for (int i = 0; i < mDataList.size(); i++) {
-                    if (mDataList.get(i).getWord().toUpperCase().charAt(0) == item.charAt(0)) {
-                        mWordListRv.scrollToPosition(i);
-                        break;
+                if (mDataList != null) {
+                    for (int i = 0; i < mDataList.size(); i++) {
+                        if (mDataList.get(i).getWord().toUpperCase().charAt(0) == item.charAt(0)) {
+                            mWordListRv.scrollToPosition(i);
+                            break;
+                        }
                     }
                 }
+
             }
         });
     }

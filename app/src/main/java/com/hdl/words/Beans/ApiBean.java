@@ -14,7 +14,9 @@ public class ApiBean {
     public static final String LOGIN_URL = "user/login?";
     public static final String REGISTER_URL = "user/register?";
     public static final String CHANGE_PASSWORD_URL = "user/changePassword?";
-    public static final String CET_FOUR_WORD_URL = "word/cet_4/getAllWords?";
+    public static final String CET_FOUR_WORD_URL = "word/cet_4/getWords?";
+    public static final String CET_SIX_WORD_URL = "word/cet_6/getWords?";
+    public static final String EVERY_DAY_WORD_URL = "word/dailyWord/getWords?";
     public static final String TRANSLATE_URL = "https://fanyi-api.baidu.com/api/trans/vip/";//百度翻译URL
     public static final String TRANSLATE_APP_ID = "20181126000239627";
     public static final String TRANSLATE_SALT = "123";

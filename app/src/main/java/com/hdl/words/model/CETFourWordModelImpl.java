@@ -45,12 +45,13 @@ public class CETFourWordModelImpl {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        IGetWordsResult request = retrofit.create(IGetWordsResult.class);
+        IGetCETFourWordsResult request = retrofit.create(IGetCETFourWordsResult.class);
         Call<WordResultBean> call = request.getCall();
         call.enqueue(new Callback<WordResultBean>() {
             @Override
             public void onResponse(@NonNull Call<WordResultBean> call, @NonNull Response<WordResultBean> response) {
                 try {
+                    Log.e(TAG, "四级单词获取成功");
                     setDataList(response.body().getData());
                     if (onRequestCallBack != null) {
                         onRequestCallBack.onSuccess();
@@ -78,7 +79,9 @@ public class CETFourWordModelImpl {
     }
 
     public void setDataList(List<WordResultBean.DataBean> dataList) {
-        this.mDataList = dataList;
+        mDataList = new ArrayList<>();
+        mDataList.clear();
+        mDataList.addAll(dataList);
     }
 
     public interface OnRequestCallBack {

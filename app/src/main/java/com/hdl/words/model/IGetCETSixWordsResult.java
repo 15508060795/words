@@ -11,8 +11,8 @@ import retrofit2.http.GET;
  * author hdl
  * Description:
  */
-public interface IGetWordsResult {
-    @GET(ApiBean.CET_FOUR_WORD_URL)
+public interface IGetCETSixWordsResult {
+    @GET(ApiBean.CET_SIX_WORD_URL)
     Call<WordResultBean> getCall(
     );
 }

@@ -6,5 +6,5 @@ package com.hdl.words.presenter.main.recite;
  * Description:
  */
 public interface ICETFourPresenter {
-    void getAllWords();
+    void getWords(int type);
 }

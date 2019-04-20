@@ -23,14 +23,14 @@ public class WordResultBean implements Serializable {
         this.data = data;
     }
 
-    public static class DataBean implements Parcelable {
+    public static class DataBean implements Serializable {
         /**
          * symbol : /ə'bændən/
          * means :  vt.丢弃；放弃，抛弃
          * id : 1
          * word : abandon
          */
-
+        private static final long serialVersionUID = -26412421319389L;
         private String symbol;
         private String means;
         private int id;
@@ -43,7 +43,7 @@ public class WordResultBean implements Serializable {
             word = in.readString();
         }
 
-        public static final Creator<DataBean> CREATOR = new Creator<DataBean>() {
+        /*public static final Creator<DataBean> CREATOR = new Creator<DataBean>() {
             @Override
             public DataBean createFromParcel(Parcel in) {
                 return new DataBean(in);
@@ -53,7 +53,7 @@ public class WordResultBean implements Serializable {
             public DataBean[] newArray(int size) {
                 return new DataBean[size];
             }
-        };
+        };*/
 
         public String getSymbol() {
             return symbol;
@@ -87,7 +87,7 @@ public class WordResultBean implements Serializable {
             this.word = word;
         }
 
-        @Override
+/*        @Override
         public int describeContents() {
             return 0;
         }
@@ -98,6 +98,6 @@ public class WordResultBean implements Serializable {
             dest.writeString(means);
             dest.writeInt(id);
             dest.writeString(word);
-        }
+        }*/
     }
 }

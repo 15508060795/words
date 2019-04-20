@@ -16,6 +16,7 @@ import com.qmuiteam.qmui.widget.QMUIEmptyView;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton;
 
+import java.io.Serializable;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -25,7 +26,7 @@ import butterknife.BindView;
  * author HDL
  * Mail 229101253@qq.com
  */
-public class CETFourFragment extends BaseFragment implements ICETFourView {
+public class TypeFragment extends BaseFragment implements ICETFourView {
     @BindView(R.id.topBar)
     QMUITopBar mTopBar;
     @BindView(R.id.empty_view)
@@ -46,8 +47,8 @@ public class CETFourFragment extends BaseFragment implements ICETFourView {
     private TextToSpeech textToSpeech;
     int position = 0;
 
-    public static CETFourFragment newInstance(Bundle bundle) {
-        CETFourFragment fragment = new CETFourFragment();
+    public static TypeFragment newInstance(Bundle bundle) {
+        TypeFragment fragment = new TypeFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -80,6 +81,7 @@ public class CETFourFragment extends BaseFragment implements ICETFourView {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
+                bundle.putSerializable("list",(Serializable)CETFourWordModelImpl.getInstance().getDataList());
                 start(WordListFragment.newInstance(bundle));
             }
         });
@@ -141,7 +143,7 @@ public class CETFourFragment extends BaseFragment implements ICETFourView {
     public void showLoading() {
         mEmptyView.setLoadingShowing(true);
         mEmptyView.setTitleText("数据加载中");
-        presenter.getAllWords();
+        presenter.getWords(mBundle.getInt("type"));
     }
 
     @Override
@@ -159,7 +161,7 @@ public class CETFourFragment extends BaseFragment implements ICETFourView {
         mEmptyView.setButton("点击重试", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.getAllWords();
+                presenter.getWords(mBundle.getInt("type"));
             }
         });
     }

@@ -13,7 +13,7 @@ import com.hdl.words.base.BaseRecyclerAdapter;
 import com.hdl.words.base.RecyclerViewHolder;
 import com.hdl.words.decoration.GridDividerItemDecoration;
 import com.hdl.words.fragment.MainFragment;
-import com.hdl.words.fragment.main.recite.CETFourFragment;
+import com.hdl.words.fragment.main.recite.TypeFragment;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 
 import java.util.ArrayList;
@@ -70,7 +70,7 @@ public class ReciteFragment extends BaseFragment {
                 Bundle bundle = new Bundle();
                 bundle.putInt("type", pos);
                 assert getParentFragment() != null;
-                ((MainFragment) getParentFragment()).startBrotherFragment(CETFourFragment.newInstance(bundle));
+                ((MainFragment) getParentFragment()).startBrotherFragment(TypeFragment.newInstance(bundle));
             }
         });
 
