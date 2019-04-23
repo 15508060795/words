@@ -5,10 +5,12 @@ package com.hdl.words.view.main.recite;
  * author hdl
  * Description:
  */
-public interface ICETFourView {
+public interface ITypeView {
     void showLoading();
 
     void dataRequestCompleted();
 
     void showRequestFailDialog();
+
+    void changeWordView(int pos);
 }

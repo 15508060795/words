@@ -1,7 +1,6 @@
 package com.hdl.words.Beans;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 import java.io.Serializable;
 import java.util.List;
@@ -35,6 +34,15 @@ public class WordResultBean implements Serializable {
         private String means;
         private int id;
         private String word;
+        private int state;
+
+        public int getState() {
+            return state;
+        }
+
+        public void setState(int state) {
+            this.state = state;
+        }
 
         protected DataBean(Parcel in) {
             symbol = in.readString();

@@ -17,7 +17,7 @@ public interface IGetLoginResult {
     @POST(ApiBean.LOGIN_URL)
     @FormUrlEncoded
     Call<LoginResultBean> getCall(
-            @Field("username") String userName,
+            @Field("username") String username,
             @Field("password") String password
     );
     // 注解里传入 网络请求 的部分URL地址

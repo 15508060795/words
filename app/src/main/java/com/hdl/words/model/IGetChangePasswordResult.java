@@ -17,7 +17,7 @@ public interface IGetChangePasswordResult {
     @POST(ApiBean.CHANGE_PASSWORD_URL)
     @FormUrlEncoded
     Call<ChangePasswordResultBean> getCall(
-            @Field("username") String userName,
+            @Field("username") String username,
             @Field("prePassword") String prePassword,
             @Field("nowPassword") String nowPassword
     );

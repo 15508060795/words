@@ -1,7 +1,7 @@
 package com.hdl.words.model;
 
 import com.hdl.words.Beans.ApiBean;
-import com.hdl.words.Beans.WordResultBean;
+import com.hdl.words.Beans.VocabDeleteResultBean;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -13,10 +13,11 @@ import retrofit2.http.POST;
  * author hdl
  * Description:
  */
-public interface IGetCETSixWordsResult {
-    @POST(ApiBean.CET_SIX_WORD_URL)
+public interface IGETDeleteVocabWordsResult {
+    @POST(ApiBean.VOCAB_DELETE_URL)
     @FormUrlEncoded
-    Call<WordResultBean> getCall(
-            @Field("username") String username
+    Call<VocabDeleteResultBean> getCall(
+            @Field("username") String username,
+            @Field("word") String word
     );
 }

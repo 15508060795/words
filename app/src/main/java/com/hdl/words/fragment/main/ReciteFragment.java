@@ -52,8 +52,6 @@ public class ReciteFragment extends BaseFragment {
                 R.string.cet_4,
                 R.string.cet_6,
                 R.string.everyday_word,
-                R.string.wrong_word_list,
-                R.string.right_word_list,
                 R.string.vocab_word_list};
         int[] iconRes = new int[]{};
         for (int i = 0; i < name.length; i++) {

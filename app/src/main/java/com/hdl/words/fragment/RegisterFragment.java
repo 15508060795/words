@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.hdl.words.R;
+import com.hdl.words.SharedPreferences.MySession;
 import com.hdl.words.base.BaseFragment;
 import com.hdl.words.presenter.RegisterPresenterImpl;
 import com.hdl.words.utils.QmuiDialogHelper;
@@ -86,11 +87,13 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     }
 
     @Override
-    public void registerSucceed(String msg) {
+    public void registerSucceed(String msg, final String username) {
         QmuiDialogHelper.showSuccess(_mActivity, msg);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                MySession.setUsername(_mActivity,username);
+                MySession.setLoginState(_mActivity,true);
                 startWithPop(MainFragment.newInstance());
                 hideDialog();
             }

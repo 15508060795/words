@@ -7,6 +7,7 @@ import android.util.Log;
 import com.hdl.words.Beans.ApiBean;
 import com.hdl.words.Beans.LoginResultBean;
 import com.hdl.words.R;
+import com.hdl.words.SharedPreferences.MySession;
 import com.hdl.words.base.BasePresenter;
 import com.hdl.words.fragment.LoginFragment;
 import com.hdl.words.model.IGetLoginResult;
@@ -28,7 +29,7 @@ public class LoginPresenterImpl extends BasePresenter<LoginFragment> implements 
     }
 
     @Override
-    public void login(String account, String password) {
+    public void login(final String account, String password) {
         if (!(account.isEmpty() | password.isEmpty())) {
             mView.showLoadingDialog(R.string.logging);
             Retrofit retrofit = new Retrofit.Builder()
@@ -51,7 +52,7 @@ public class LoginPresenterImpl extends BasePresenter<LoginFragment> implements 
                         Log.e(TAG, "输入内容有误，返回结果为null");
                     }
                     if (result) {
-                        mView.loginSucceed(message);
+                        mView.loginSucceed(message,account);
                     } else {
                         mView.loginFail(message);
                     }

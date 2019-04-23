@@ -15,7 +15,7 @@ public interface ILoginView {
 
     void showLoadingDialog(int resId);
 
-    void loginSucceed(String msg);
+    void loginSucceed(String msg, String username);
 
     void loginFail(String msg);
 

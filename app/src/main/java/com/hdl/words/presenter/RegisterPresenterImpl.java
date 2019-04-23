@@ -28,7 +28,7 @@ public class RegisterPresenterImpl extends BasePresenter<RegisterFragment> imple
     }
 
     @Override
-    public void register(String account, String password1, String password2) {
+    public void register(final String account, String password1, String password2) {
         if (!(account.isEmpty() | password1.isEmpty() | password2.isEmpty())) {
             if (password1.equals(password2)) {
                 mView.showLoadingDialog(R.string.registering);
@@ -52,7 +52,7 @@ public class RegisterPresenterImpl extends BasePresenter<RegisterFragment> imple
                             Log.e(TAG, "输入内容有误，返回结果为null");
                         }
                         if (result) {
-                            mView.registerSucceed(message);
+                            mView.registerSucceed(message,account);
                         } else {
                             mView.registerFail(message);
                         }

@@ -20,26 +20,26 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * author hdl
  * Description:
  */
-public class CETFourWordModelImpl {
+public class WordModelImpl {
     private List<WordResultBean.DataBean> mDataList;
-    private static CETFourWordModelImpl mModel = null;
-    private static final String TAG = "CETFourWordModelImpl";
+    private static WordModelImpl mModel = null;
+    private static final String TAG = "WordModelImpl";
 
-    private CETFourWordModelImpl() {
+    private WordModelImpl() {
     }
 
-    public static CETFourWordModelImpl getInstance() {
+    public static WordModelImpl getInstance() {
         if (mModel == null) {
-            synchronized (CETFourWordModelImpl.class) {
+            synchronized (WordModelImpl.class) {
                 if (mModel == null) {
-                    mModel = new CETFourWordModelImpl();
+                    mModel = new WordModelImpl();
                 }
             }
         }
         return mModel;
     }
 
-    public void requestData(final OnRequestCallBack onRequestCallBack) {
+    /*public void requestData(final OnRequestCallBack onRequestCallBack) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiBean.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -72,7 +72,7 @@ public class CETFourWordModelImpl {
             }
         });
 
-    }
+    }*/
 
     public List<WordResultBean.DataBean> getDataList() {
         return mDataList;

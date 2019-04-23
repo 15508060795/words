@@ -14,7 +14,7 @@ public interface IGetTranslateRequest {
             @Field("q") String targetSentence,
             @Field("from") String from,
             @Field("to") String to,
-            @Field("appid") String appid,
+            @Field("appid") String appId,
             @Field("salt") String salt,
             @Field("sign") String sign
     );

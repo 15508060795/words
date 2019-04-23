@@ -11,7 +11,7 @@ public interface IRegisterView {
 
     void showLoadingDialog(int resId);
 
-    void registerSucceed(String msg);
+    void registerSucceed(String msg,String username);
 
     void registerFail(String msg);
 

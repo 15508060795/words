@@ -71,9 +71,13 @@ public class SettingFragment extends BaseFragment {
                             @Override
                             public void onClick(QMUIDialog dialog, int index) {
                                 dialog.dismiss();
-                                MySession.setLoginState(_mActivity, false);
-                                assert getParentFragment() != null;
-                                ((MainFragment) getParentFragment()).startBrotherFragmentAndPop(LoginFragment.newInstance());
+                                try{
+                                    ((MainFragment) getParentFragment()).startBrotherFragmentAndPop(LoginFragment.newInstance());
+                                    MySession.clear(_mActivity);
+                                }catch (NullPointerException e) {
+                                    Log.e(TAG,e.getMessage());
+                                }
+
                             }
                         })
                         .addAction(R.string.cancel, new QMUIDialogAction.ActionListener() {

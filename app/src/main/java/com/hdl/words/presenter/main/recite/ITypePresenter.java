@@ -5,6 +5,6 @@ package com.hdl.words.presenter.main.recite;
  * author HDL
  * Description:
  */
-public interface ICETFourPresenter {
+public interface ITypePresenter {
     void getWords(int type);
 }

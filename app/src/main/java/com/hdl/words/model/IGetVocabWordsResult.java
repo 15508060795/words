@@ -13,8 +13,8 @@ import retrofit2.http.POST;
  * author hdl
  * Description:
  */
-public interface IGetCETSixWordsResult {
-    @POST(ApiBean.CET_SIX_WORD_URL)
+public interface IGetVocabWordsResult {
+    @POST(ApiBean.VOCAB_GET_URL)
     @FormUrlEncoded
     Call<WordResultBean> getCall(
             @Field("username") String username

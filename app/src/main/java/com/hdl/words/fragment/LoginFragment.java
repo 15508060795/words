@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.hdl.words.R;
+import com.hdl.words.SharedPreferences.MySession;
 import com.hdl.words.base.BaseFragment;
 import com.hdl.words.presenter.LoginPresenterImpl;
 import com.hdl.words.utils.QmuiDialogHelper;
@@ -35,8 +36,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
             case R.id.btn_login:
                 String account = mAccountEt.getText().toString().trim();
                 String password = mPasswordEt.getText().toString().trim();
-                //mPresenter.login(account, password);
-                startWithPop(MainFragment.newInstance());
+                mPresenter.login(account, password);
                 break;
             case R.id.tv_login_rePw:
                 mPresenter.skipForget();
@@ -85,8 +85,10 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     }
 
     @Override
-    public void loginSucceed(String msg) {
+    public void loginSucceed(String msg, String username) {
         hideDialog();
+        MySession.setLoginState(_mActivity,true);
+        MySession.setUsername(_mActivity,username);
         startWithPop(MainFragment.newInstance());
     }
 
@@ -99,6 +101,8 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     public void showLoadingDialog(int resId) {
         QmuiDialogHelper.showLoading(_mActivity, resId);
     }
+
+
 
     @Override
     public void hideDialog() {
