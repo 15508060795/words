@@ -24,9 +24,11 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
+                android:fitsSystemWindows="false"
+                android:scaleType="fitXY"
                 app:qmui_layout_collapseMode="parallax"
-                app:qmui_layout_collapseParallaxMultiplier="0.7" />
+                app:qmui_layout_collapseParallaxMultiplier="0.7"
+                android:src="@mipmap/ic_background"/>
             <com.qmuiteam.qmui.widget.QMUITopBar
                 android:id="@+id/topBar"
                 android:layout_width="match_parent"

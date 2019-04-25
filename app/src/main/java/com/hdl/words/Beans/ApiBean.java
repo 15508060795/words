@@ -11,7 +11,7 @@ import java.security.NoSuchAlgorithmException;
 public class ApiBean {
     //http://118.24.107.35:8080/word/
     /*"http://192.168.1.111:8555/"*/
-    public static final String BASE_URL = "http://192.168.1.111:8555/";//服务器默认URL
+    public static final String BASE_URL = "http://118.24.107.35:8080/word/";//服务器默认URL
     public static final String LOGIN_URL = "user/login?";
     public static final String REGISTER_URL = "user/register?";
     public static final String CHANGE_PASSWORD_URL = "user/changePassword?";
