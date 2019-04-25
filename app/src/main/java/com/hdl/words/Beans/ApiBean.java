@@ -9,7 +9,8 @@ import java.security.NoSuchAlgorithmException;
  */
 
 public class ApiBean {
-    //http://118.24.107.35:8080/
+    //http://118.24.107.35:8080/word/
+    /*"http://192.168.1.111:8555/"*/
     public static final String BASE_URL = "http://192.168.1.111:8555/";//服务器默认URL
     public static final String LOGIN_URL = "user/login?";
     public static final String REGISTER_URL = "user/register?";
@@ -20,6 +21,12 @@ public class ApiBean {
     public static final String VOCAB_GET_URL = "word/vocab/getWords?";
     public static final String VOCAB_DELETE_URL = "word/vocab/deleteWords?";
     public static final String VOCAB_ADD_URL = "word/vocab/addWords?";
+    public static final String PERSONAL_INFO_URL = "personal_info/getInfo?";
+    public static final String PERSONAL_INFO_SET_NAME_URL = "personal_info/setName?";
+    public static final String PERSONAL_INFO_SET_SEX_URL = "personal_info/setSex?";
+    public static final String PERSONAL_INFO_SET_SIGN_URL = "personal_info/setSign?";
+    public static final String PERSONAL_INFO_SET_BIRTH_URL = "personal_info/setBirth?";
+    public static final String PERSONAL_INFO_SET_HOMETOWN_URL = "personal_info/setHometown?";
     public static final String TRANSLATE_URL = "https://fanyi-api.baidu.com/api/trans/vip/";//百度翻译URL
     public static final String TRANSLATE_APP_ID = "20181126000239627";
     public static final String TRANSLATE_SALT = "123";

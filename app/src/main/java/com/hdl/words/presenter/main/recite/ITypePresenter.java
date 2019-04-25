@@ -7,4 +7,16 @@ package com.hdl.words.presenter.main.recite;
  */
 public interface ITypePresenter {
     void getWords(int type);
+
+    void requestState(String username, int pos);
+
+    void requestLike(String username, int pos);
+
+    void requestDislike(String username, int pos);
+
+    void skipNext(int pos);
+
+    void skipLast(int pos);
+
+    void refreshView(int pos);
 }

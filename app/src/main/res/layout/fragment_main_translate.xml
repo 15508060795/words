@@ -21,7 +21,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true">
 
-            <android.support.v7.widget.SearchView
+            <androidx.appcompat.widget.SearchView
                 android:id="@+id/search_input"
                 android:background="@drawable/et_radius_bg"
                 android:layout_width="match_parent"
@@ -30,7 +30,7 @@
                 app:iconifiedByDefault="false"
                 app:queryHint="@string/translate_search_note">
 
-            </android.support.v7.widget.SearchView>
+            </androidx.appcompat.widget.SearchView>
 
             <TextView
                 android:id="@+id/tv_result"

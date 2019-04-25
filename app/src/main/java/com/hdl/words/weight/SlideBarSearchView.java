@@ -3,7 +3,9 @@ package com.hdl.words.weight;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
+
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -22,7 +24,7 @@ import java.util.List;
 /**
  * Date 2019/4/17 15:17
  * author hdl
- * Description:
+ * Description:右侧字母搜索栏
  */
 public class SlideBarSearchView extends LinearLayout implements View.OnTouchListener {
     /*数据集合*/
@@ -30,13 +32,14 @@ public class SlideBarSearchView extends LinearLayout implements View.OnTouchList
     private Context mContext;
     private OnItemTouchListener onItemTouchListener;
     /*默认选中位置*/
-    private int mSelectIndex;
+    private int mSelectedIndex;
     /*默认字体颜色*/
     private int mDefaultColor;
     /*选中字体颜色*/
-    private int mSelectColor;
+    private int mSelectedColor;
     /*字体大小*/
     private int mTextSize;
+
     public SlideBarSearchView(Context context) {
         this(context, null, 0, 0);
     }
@@ -51,7 +54,7 @@ public class SlideBarSearchView extends LinearLayout implements View.OnTouchList
 
     public SlideBarSearchView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        initAttrs(context,attrs);
+        initAttrs(context, attrs);
         init(context);
     }
 
@@ -70,12 +73,13 @@ public class SlideBarSearchView extends LinearLayout implements View.OnTouchList
             addView(createView(item));
         }
     }
-    public void initAttrs(Context context,AttributeSet attrs) {
+
+    public void initAttrs(Context context, AttributeSet attrs) {
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SlideBarSearchView);
-        mDefaultColor = array.getColor(R.styleable.SlideBarSearchView_tv_default_Color,Color.BLACK);
-        mSelectColor = array.getColor(R.styleable.SlideBarSearchView_tv_select_Color,Color.GREEN);
-        mTextSize = array.getColor(R.styleable.SlideBarSearchView_tv_size,14);
-        mSelectIndex = array.getInteger(R.styleable.SlideBarSearchView_select_index,0);
+        mDefaultColor = array.getColor(R.styleable.SlideBarSearchView_tv_default_color, Color.BLACK);
+        mSelectedColor = array.getColor(R.styleable.SlideBarSearchView_tv_selected_color, Color.GREEN);
+        mTextSize = array.getColor(R.styleable.SlideBarSearchView_tv_size, 14);
+        mSelectedIndex = array.getInteger(R.styleable.SlideBarSearchView_selected_index, 0);
         array.recycle();
     }
 
@@ -88,8 +92,8 @@ public class SlideBarSearchView extends LinearLayout implements View.OnTouchList
         );
         view.setGravity(Gravity.CENTER);
         view.setText(item);
-        if (mData.indexOf(item) == mSelectIndex) {
-            view.setTextColor(mSelectColor);
+        if (mData.indexOf(item) == mSelectedIndex) {
+            view.setTextColor(mSelectedColor);
         } else {
             view.setTextColor(mDefaultColor);
         }
@@ -98,12 +102,12 @@ public class SlideBarSearchView extends LinearLayout implements View.OnTouchList
     }
 
     private void changeTextViewColor(int index) {
-        if (index == mSelectIndex)
+        if (index == mSelectedIndex)
             return;
-        mSelectIndex = index;
+        mSelectedIndex = index;
         for (int i = 0; i < getChildCount(); i++) {
-            if (i == mSelectIndex) {
-                ((TextView) getChildAt(i)).setTextColor(mSelectColor);
+            if (i == mSelectedIndex) {
+                ((TextView) getChildAt(i)).setTextColor(mSelectedColor);
             } else {
                 ((TextView) getChildAt(i)).setTextColor(mDefaultColor);
             }
@@ -162,10 +166,10 @@ public class SlideBarSearchView extends LinearLayout implements View.OnTouchList
     }
 
     public int getIndex() {
-        return mSelectIndex;
+        return mSelectedIndex;
     }
 
     public void setIndex(int index) {
-        this.mSelectIndex = index;
+        this.mSelectedIndex = index;
     }
 }

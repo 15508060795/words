@@ -29,13 +29,22 @@ public class TimeUtil {
 
     public static final long ONE_MIN_MILLISECONDS = 1000 * 60;
 
+
     /**
      * 时间日期格式化到年月日时分秒.
      */
+    public static String dateFormatYEAR = "yyyy";
+    public static String dateFormatMONTH = "MM";
+    public static String dateFormatDAY = "dd";
+    public static String dateFormatHOUR = "HH";
+    public static String dateFormatMINUTE = "mm";
+    public static String dateFormatSECOND = "SS";
+
     public static String dateFormatYMDHMS = "yyyy-MM-dd HH:mm:ss";
     public static String dateFormatYMDHMS_f = "yyyyMMddHHmmss";
     public static String dateFormatMDHM = "MM-dd HH:mm";
     public static String dateFormat = "yyyy-MM-dd HH:mm";
+
     /**
      * 时间日期格式化到年月日.
      */

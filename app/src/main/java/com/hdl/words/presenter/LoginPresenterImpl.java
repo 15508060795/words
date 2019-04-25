@@ -1,13 +1,12 @@
 package com.hdl.words.presenter;
 
 import android.annotation.SuppressLint;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.hdl.words.Beans.ApiBean;
 import com.hdl.words.Beans.LoginResultBean;
 import com.hdl.words.R;
-import com.hdl.words.SharedPreferences.MySession;
 import com.hdl.words.base.BasePresenter;
 import com.hdl.words.fragment.LoginFragment;
 import com.hdl.words.model.IGetLoginResult;

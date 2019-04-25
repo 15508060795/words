@@ -7,12 +7,14 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_margin">@dimen/btn_margin</item>
     </style>
+
     <style name="tv_link_style" parent="android:Widget.TextView">
         <item name="android:textColor">?attr/colorAccent</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">@dimen/tv_height</item>
         <item name="android:layout_weight">1</item>
     </style>
+
     <style name="tv_style" parent="android:Widget.TextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/tv_height</item>
@@ -22,6 +24,7 @@
         <item name="android:gravity">center</item>
 
     </style>
+
     <style name="et_style" parent="android:Widget.EditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>
@@ -33,6 +36,7 @@
         <item name="android:paddingRight">@dimen/et_padding</item>
         <item name="android:ems">10</item>
     </style>
+
     <style name="et_phone_style" parent="android:Widget.EditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>
@@ -46,6 +50,7 @@
         <item name="android:maxLength">11</item>
         <item name="android:inputType">phone</item>
     </style>
+
     <style name="et_account_style" parent="android:Widget.EditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>
@@ -60,6 +65,7 @@
         <item name="android:digits">@string/input_limit</item>
         <item name="android:inputType">number</item>
     </style>
+
     <style name="et_password_style" parent="android:Widget.EditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>
@@ -73,6 +79,7 @@
         <item name="android:maxLength">13</item>
         <item name="android:inputType">textPassword</item>
     </style>
+
     <style name="et_visible_password_style" parent="android:Widget.EditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>
@@ -86,9 +93,19 @@
         <item name="android:maxLength">13</item>
         <item name="android:inputType">textVisiblePassword</item>
     </style>
+
     <style name="SwipeBackLayout">
         <item name="shadow_left">@drawable/shadow_left</item>
         <item name="shadow_right">@drawable/shadow_right</item>
         <item name="shadow_bottom">@drawable/shadow_bottom</item>
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -7,20 +7,25 @@
             <enum name="bottom" value="2" />
             <enum name="all" value="3" />
         </attr>
-        <attr name="shadow_left" format="reference"/>
-        <attr name="shadow_right" format="reference"/>
-        <attr name="shadow_bottom" format="reference"/>
+        <attr name="shadow_left" format="reference" />
+        <attr name="shadow_right" format="reference" />
+        <attr name="shadow_bottom" format="reference" />
     </declare-styleable>
 
-    <attr name="SwipeBackLayoutStyle" format="reference"/>
+    <attr name="SwipeBackLayoutStyle" format="reference" />
 
     <declare-styleable name="SlideBarSearchView">
-        <attr name="tv_default_Color" format="color"/>
-        <attr name="tv_select_Color" format="color"/>
-        <attr name="tv_size" format="dimension"/>
-        <attr name="select_index" format="integer"/>
-
+        <attr name="tv_default_color" format="color" />
+        <attr name="tv_selected_color" format="color" />
+        <attr name="tv_size" format="dimension" />
+        <attr name="selected_index" format="integer" />
     </declare-styleable>
 
-
+    <declare-styleable name="WheelView">
+        <attr name="wv_tv_default_color" format="color" />
+        <attr name="wv_tv_selected_color" format="color" />
+        <attr name="wv_separator_color" format="color" />
+        <attr name="wv_tv_size" format="dimension" />
+        <attr name="wv_selected_index" format="integer" />
+    </declare-styleable>
 </resources>

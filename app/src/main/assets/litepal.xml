@@ -24,7 +24,6 @@
     -->
     <list>
         <mapping class="com.hdl.words.Beans.UserBean"></mapping>
-        <mapping class="com.hdl.words.Beans.PersonalDataBean"></mapping>
     </list>
 
     <!--

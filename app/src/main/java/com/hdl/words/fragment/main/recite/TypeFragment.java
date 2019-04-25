@@ -9,7 +9,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hdl.words.Beans.WordResultBean;
 import com.hdl.words.R;
+import com.hdl.words.SharedPreferences.MySession;
 import com.hdl.words.base.BaseFragment;
 import com.hdl.words.model.WordModelImpl;
 import com.hdl.words.presenter.main.recite.TypePresenterImpl;
@@ -50,32 +52,39 @@ public class TypeFragment extends BaseFragment implements ITypeView {
     QMUIRoundButton mNextBtn;
     @BindView(R.id.img_vocab)
     ImageView mVocabImg;
-    TypePresenterImpl presenter;
+    private TypePresenterImpl presenter;
     private TextToSpeech textToSpeech;
-    int position = 0;
+    private int mPosition = 0;
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            presenter.refreshView(mPosition);
+            Log.e(TAG, "界面刷新");
+        }
+    }
 
     @OnClick({R.id.btn_voice, R.id.btn_last, R.id.btn_next, R.id.img_vocab})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_voice:
                 textToSpeech.speak(
-                        WordModelImpl.getInstance().getDataList().get(position).getWord(),
+                        WordModelImpl.getInstance().getDataList().get(mPosition).getWord(),
                         TextToSpeech.QUEUE_FLUSH,
                         null,
                         null
                 );
                 break;
             case R.id.btn_last:
-                position = position > 0 ? position - 1 : 0;
-                changeWordView(position);
+                presenter.skipLast(mPosition);
                 break;
             case R.id.btn_next:
-                int size = WordModelImpl.getInstance().getDataList().size();
-                position = position < size - 1 ? position + 1 : size - 1;
-                changeWordView(position);
+                presenter.skipNext(mPosition);
                 break;
             case R.id.img_vocab:
-                ToastHelper.shortToast(_mActivity, "该单词已被收录进生词本");
+                String username = MySession.getUsername(_mActivity);
+                presenter.requestState(username, mPosition);
                 break;
         }
 
@@ -121,6 +130,7 @@ public class TypeFragment extends BaseFragment implements ITypeView {
     @Override
     public void initData() {
         setSwipeBackEnable(true);
+
         presenter = new TypePresenterImpl(this);
         showLoading();
         textToSpeech = new TextToSpeech(_mActivity, new TextToSpeech.OnInitListener() {
@@ -149,10 +159,10 @@ public class TypeFragment extends BaseFragment implements ITypeView {
     }
 
     @Override
-    public void dataRequestCompleted() {
+    public void dataRequestCompleted(WordResultBean.DataBean bean, int size) {
         mEmptyView.setVisibility(View.GONE);
         mMainFl.setVisibility(View.VISIBLE);
-        changeWordView(position);
+        changeWordView(mPosition, bean, size);
     }
 
     @Override
@@ -167,12 +177,17 @@ public class TypeFragment extends BaseFragment implements ITypeView {
     }
 
     @Override
-    public void changeWordView(int pos) {
-        Log.e(TAG, "pos:" + pos);
-        mWordTv.setText(WordModelImpl.getInstance().getDataList().get(pos).getWord());
-        mSymbolTv.setText(WordModelImpl.getInstance().getDataList().get(pos).getSymbol());
-        mMeanTv.setText(WordModelImpl.getInstance().getDataList().get(pos).getMeans());
-        int size = WordModelImpl.getInstance().getDataList().size();
+    public void changeWordView(int pos, WordResultBean.DataBean bean, int size) {
+        Log.e(TAG, "mPosition:" + pos);
+        this.mPosition = pos;
+        mWordTv.setText(bean.getWord());
+        mSymbolTv.setText(bean.getSymbol());
+        mMeanTv.setText(bean.getMeans());
+        if (bean.getState() == 0) {
+            mVocabImg.setImageResource(R.mipmap.ic_like_false);
+        } else {
+            mVocabImg.setImageResource(R.mipmap.ic_like_true);
+        }
         if (pos == 0 && pos == size - 1) {
             mLastBtn.setEnabled(false);
             mNextBtn.setEnabled(false);
@@ -186,8 +201,20 @@ public class TypeFragment extends BaseFragment implements ITypeView {
         }
     }
 
-    interface changeWord{
-        void changeWord();
+    @Override
+    public void setLike(int pos) {
+        mVocabImg.setImageResource(R.mipmap.ic_like_true);
     }
+
+    @Override
+    public void setDislike(int pos) {
+        mVocabImg.setImageResource(R.mipmap.ic_like_false);
+    }
+
+    @Override
+    public void showToast(String msg) {
+        ToastHelper.shortToast(_mActivity, msg);
+    }
+
 
 }

@@ -1,8 +1,8 @@
 package com.hdl.words.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.hdl.words.R;
 import com.hdl.words.base.BaseFragment;

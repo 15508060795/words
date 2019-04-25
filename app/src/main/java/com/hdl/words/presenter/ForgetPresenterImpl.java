@@ -1,7 +1,7 @@
 package com.hdl.words.presenter;
 
 import android.annotation.SuppressLint;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.hdl.words.Beans.ApiBean;

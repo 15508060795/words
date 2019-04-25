@@ -10,7 +10,7 @@ import com.hdl.words.SharedPreferences.MySession;
 import com.hdl.words.base.BaseFragment;
 import com.hdl.words.fragment.LoginFragment;
 import com.hdl.words.fragment.MainFragment;
-import com.hdl.words.fragment.main.setting.PersonalDataFragment;
+import com.hdl.words.fragment.main.setting.PersonalInfoFragment;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction;
@@ -56,7 +56,7 @@ public class SettingFragment extends BaseFragment {
                 bundle.putString("account", "account");
                 assert getParentFragment() != null;
                 Log.e("getParentFragment", getParentFragment() + "  ");
-                ((MainFragment) getParentFragment()).startBrotherFragment(PersonalDataFragment.newInstance(bundle));
+                ((MainFragment) getParentFragment()).startBrotherFragment(PersonalInfoFragment.newInstance(bundle));
             }
         });
         QMUICommonListItemView logout = mGroupListView.createItemView("退出登录");

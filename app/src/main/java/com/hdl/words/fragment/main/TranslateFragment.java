@@ -2,7 +2,7 @@ package com.hdl.words.fragment.main;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.support.v7.widget.SearchView;
+import androidx.appcompat.widget.SearchView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;

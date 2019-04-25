@@ -8,7 +8,9 @@ import android.widget.ImageView;
  * Description:
  */
 public interface IWordListPresenter {
-    void requestDisLike(String username,String word, ImageView img, int pos);
+    void requestDisLike(String username, String word, ImageView img, int pos);
 
-    void requestLike(String username,String word, ImageView img, int pos);
+    void requestLike(String username, String word, ImageView img, int pos);
+
+    void requestState(String username, ImageView img, int pos);
 }

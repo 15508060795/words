@@ -2,8 +2,8 @@ package com.hdl.words.fragment.main.recite;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -94,11 +94,8 @@ public class WordListFragment extends BaseFragment implements IWordListView {
             @Override
             public void onImgClick(View parent, final ImageView img, final int pos) {
                 String username = MySession.getUsername(_mActivity);
-                if (mDataList.get(pos).getState() == 0) {
-                    presenter.requestLike(username,mDataList.get(pos).getWord(),img,pos);
-                } else {
-                    presenter.requestDisLike(username,mDataList.get(pos).getWord(),img,pos);
-                }
+                presenter.requestState(username,img,pos);
+
             }
         });
 
@@ -125,13 +122,11 @@ public class WordListFragment extends BaseFragment implements IWordListView {
 
     @Override
     public void setLike(ImageView img, int pos) {
-        mDataList.get(pos).setState(1);
         img.setImageResource(R.mipmap.ic_like_true);
     }
 
     @Override
     public void setDislike(ImageView img, int pos) {
-        mDataList.get(pos).setState(0);
         img.setImageResource(R.mipmap.ic_like_false);
     }
 

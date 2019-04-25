@@ -1,6 +1,6 @@
 package com.hdl.words.presenter.main.recite;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -11,6 +11,7 @@ import com.hdl.words.base.BasePresenter;
 import com.hdl.words.fragment.main.recite.WordListFragment;
 import com.hdl.words.model.IGETAddVocabWordsResult;
 import com.hdl.words.model.IGETDeleteVocabWordsResult;
+import com.hdl.words.model.WordModelImpl;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,9 +25,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Description:
  */
 public class WordListPresenterImpl extends BasePresenter<WordListFragment> implements IWordListPresenter {
-
+    private WordModelImpl model;
     public WordListPresenterImpl(WordListFragment view) {
         super(view);
+        model = WordModelImpl.getInstance();
     }
 
     @Override
@@ -43,8 +45,10 @@ public class WordListPresenterImpl extends BasePresenter<WordListFragment> imple
                 VocabDeleteResultBean bean = response.body();
                 try {
                     if (bean.isResult()) {
+                        model.getDataList().get(pos).setState(0);
                         mView.setDislike(img,pos);
                     } else {
+                        model.getDataList().get(pos).setState(1);
                         mView.setLike(img,pos);
                     }
                     mView.showToast(bean.getMessage());
@@ -74,8 +78,10 @@ public class WordListPresenterImpl extends BasePresenter<WordListFragment> imple
                 VocabAddResultBean bean = response.body();
                 try {
                     if (bean.isResult()) {
+                        model.getDataList().get(pos).setState(1);
                         mView.setLike(img,pos);
                     } else {
+                        model.getDataList().get(pos).setState(0);
                         mView.setDislike(img,pos);
                     }
                     mView.showToast(bean.getMessage());
@@ -89,5 +95,14 @@ public class WordListPresenterImpl extends BasePresenter<WordListFragment> imple
                 mView.showToast("网络错误");
             }
         });
+    }
+
+    @Override
+    public void requestState(String username, ImageView img, int pos) {
+        if (model.getDataList().get(pos).getState() == 0) {
+            requestLike(username,model.getDataList().get(pos).getWord(),img,pos);
+        } else {
+            requestDisLike(username,model.getDataList().get(pos).getWord(),img,pos);
+        }
     }
 }
