@@ -3,12 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
     <com.qmuiteam.qmui.widget.QMUIAppBarLayout
         android:layout_width="match_parent"
         android:layout_height="256dp"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        >
 
         <com.qmuiteam.qmui.widget.QMUICollapsingTopBarLayout
             android:id="@+id/collapsing_topbar_layout"
@@ -24,11 +26,10 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fitsSystemWindows="false"
                 android:scaleType="fitXY"
                 app:qmui_layout_collapseMode="parallax"
                 app:qmui_layout_collapseParallaxMultiplier="0.7"
-                android:src="@mipmap/ic_background"/>
+                android:src="@mipmap/ic_flash_bg2"/>
             <com.qmuiteam.qmui.widget.QMUITopBar
                 android:id="@+id/topBar"
                 android:layout_width="match_parent"

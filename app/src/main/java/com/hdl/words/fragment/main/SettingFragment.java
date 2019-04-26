@@ -94,9 +94,6 @@ public class SettingFragment extends BaseFragment {
         });
 
 
-
-
-
         QMUICommonListItemView personalData = mGroupListView.createItemView("个人资料");
         personalData.setAccessoryType(QMUICommonListItemView.ACCESSORY_TYPE_CUSTOM);
         personalData.setOnClickListener(v -> {
@@ -114,11 +111,11 @@ public class SettingFragment extends BaseFragment {
                     .setMessage(R.string.dialog_logout_message)
                     .addAction(0, R.string.logout, QMUIDialogAction.ACTION_PROP_NEGATIVE, (dialog, index) -> {
                         dialog.dismiss();
-                        try{
+                        try {
                             ((MainFragment) getParentFragment()).startBrotherFragmentAndPop(LoginFragment.newInstance());
                             MySession.clear(_mActivity);
-                        }catch (NullPointerException e) {
-                            Log.e(TAG,e.getMessage());
+                        } catch (NullPointerException e) {
+                            Log.e(TAG, e.getMessage());
                         }
                     })
                     .addAction(R.string.cancel, (dialog, index) -> dialog.dismiss())
@@ -145,5 +142,15 @@ public class SettingFragment extends BaseFragment {
     private void refreshUI(PersonalInfoBean.DataBean bean) {
         mUsernameTv.setText(bean.getUsername());
         mNameTv.setText(bean.getName());
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            if (null != PersonalInfoModelImpl.getInstance().getBean()) {
+                refreshUI(PersonalInfoModelImpl.getInstance().getBean());
+            }
+        }
     }
 }

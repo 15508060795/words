@@ -51,7 +51,7 @@
                         android:layout_height="match_parent"
                         android:layout_centerVertical="true"
                         android:focusable="false"
-                        android:text="会笑的小栋"
+                        android:text="*****"
                         android:textColor="@color/black"
                         android:textSize="@dimen/textView_large_note" />
 
@@ -78,7 +78,7 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:maxLines="1"
-                        android:text="IOTAT帐号:"
+                        android:text="*****"
                         android:textColor="@color/qmui_config_color_gray_5"
                         android:textSize="@dimen/textView_medium_note" />
 
