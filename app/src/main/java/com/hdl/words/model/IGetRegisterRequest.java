@@ -2,7 +2,6 @@ package com.hdl.words.model;
 
 import com.hdl.words.Beans.ApiBean;
 import com.hdl.words.Beans.RegisterResultBean;
-import com.hdl.words.Beans.TranslateResultBean;
 
 import retrofit2.Call;
 import retrofit2.http.Field;

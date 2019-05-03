@@ -3,10 +3,6 @@ package com.hdl.words.model;
 import android.util.Log;
 
 import com.hdl.words.Beans.PersonalInfoBean;
-import com.hdl.words.Beans.WordResultBean;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Date 2019/4/18 21:36

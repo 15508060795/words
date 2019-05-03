@@ -1,7 +1,6 @@
 package com.hdl.words.model;
 
 import com.hdl.words.Beans.ApiBean;
-import com.hdl.words.Beans.PersonalInfoBean;
 import com.hdl.words.Beans.SetPersonalHomeTownResultBean;
 
 import retrofit2.Call;
