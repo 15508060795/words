@@ -8,6 +8,7 @@
     <string name="change">更改</string>
     <string name="input_limit">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
     <!--闪屏界面提示语-->
+    <string name="flash_note0">千锤万凿出深山,烈火焚烧若等闲.</string>
     <string name="flash_note1">欲望以提升热忱,毅力以磨平高山.</string>
     <string name="flash_note2">受思深处宜先退,得意浓时便可休.</string>
     <string name="flash_note3">不经一番寒彻骨,怎得梅花扑鼻香.</string>
@@ -17,7 +18,6 @@
     <string name="flash_note7">长风破浪会有时,直挂云帆济沧海.</string>
     <string name="flash_note8">时人不识凌云木,直待凌云始道高.</string>
     <string name="flash_note9">黑发不知勤学早,白首方悔读书迟.</string>
-    <string name="flash_note10">千锤万凿出深山,烈火焚烧若等闲.</string>
 
     <!--登录界面-->
     <string name="account">用户名</string>

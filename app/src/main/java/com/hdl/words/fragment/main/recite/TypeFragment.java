@@ -53,7 +53,7 @@ public class TypeFragment extends BaseFragment implements ITypeView {
     @BindView(R.id.img_vocab)
     ImageView mVocabImg;
     private TypePresenterImpl presenter;
-    private TextToSpeech textToSpeech;
+    private TextToSpeech tts;
     private int mPosition = 0;
 
     @Override
@@ -69,7 +69,7 @@ public class TypeFragment extends BaseFragment implements ITypeView {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_voice:
-                textToSpeech.speak(
+                tts.speak(
                         WordModelImpl.getInstance().getDataList().get(mPosition).getWord(),
                         TextToSpeech.QUEUE_FLUSH,
                         null,
@@ -104,12 +104,7 @@ public class TypeFragment extends BaseFragment implements ITypeView {
     @Override
     public void initTopBar() {
         mTopBar.setBackgroundColor(getResources().getColor(R.color.color_topBar_bg));
-        mTopBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pop();
-            }
-        });
+        mTopBar.addLeftBackImageButton().setOnClickListener(v -> pop());
         int[] titles = new int[]{
                 R.string.cet_4,
                 R.string.cet_6,
@@ -118,12 +113,9 @@ public class TypeFragment extends BaseFragment implements ITypeView {
         };
         String title = getString(titles[mBundle.getInt("type")]);
         mTopBar.setTitle(title);
-        mTopBar.addRightImageButton(R.drawable.ic_details, 1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                start(WordListFragment.newInstance(bundle));
-            }
+        mTopBar.addRightImageButton(R.drawable.ic_details, 1).setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            start(WordListFragment.newInstance(bundle));
         });
     }
 
@@ -133,18 +125,15 @@ public class TypeFragment extends BaseFragment implements ITypeView {
 
         presenter = new TypePresenterImpl(this);
         showLoading();
-        textToSpeech = new TextToSpeech(_mActivity, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status == TextToSpeech.SUCCESS) {
-                    int result = textToSpeech.setLanguage(Locale.CHINA);
-                    if (result != TextToSpeech.LANG_COUNTRY_AVAILABLE && result != TextToSpeech.LANG_AVAILABLE) {
-                        ToastHelper.shortToast(_mActivity, "暂不支持该语言");
-                    }
+        tts = new TextToSpeech(_mActivity, status -> {
+            if (status == TextToSpeech.SUCCESS) {
+                int result = tts.setLanguage(Locale.CHINA);
+                if (result != TextToSpeech.LANG_COUNTRY_AVAILABLE && result != TextToSpeech.LANG_AVAILABLE) {
+                    ToastHelper.shortToast(_mActivity, "暂不支持该语言");
                 }
             }
         });
-        textToSpeech.setLanguage(Locale.US);
+        tts.setLanguage(Locale.US);
     }
 
     @Override
@@ -159,7 +148,7 @@ public class TypeFragment extends BaseFragment implements ITypeView {
     }
 
     @Override
-    public void dataRequestCompleted(WordResultBean.DataBean bean, int size) {
+    public void dataRequestCompleted(WordResultBean.Word bean, int size) {
         mEmptyView.setVisibility(View.GONE);
         mMainFl.setVisibility(View.VISIBLE);
         changeWordView(mPosition, bean, size);
@@ -168,16 +157,11 @@ public class TypeFragment extends BaseFragment implements ITypeView {
     @Override
     public void showRequestFailDialog() {
         mEmptyView.setTitleText("数据请求失败");
-        mEmptyView.setButton("点击重试", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.getWords(mBundle.getInt("type"));
-            }
-        });
+        mEmptyView.setButton("点击重试", v -> presenter.getWords(mBundle.getInt("type")));
     }
 
     @Override
-    public void changeWordView(int pos, WordResultBean.DataBean bean, int size) {
+    public void changeWordView(int pos, WordResultBean.Word bean, int size) {
         Log.e(TAG, "mPosition:" + pos);
         this.mPosition = pos;
         mWordTv.setText(bean.getWord());
@@ -202,6 +186,11 @@ public class TypeFragment extends BaseFragment implements ITypeView {
     }
 
     @Override
+    public void changePosition(int pos) {
+        mPosition = pos;
+    }
+
+    @Override
     public void setLike(int pos) {
         mVocabImg.setImageResource(R.mipmap.ic_like_true);
     }
@@ -215,6 +204,5 @@ public class TypeFragment extends BaseFragment implements ITypeView {
     public void showToast(String msg) {
         ToastHelper.shortToast(_mActivity, msg);
     }
-
 
 }

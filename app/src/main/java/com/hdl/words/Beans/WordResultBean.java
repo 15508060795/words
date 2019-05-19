@@ -12,17 +12,17 @@ import java.util.List;
  */
 public class WordResultBean implements Serializable {
     private static final long serialVersionUID = -264223266421319389L;
-    private List<DataBean> data;
+    private List<Word> data;
 
-    public List<DataBean> getData() {
+    public List<Word> getData() {
         return data;
     }
 
-    public void setData(List<DataBean> data) {
+    public void setData(List<Word> data) {
         this.data = data;
     }
 
-    public static class DataBean implements Serializable {
+    public static class Word implements Serializable {
         /**
          * symbol : /ə'bændən/
          * means :  vt.丢弃；放弃，抛弃
@@ -44,22 +44,22 @@ public class WordResultBean implements Serializable {
             this.state = state;
         }
 
-        protected DataBean(Parcel in) {
+        protected Word(Parcel in) {
             symbol = in.readString();
             means = in.readString();
             id = in.readInt();
             word = in.readString();
         }
 
-        /*public static final Creator<DataBean> CREATOR = new Creator<DataBean>() {
+        /*public static final Creator<Word> CREATOR = new Creator<Word>() {
             @Override
-            public DataBean createFromParcel(Parcel in) {
-                return new DataBean(in);
+            public Word createFromParcel(Parcel in) {
+                return new Word(in);
             }
 
             @Override
-            public DataBean[] newArray(int size) {
-                return new DataBean[size];
+            public Word[] newArray(int size) {
+                return new Word[size];
             }
         };*/
 

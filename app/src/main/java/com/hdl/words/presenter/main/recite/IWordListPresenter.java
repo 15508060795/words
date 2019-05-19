@@ -13,4 +13,6 @@ public interface IWordListPresenter {
     void requestLike(String username, String word, ImageView img, int pos);
 
     void requestState(String username, ImageView img, int pos);
+
+    void clickItem(int pos);
 }

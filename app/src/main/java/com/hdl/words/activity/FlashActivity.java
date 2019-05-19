@@ -1,7 +1,12 @@
 package com.hdl.words.activity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.LruCache;
+import android.view.VelocityTracker;
+import android.view.ViewConfiguration;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,6 +36,7 @@ public class FlashActivity extends BaseActivity {
 
     @Override
     protected void initTopBar() {
+
     }
 
     @Override
@@ -52,18 +58,15 @@ public class FlashActivity extends BaseActivity {
                 R.string.flash_note7,
                 R.string.flash_note8,
                 R.string.flash_note9,
-                R.string.flash_note10
+                R.string.flash_note0
         };
+        randomInit(image,msg);
+        new Handler().postDelayed(() -> startActivityAndCloseThis(MainActivity.class), 2000);
+    }
+    private void randomInit(int[] image,int[] msg){
         int flashCode = new Random().nextInt(5);
         mFlashImg.setImageResource(image[flashCode]);
         int msgCode = new Random().nextInt(10);
         mFlashTv.setText(getString(msg[msgCode]));
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivityAndCloseThis(MainActivity.class);
-            }
-        }, 2000);
-
     }
 }

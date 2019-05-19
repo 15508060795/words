@@ -74,12 +74,7 @@ public class ToastHelper {
 
     public static void hide(long time) {
         if (toast != null) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    toast.cancel();
-                }
-            }, time);
+            new Handler().postDelayed(() -> toast.cancel(), time);
         }
     }
 }

@@ -55,12 +55,7 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     @Override
     public void initTopBar() {
         mTopBar.setBackgroundColor(getResources().getColor(R.color.color_topBar_bg));
-        mTopBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pop();
-            }
-        });
+        mTopBar.addLeftBackImageButton().setOnClickListener(v -> pop());
         mTopBar.setTitle(R.string.register_title);
 
     }
@@ -89,14 +84,11 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     @Override
     public void registerSucceed(String msg, final String username) {
         QmuiDialogHelper.showSuccess(_mActivity, msg);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                MySession.setUsername(_mActivity,username);
-                MySession.setLoginState(_mActivity,true);
-                startWithPop(MainFragment.newInstance());
-                hideDialog();
-            }
+        new Handler().postDelayed(() -> {
+            MySession.setUsername(_mActivity,username);
+            MySession.setLoginState(_mActivity,true);
+            startWithPop(MainFragment.newInstance());
+            hideDialog();
         }, 1500);
 
     }

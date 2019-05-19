@@ -3,6 +3,8 @@ package com.hdl.words.fragment;
 import android.view.View;
 import android.widget.EditText;
 
+import androidx.fragment.app.FragmentTransaction;
+
 import com.hdl.words.R;
 import com.hdl.words.base.BaseFragment;
 import com.hdl.words.presenter.ForgetPresenterImpl;
@@ -56,12 +58,7 @@ public class ForgetFragment extends BaseFragment implements IForgetView {
     @Override
     public void initTopBar() {
         mTopBar.setBackgroundColor(getResources().getColor(R.color.color_topBar_bg));
-        mTopBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pop();
-            }
-        });
+        mTopBar.addLeftBackImageButton().setOnClickListener(v -> pop());
         mTopBar.setTitle(R.string.reset_title);
     }
 

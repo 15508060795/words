@@ -32,20 +32,12 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
         final RecyclerViewHolder holder = new RecyclerViewHolder(mContext,
                 mInflater.inflate(getItemLayoutId(viewType), parent, false));
         if (mClickListener != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mClickListener.onItemClick(holder.itemView, holder.getLayoutPosition());
-                }
-            });
+            holder.itemView.setOnClickListener(v -> mClickListener.onItemClick(holder.itemView, holder.getLayoutPosition()));
         }
         if (mLongClickListener != null) {
-            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    mLongClickListener.onItemLongClick(holder.itemView, holder.getLayoutPosition());
-                    return true;
-                }
+            holder.itemView.setOnLongClickListener(v -> {
+                mLongClickListener.onItemLongClick(holder.itemView, holder.getLayoutPosition());
+                return true;
             });
         }
         return holder;
@@ -73,6 +65,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
     public void delete(int pos) {
         mData.remove(pos);
         notifyItemRemoved(pos);
+        notifyItemRangeChanged(pos, mData.size() - pos);
     }
 
     public void setData(List<T> list){

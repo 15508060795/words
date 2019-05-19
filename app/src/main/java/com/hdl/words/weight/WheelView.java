@@ -52,7 +52,7 @@ public class WheelView extends ScrollView {
     private int mSeparatorColor;
     /*字体大小*/
     private int mTextSize;
-    int initialY;
+    private int initialY;
     private Runnable scrollerTask;
     /*延迟时间*/
     private int mDelayTime = 50;
@@ -334,12 +334,7 @@ public class WheelView extends ScrollView {
     public void setSeletion(int position) {
         final int p = position;
         mSelectedIndex = p + offset;
-        this.post(new Runnable() {
-            @Override
-            public void run() {
-                WheelView.this.smoothScrollTo(0, p * mItemHeight);
-            }
-        });
+        this.post(() -> WheelView.this.smoothScrollTo(0, p * mItemHeight));
 
     }
 

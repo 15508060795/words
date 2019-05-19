@@ -2,10 +2,12 @@ package com.hdl.words.fragment.main.recite;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.hdl.words.Beans.WordResultBean;
 import com.hdl.words.R;
@@ -38,8 +40,9 @@ public class WordListFragment extends BaseFragment implements IWordListView {
     @BindView(R.id.rsv_list)
     SlideBarSearchView mListRSV;
     private ItemAdapter mAdapter;
-    private List<WordResultBean.DataBean> mDataList;
+    private List<WordResultBean.Word> mDataList;
     private WordListPresenterImpl presenter;
+
     public static WordListFragment newInstance(Bundle bundle) {
         WordListFragment fragment = new WordListFragment();
         fragment.setArguments(bundle);
@@ -55,12 +58,7 @@ public class WordListFragment extends BaseFragment implements IWordListView {
     public void initTopBar() {
         mTopBar.setBackgroundColor(getResources().getColor(R.color.color_topBar_bg));
         mTopBar.setTitle("单词列表");
-        mTopBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pop();
-            }
-        });
+        mTopBar.addLeftBackImageButton().setOnClickListener(v -> pop());
 
     }
 
@@ -72,46 +70,42 @@ public class WordListFragment extends BaseFragment implements IWordListView {
         mAdapter = new ItemAdapter(_mActivity, mDataList);
         mWordListRv.setLayoutManager(new LinearLayoutManager(
                         _mActivity,
-                        LinearLayoutManager.VERTICAL,
+                        RecyclerView.VERTICAL,
                         false
                 )
         );
         mWordListRv.addItemDecoration(new RecycleViewDivider(
                 _mActivity, LinearLayoutManager.VERTICAL, R.drawable.divider_mileage));
         mWordListRv.setAdapter(mAdapter);
+
+
+        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        defaultItemAnimator.setAddDuration(1000);
+        defaultItemAnimator.setRemoveDuration(1000);
+        mWordListRv.setItemAnimator(defaultItemAnimator);
+
     }
 
     @Override
     public void initListener() {
-        mAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View itemView, int pos) {
+        mAdapter.setOnItemClickListener((itemView, pos) -> presenter.clickItem(pos));
 
+        mAdapter.setOnImgClick((parent, img, pos) -> {
+            String username = MySession.getUsername(_mActivity);
+            presenter.requestState(username, img, pos);
 
-            }
-        });
-        mAdapter.setOnWeightClick(new ItemAdapter.OnImgClick() {
-            @Override
-            public void onImgClick(View parent, final ImageView img, final int pos) {
-                String username = MySession.getUsername(_mActivity);
-                presenter.requestState(username,img,pos);
-
-            }
         });
 
-        mListRSV.setOnItemTouchListener(new SlideBarSearchView.OnItemTouchListener() {
-            @Override
-            public void onItemTouch(int pos, String item) {
-                if (mDataList != null) {
-                    for (int i = 0; i < mDataList.size(); i++) {
-                        if (mDataList.get(i).getWord().toUpperCase().charAt(0) == item.charAt(0)) {
-                            scrollList(i);
-                            break;
-                        }
-                    }
+        mListRSV.setOnItemTouchListener((pos, item) -> {
+            if (null == mDataList)
+                return;
+            for (int i = 0; i < mDataList.size(); i++) {
+                if (mDataList.get(i).getWord().toUpperCase().charAt(0) == item.charAt(0)) {
+                    scrollList(i);
+                    break;
                 }
-
             }
+
         });
     }
 
@@ -132,14 +126,14 @@ public class WordListFragment extends BaseFragment implements IWordListView {
 
     @Override
     public void showToast(String msg) {
-        ToastHelper.shortToast(_mActivity,msg);
+        ToastHelper.shortToast(_mActivity, msg);
     }
 
 
-    static class ItemAdapter extends BaseRecyclerAdapter<WordResultBean.DataBean> {
-        private OnImgClick onWeightClick;
+    static class ItemAdapter extends BaseRecyclerAdapter<WordResultBean.Word> {
+        private OnImgClick onImgClick;
 
-        ItemAdapter(Context ctx, List<WordResultBean.DataBean> list) {
+        ItemAdapter(Context ctx, List<WordResultBean.Word> list) {
             super(ctx, list);
         }
 
@@ -149,29 +143,25 @@ public class WordListFragment extends BaseFragment implements IWordListView {
         }
 
         @Override
-        public void bindData(final RecyclerViewHolder holder, final int position, final WordResultBean.DataBean item) {
+        public void bindData(final RecyclerViewHolder holder, final int position, final WordResultBean.Word item) {
             final ImageView img = holder.getImageView(R.id.img_state);
             if (item.getState() == 0) {
                 img.setImageResource(R.mipmap.ic_like_false);
             } else {
                 img.setImageResource(R.mipmap.ic_like_true);
             }
-            img.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (onWeightClick != null) {
-                        onWeightClick.onImgClick(holder.itemView, img, position);
-                    }
+            img.setOnClickListener(v -> {
+                if (onImgClick != null) {
+                    onImgClick.onImgClick(holder.itemView, img, position);
                 }
             });
             holder.getTextView(R.id.tv_item_word).setText(item.getWord());
             holder.getTextView(R.id.tv_item_symbol).setText(item.getSymbol());
             holder.getTextView(R.id.tv_item_mean).setText(item.getMeans());
-
         }
 
-        void setOnWeightClick(OnImgClick onWeightClick) {
-            this.onWeightClick = onWeightClick;
+        void setOnImgClick(OnImgClick onImgClick) {
+            this.onImgClick = onImgClick;
         }
 
         interface OnImgClick {

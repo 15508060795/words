@@ -9,7 +9,7 @@ import com.hdl.words.Beans.PersonalInfoBean;
  */
 public interface IPersonalInfoView {
 
-    void refreshUI(PersonalInfoBean.DataBean bean);
+    void refreshUI(PersonalInfoBean.PersonalInfo bean);
 
     void showToast(String msg);
 }

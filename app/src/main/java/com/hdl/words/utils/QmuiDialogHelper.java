@@ -90,12 +90,7 @@ public class QmuiDialogHelper {
 
     public static void hide(int duration) {
         if (duration > 0) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    hide();
-                }
-            }, duration);
+            new Handler().postDelayed(() -> hide(), duration);
         }
     }
 

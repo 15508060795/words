@@ -1,7 +1,6 @@
 package com.hdl.words.presenter.main.setting;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.InputType;
@@ -298,7 +297,7 @@ public class PersonalInfoPresenterImpl extends BasePresenter<PersonalInfoFragmen
             @Override
             public void onResponse(@NonNull Call<PersonalInfoBean> call, @NonNull Response<PersonalInfoBean> response) {
                 try {
-                    PersonalInfoBean.DataBean bean = response.body().getData();
+                    PersonalInfoBean.PersonalInfo bean = response.body().getData();
                     PersonalInfoModelImpl.getInstance().setBean(bean);
                     mView.refreshUI(bean);
                 } catch (NullPointerException e) {

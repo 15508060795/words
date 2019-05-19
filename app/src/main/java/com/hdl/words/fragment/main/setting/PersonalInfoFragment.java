@@ -32,9 +32,8 @@ public class PersonalInfoFragment extends BaseFragment implements IPersonalInfoV
     QMUICollapsingTopBarLayout mCollapsingTopBarLayout;
     @BindView(R.id.lv_setting)
     QMUIGroupListView mSettingLv;
-    List<QMUICommonListItemView> mItemList;
+    private List<QMUICommonListItemView> mItemList;
     private PersonalInfoPresenterImpl presenter;
-
     public static PersonalInfoFragment newInstance(Bundle bundle) {
         PersonalInfoFragment fragment = new PersonalInfoFragment();
         fragment.setArguments(bundle);
@@ -127,7 +126,7 @@ public class PersonalInfoFragment extends BaseFragment implements IPersonalInfoV
     }
 
     @Override
-    public void refreshUI(PersonalInfoBean.DataBean bean) {
+    public void refreshUI(PersonalInfoBean.PersonalInfo bean) {
         mItemList.get(0).setDetailText(bean.getName());
         mItemList.get(1).setDetailText(bean.getSex() == 1 ? "男" : "女");
         mItemList.get(2).setDetailText(bean.getBirth());

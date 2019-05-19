@@ -7,17 +7,17 @@ public class PersonalInfoBean {
      * data : {"hometown":"四川-南充","sex":1,"name":"何栋梁","sign":"与我为敌,就当这般生不如死!","birth":"1998-03-12","id":1,"username":"15508060795"}
      */
 
-    private DataBean data;
+    private PersonalInfo data;
 
-    public DataBean getData() {
+    public PersonalInfo getData() {
         return data;
     }
 
-    public void setData(DataBean data) {
+    public void setData(PersonalInfo data) {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class PersonalInfo {
         /**
          * hometown : 四川-南充
          * sex : 1

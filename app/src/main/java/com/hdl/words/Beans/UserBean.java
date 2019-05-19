@@ -1,6 +1,5 @@
 package com.hdl.words.Beans;
 
-import org.litepal.crud.DataSupport;
 
 import java.io.Serializable;
 
@@ -9,7 +8,7 @@ import java.io.Serializable;
  * author HDL
  * Mail 229101253@qq.com
  */
-public class UserBean extends DataSupport implements Serializable {
+public class UserBean implements Serializable {
     private static final long serialVersionUID = -2642333866421319389L;
     private String account;
     private String password;

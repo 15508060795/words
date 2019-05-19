@@ -17,4 +17,5 @@
         android:layout_gravity="bottom"
         android:textSize="12sp"
         app:qmui_tab_icon_position="top" />
+
 </LinearLayout>

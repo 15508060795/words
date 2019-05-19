@@ -2,9 +2,10 @@ package com.hdl.words.fragment.main;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.View;
 
 import com.hdl.words.Beans.ItemDescription;
 import com.hdl.words.R;
@@ -62,14 +63,11 @@ public class ReciteFragment extends BaseFragment {
         }
         ItemAdapter itemAdapter = new ItemAdapter(_mActivity, list);
         mReciteRv.setAdapter(itemAdapter);
-        itemAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View itemView, int pos) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("type", pos);
-                assert getParentFragment() != null;
-                ((MainFragment) getParentFragment()).startBrotherFragment(TypeFragment.newInstance(bundle));
-            }
+        itemAdapter.setOnItemClickListener((itemView, pos) -> {
+            Bundle bundle = new Bundle();
+            bundle.putInt("type", pos);
+            assert getParentFragment() != null;
+            ((MainFragment) getParentFragment()).startBrotherFragment(TypeFragment.newInstance(bundle));
         });
 
     }

@@ -13,7 +13,7 @@ import java.util.List;
  * Description:
  */
 public class WordModelImpl {
-    private List<WordResultBean.DataBean> mDataList;
+    private List<WordResultBean.Word> mDataList;
     private static WordModelImpl mModel = null;
     private static final String TAG = "WordModelImpl";
 
@@ -31,11 +31,11 @@ public class WordModelImpl {
         return mModel;
     }
 
-    public List<WordResultBean.DataBean> getDataList() {
+    public List<WordResultBean.Word> getDataList() {
         return mDataList;
     }
 
-    public void setDataList(List<WordResultBean.DataBean> dataList) {
+    public void setDataList(List<WordResultBean.Word> dataList) {
         mDataList = new ArrayList<>();
         mDataList.clear();
         mDataList.addAll(dataList);

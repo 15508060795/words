@@ -10,7 +10,7 @@ import com.hdl.words.Beans.PersonalInfoBean;
  * Description:
  */
 public class PersonalInfoModelImpl {
-    private PersonalInfoBean.DataBean mBean;
+    private PersonalInfoBean.PersonalInfo mPersonalInfo;
     private static PersonalInfoModelImpl mModel = null;
     private static final String TAG = PersonalInfoModelImpl.class.getSimpleName();
 
@@ -28,12 +28,12 @@ public class PersonalInfoModelImpl {
         return mModel;
     }
 
-    public PersonalInfoBean.DataBean getBean() {
-        return mBean;
+    public PersonalInfoBean.PersonalInfo getBean() {
+        return mPersonalInfo;
     }
 
-    public void setBean(PersonalInfoBean.DataBean bean) {
-        mBean = bean;
+    public void setBean(PersonalInfoBean.PersonalInfo bean) {
+        mPersonalInfo = bean;
         Log.e(TAG,"setBean");
     }
 

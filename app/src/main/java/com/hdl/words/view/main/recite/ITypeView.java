@@ -10,11 +10,13 @@ import com.hdl.words.Beans.WordResultBean;
 public interface ITypeView {
     void showLoading();
 
-    void dataRequestCompleted(WordResultBean.DataBean bean,int size);
+    void dataRequestCompleted(WordResultBean.Word bean, int size);
 
     void showRequestFailDialog();
 
-    void changeWordView(int pos, WordResultBean.DataBean bean,int size);
+    void changeWordView(int pos, WordResultBean.Word bean, int size);
+
+    void changePosition(int pos);
 
     void setLike(int pos);
 

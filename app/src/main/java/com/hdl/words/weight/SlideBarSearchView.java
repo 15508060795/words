@@ -3,9 +3,6 @@ package com.hdl.words.weight;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-
-import androidx.annotation.Nullable;
-
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -14,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.hdl.words.R;
 
@@ -63,7 +62,7 @@ public class SlideBarSearchView extends LinearLayout implements View.OnTouchList
         mData = new ArrayList<>();
         String[] DEFAULT_DATA = new String[]{
                 "A", "B", "C", "D", "E", "F", "G", "H", "I", "G", "K", "L", "M",
-                "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "#"
+                "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
         };
         mData.addAll(Arrays.asList(DEFAULT_DATA));
         setOrientation(VERTICAL);
@@ -144,17 +143,16 @@ public class SlideBarSearchView extends LinearLayout implements View.OnTouchList
         float firstViewTop = firstView.getTop();
         float itemHeight = firstView.getHeight();
         float currentY = event.getY();
-        if (currentY >= 0 && currentY <= getHeight()) {
-            if (currentY >= firstViewTop && currentY <= itemHeight * layout.getChildCount() + firstViewTop) {
-                int index = (int) ((currentY - firstViewTop) / itemHeight);
-                if (onItemTouchListener != null) {
-                    onItemTouchListener.onItemTouch(index, mData.get(index));
-                }
-                changeTextViewColor(index);
-                invalidate();
-            }
+        if (currentY < firstViewTop)
+            return;
+        if (currentY > itemHeight * layout.getChildCount() + firstViewTop)
+            return;
+        int index = (int) ((currentY - firstViewTop) / itemHeight);
+        if (onItemTouchListener != null) {
+            onItemTouchListener.onItemTouch(index, mData.get(index));
         }
-
+        changeTextViewColor(index);
+        invalidate();
     }
 
     public interface OnItemTouchListener {

@@ -4,7 +4,6 @@ package com.hdl.words.fragment.main;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,14 +18,11 @@ import com.hdl.words.fragment.MainFragment;
 import com.hdl.words.fragment.main.setting.PersonalInfoFragment;
 import com.hdl.words.model.IGETPersonalInfoResult;
 import com.hdl.words.model.PersonalInfoModelImpl;
-import com.hdl.words.presenter.main.setting.PersonalInfoPresenterImpl;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction;
 import com.qmuiteam.qmui.widget.grouplist.QMUICommonListItemView;
 import com.qmuiteam.qmui.widget.grouplist.QMUIGroupListView;
-
-import org.w3c.dom.Text;
 
 import butterknife.BindView;
 import retrofit2.Call;
@@ -79,7 +75,7 @@ public class SettingFragment extends BaseFragment {
             @Override
             public void onResponse(@NonNull Call<PersonalInfoBean> call, @NonNull Response<PersonalInfoBean> response) {
                 try {
-                    PersonalInfoBean.DataBean bean = response.body().getData();
+                    PersonalInfoBean.PersonalInfo bean = response.body().getData();
                     PersonalInfoModelImpl.getInstance().setBean(bean);
                     refreshUI(PersonalInfoModelImpl.getInstance().getBean());
                 } catch (NullPointerException e) {
@@ -139,7 +135,7 @@ public class SettingFragment extends BaseFragment {
     public void initListener() {
     }
 
-    private void refreshUI(PersonalInfoBean.DataBean bean) {
+    private void refreshUI(PersonalInfoBean.PersonalInfo bean) {
         mUsernameTv.setText(bean.getUsername());
         mNameTv.setText(bean.getName());
     }

@@ -68,24 +68,9 @@ public class TranslateFragment extends BaseFragment implements ITranslateView {
 
     @Override
     public void initListener() {
-        mLeftTopBarBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.fromTypeChange();
-            }
-        });
-        mTitleTopBarImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.typeSwitch();
-            }
-        });
-        mRightTopBarBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.toTypeChange();
-            }
-        });
+        mLeftTopBarBtn.setOnClickListener(v -> mPresenter.fromTypeChange());
+        mTitleTopBarImg.setOnClickListener(v -> mPresenter.typeSwitch());
+        mRightTopBarBtn.setOnClickListener(v -> mPresenter.toTypeChange());
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -157,14 +142,11 @@ public class TranslateFragment extends BaseFragment implements ITranslateView {
         ArrayAdapter adapter = new ArrayAdapter<>(_mActivity, R.layout.simple_list_item, LanguageBean.getInstance().getLanguageList());
         final QMUIListPopup qmuiListPopup = new QMUIListPopup(_mActivity, QMUIPopup.DIRECTION_TOP, adapter);
         qmuiListPopup.create(QMUIDisplayHelper.dp2px(_mActivity, 120),
-                QMUIDisplayHelper.dp2px(_mActivity, 240), new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
-                        mFrom = pos;
-                        mLeftTopBarBtn.setText(LanguageBean.getInstance().getLanguageList().get(pos));
-                        mPresenter.translate(mFrom, mTo, mInputStr,false);
-                        qmuiListPopup.dismiss();
-                    }
+                QMUIDisplayHelper.dp2px(_mActivity, 240), (parent, view, pos, id) -> {
+                    mFrom = pos;
+                    mLeftTopBarBtn.setText(LanguageBean.getInstance().getLanguageList().get(pos));
+                    mPresenter.translate(mFrom, mTo, mInputStr,false);
+                    qmuiListPopup.dismiss();
                 });
         qmuiListPopup.setAnimStyle(QMUIPopup.ANIM_GROW_FROM_LEFT);
         qmuiListPopup.show(mLeftTopBarBtn);
@@ -177,14 +159,11 @@ public class TranslateFragment extends BaseFragment implements ITranslateView {
         ArrayAdapter adapter = new ArrayAdapter<>(_mActivity, R.layout.simple_list_item, LanguageBean.getInstance().getLanguageList());
         final QMUIListPopup qmuiListPopup = new QMUIListPopup(_mActivity, QMUIPopup.DIRECTION_TOP, adapter);
         qmuiListPopup.create(QMUIDisplayHelper.dp2px(_mActivity, 120),
-                QMUIDisplayHelper.dp2px(_mActivity, 240), new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        mTo = position;
-                        mRightTopBarBtn.setText(LanguageBean.getInstance().getLanguageList().get(position));
-                        mPresenter.translate(mFrom, mTo, mInputStr,false);
-                        qmuiListPopup.dismiss();
-                    }
+                QMUIDisplayHelper.dp2px(_mActivity, 240), (parent, view, position, id) -> {
+                    mTo = position;
+                    mRightTopBarBtn.setText(LanguageBean.getInstance().getLanguageList().get(position));
+                    mPresenter.translate(mFrom, mTo, mInputStr,false);
+                    qmuiListPopup.dismiss();
                 });
         qmuiListPopup.setAnimStyle(QMUIPopup.ANIM_GROW_FROM_RIGHT);
         qmuiListPopup.show(mRightTopBarBtn);

@@ -8,6 +8,7 @@ import com.hdl.words.Beans.ApiBean;
 import com.hdl.words.Beans.VocabAddResultBean;
 import com.hdl.words.Beans.VocabDeleteResultBean;
 import com.hdl.words.base.BasePresenter;
+import com.hdl.words.fragment.main.recite.TypeFragment;
 import com.hdl.words.fragment.main.recite.WordListFragment;
 import com.hdl.words.model.IGETAddVocabWordsResult;
 import com.hdl.words.model.IGETDeleteVocabWordsResult;
@@ -104,5 +105,13 @@ public class WordListPresenterImpl extends BasePresenter<WordListFragment> imple
         } else {
             requestDisLike(username,model.getDataList().get(pos).getWord(),img,pos);
         }
+    }
+
+    @Override
+    public void clickItem(int pos) {
+        TypeFragment typeFragment = mView.findFragment(TypeFragment.class);
+        typeFragment.changePosition(pos);
+        mView.pop();
+        Log.e(TAG,"clickItem:" + pos);
     }
 }
